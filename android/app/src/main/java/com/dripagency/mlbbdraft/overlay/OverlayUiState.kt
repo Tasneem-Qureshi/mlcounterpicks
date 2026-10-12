@@ -15,8 +15,10 @@ sealed interface OverlayUiState {
         val picks: List<Recommendation>,
         /** display names of all enemies considered (detected ∪ manual) */
         val enemies: List<String>,
-        /** ids of enemies the user picked by hand (removable chips) */
+        /** ids of enemies the user picked by hand */
         val manualEnemyIds: List<String>,
+        /** ids recognised on screen and currently in effect (pre-selected in the picker) */
+        val detectedEnemyIds: List<String> = emptyList(),
         val directOpponent: String?,
         val strictFallback: Boolean,
         val locked: Boolean,

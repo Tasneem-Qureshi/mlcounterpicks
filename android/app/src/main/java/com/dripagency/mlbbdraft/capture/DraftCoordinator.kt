@@ -48,14 +48,28 @@ class DraftCoordinator(
     private var lastDiagAt = 0L
 
     private val manualEnemies = LinkedHashSet<String>()
+    /** detected enemies the user unticked in the picker (a misread) */
+    private val excludedEnemies = HashSet<String>()
     private var manualRole: Role? = null
+
+    private fun effectiveDetected(): List<String> = lastSnapshot?.enemies.orEmpty().filter { it !in excludedEnemies }
+
+    /** Picker tap: a detected hero toggles its exclusion, any other hero toggles manual selection. */
+    private fun toggleEnemy(id: String) {
+        val detected = lastSnapshot?.enemies.orEmpty()
+        when {
+            id in detected -> if (!excludedEnemies.remove(id)) excludedEnemies.add(id)
+            !manualEnemies.remove(id) -> manualEnemies.add(id)
+        }
+        render()
+    }
 
     suspend fun prepare() {
         val idx = repository.buildIndex()
         index = idx; engine = CounterEngine(idx)
         overlay.setCatalog(idx.heroes.sortedBy { it.name }.map { HeroLite(it.id, it.name, it.primaryRole, it.heroClass) })
-        overlay.onToggleEnemy = { id -> if (!manualEnemies.remove(id)) manualEnemies.add(id); render() }
-        overlay.onClearEnemies = { manualEnemies.clear(); render() }
+        overlay.onToggleEnemy = { id -> toggleEnemy(id) }
+        overlay.onClearEnemies = { manualEnemies.clear(); excludedEnemies.clear(); render() }
         overlay.onSetLane = { r -> manualRole = r; render() }
         Log.i(TAG, "engine ready with ${idx.profiles.size} heroes")
     }
@@ -66,9 +80,9 @@ class DraftCoordinator(
         val eng = engine ?: return
         val s = settings()
         val snap = lastSnapshot
-        val detectedEnemies = snap?.enemies.orEmpty()
+        val detectedEnemies = effectiveDetected()
         val role = manualRole ?: (if (s.autoDetectLane) snap?.myLane else null) ?: s.defaultRole
-        val enemies = (detectedEnemies + manualEnemies).distinct()
+        val enemies = (detectedEnemies + manualEnemies).distinct().take(5)
         val result = eng.recommend(
             DraftContext(myRole = role, enemies = enemies, allies = snap?.allies.orEmpty(), banned = snap?.bans.orEmpty(),
                 mastered = mastered(), mode = s.mode, boostMastered = s.boostMastered),
@@ -92,6 +106,7 @@ class DraftCoordinator(
                 picks = picks,
                 enemies = enemies.mapNotNull { idx.hero(it)?.name },
                 manualEnemyIds = manualEnemies.toList(),
+                detectedEnemyIds = detectedEnemies,
                 directOpponent = result.directOpponent?.name,
                 strictFallback = result.strictFallback,
                 locked = snap?.phase == DraftPhase.LOCKED,
@@ -109,13 +124,13 @@ class DraftCoordinator(
         lastSnapshot = snap
         when (snap.phase) {
             DraftPhase.DRAFTING, DraftPhase.LOCKED -> {
-                if (previous?.phase == DraftPhase.IDLE || previous?.phase == DraftPhase.COOLDOWN) manualEnemies.clear() // new draft
+                if (previous?.phase == DraftPhase.IDLE || previous?.phase == DraftPhase.COOLDOWN) { manualEnemies.clear(); excludedEnemies.clear() } // new draft
                 if (snap.changed || !overlay.isShowing) render(diag)
             }
             DraftPhase.IN_GAME -> {
                 if (briefingJob?.isActive == true) return
                 val role = lastRole ?: s.defaultRole
-                val enemies = (snap.enemies + manualEnemies).distinct().mapNotNull { idx.hero(it) }
+                val enemies = (effectiveDetected() + manualEnemies).distinct().mapNotNull { idx.hero(it) }
                 val opponentId = lastDirectOpponentId ?: RoleAssigner.assign(enemies).entries.firstOrNull { it.value == role }?.key
                 val opponent = opponentId?.let { idx.profile(it) }
                 val seconds = s.briefingSeconds.coerceIn(8, 40)
@@ -131,7 +146,7 @@ class DraftCoordinator(
                 briefingJob = scope.launch {
                     delay(seconds * 1000L)
                     overlay.dismiss()
-                    manualEnemies.clear()
+                    manualEnemies.clear(); excludedEnemies.clear()
                     stateMachine.enterCooldown()
                     onDraftFinished()
                 }
@@ -151,7 +166,7 @@ class DraftCoordinator(
     fun reset() {
         briefingJob?.cancel(); briefingJob = null
         lastSnapshot = null; lastRole = null; lastDirectOpponentId = null; lastDiag = null
-        manualEnemies.clear(); manualRole = null
+        manualEnemies.clear(); excludedEnemies.clear(); manualRole = null
     }
 
     private companion object { const val TAG = "DraftCoordinator"; const val MAX_PICKS = 20; const val MIN_PICKS = 5 }

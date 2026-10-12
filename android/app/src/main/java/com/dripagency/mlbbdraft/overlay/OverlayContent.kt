@@ -186,7 +186,7 @@ private fun CountersBody(s: OverlayUiState.Counters, onOpenPicker: () -> Unit, o
                 color = Muted, fontSize = 11.sp, maxLines = 2, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f),
             )
             Spacer(Modifier.width(6.dp))
-            Chip(if (s.manualEnemyIds.isEmpty()) "Pick enemies" else "Edit (${s.manualEnemyIds.size})", Enemy, onClick = onOpenPicker)
+            Chip(if (s.enemies.isEmpty()) "Pick enemies" else "Edit (${s.enemies.size}/5)", Enemy, onClick = onOpenPicker)
         }
         if (s.strictFallback) Text("No mastered hero fits this lane — showing all counters", color = Warn, fontSize = 11.sp)
         s.statusLine?.let { Text(it, color = Muted, fontSize = 10.sp, maxLines = 2, overflow = TextOverflow.Ellipsis) }
@@ -207,7 +207,8 @@ private fun EnemyPicker(
     onToggleEnemy: (String) -> Unit, onClearEnemies: () -> Unit, onSetLane: (Role) -> Unit, onDone: () -> Unit,
 ) {
     var filter by remember { mutableStateOf<Role?>(null) }
-    val selected = s.manualEnemyIds.toSet()
+    val detected = s.detectedEnemyIds.toSet()
+    val selected = detected + s.manualEnemyIds
     Column(Modifier.padding(horizontal = 10.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text("My lane", color = Muted, fontSize = 10.sp, modifier = Modifier.width(52.dp))
@@ -226,18 +227,20 @@ private fun EnemyPicker(
         ) {
             items(list, key = { it.id }) { h ->
                 val sel = h.id in selected
+                val auto = h.id in detected
+                val ring = if (auto) Accent else Enemy
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.clip(RoundedCornerShape(8.dp)).background(if (sel) Enemy.copy(alpha = 0.25f) else Color.Transparent)
+                    modifier = Modifier.clip(RoundedCornerShape(8.dp)).background(if (sel) ring.copy(alpha = 0.25f) else Color.Transparent)
                         .clickable { if (sel || selected.size < 5) onToggleEnemy(h.id) }.padding(2.dp),
                 ) {
-                    Box(Modifier.size(38.dp).clip(CircleShape).border(2.dp, if (sel) Enemy else Color.Transparent, CircleShape)) { HeroAvatar(h.id, h.name, size = 38.dp) }
+                    Box(Modifier.size(38.dp).clip(CircleShape).border(2.dp, if (sel) ring else Color.Transparent, CircleShape)) { HeroAvatar(h.id, h.name, size = 38.dp) }
                     Text(h.name, color = if (sel) Color.White else Muted, fontSize = 8.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
                 }
             }
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("${selected.size}/5 selected", color = Muted, fontSize = 10.sp)
+            Text("${selected.size}/5 · ${detected.size} detected", color = Muted, fontSize = 10.sp)
             Spacer(Modifier.weight(1f))
             if (selected.isNotEmpty()) { Chip("Clear", Muted, onClick = onClearEnemies); Spacer(Modifier.width(6.dp)) }
             Chip("Done", Accent, onClick = onDone)
