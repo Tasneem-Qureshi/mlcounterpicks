@@ -47,7 +47,12 @@ def score(img, tpl):
     return float(cv2.matchTemplate(img, tpl, cv2.TM_CCOEFF_NORMED).max())
 
 
-def identify(crop, templates):
+def identify(crop, templates, try_mirror=False):
+    """Pick cards may be mirrored by the game; search both orientations and keep the better."""
+    if try_mirror:
+        a = identify(crop, templates); b = identify(cv2.flip(crop, 1), templates)
+        sa = a[1][0][0] if a[1] else -1; sb = b[1][0][0] if b[1] else -1
+        return b if sb > sa else a
     if crop.std() < 14: return None, None
     s = WORK_H / crop.shape[0]
     work = clahe.apply(cv2.resize(crop, (int(crop.shape[1] * s), WORK_H), interpolation=cv2.INTER_AREA if s < 1 else cv2.INTER_LINEAR))
@@ -92,7 +97,7 @@ def main():
     colors = {"ally_slots": (255, 255, 0), "enemy_slots": (0, 0, 255), "ally_bans": (255, 0, 255), "enemy_bans": (255, 0, 255)}
     for kind, rects in boxes(layout, content).items():
         for i, (x0, y0, x1, y1) in enumerate(rects):
-            hero, top3 = identify(gray[y0:y1, x0:x1], templates)
+            hero, top3 = identify(gray[y0:y1, x0:x1], templates, try_mirror=kind.endswith("_slots"))
             print(f"{kind:12s} {i}: {hero or '-':12s} top3={[(n, round(s, 2)) for s, n in (top3 or [])]}")
             if a.annotate:
                 cv2.rectangle(frame, (x0, y0), (x1, y1), colors[kind], 2)

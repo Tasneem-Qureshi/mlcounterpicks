@@ -72,6 +72,7 @@ class VisionDetector private constructor(
     private val clahe = Imgproc.createCLAHE(2.0, Size(4.0, 4.0))
     private val work = Mat()
     private val half = Mat()
+    private val mirrored = Mat()
     private val result = Mat()
     private val cache = HashMap<Int, SlotCache>()
     private val hashBuf = IntArray(9 * 8)
@@ -105,19 +106,33 @@ class VisionDetector private constructor(
         return Rect(left, top, right, bottom)
     }
 
-    fun identifyRegion(frameGray: Mat, region: Rect, slotKey: Int): Match? {
+    /**
+     * @param tryMirror the game mirrors some pick cards so heroes face the centre; when true both
+     *                  orientations are searched and the better one wins (ban icons are never mirrored).
+     */
+    fun identifyRegion(frameGray: Mat, region: Rect, slotKey: Int, tryMirror: Boolean = false): Match? {
         if (region.width() < 12 || region.height() < 12) return null
         val roi = frameGray.submat(region.top, region.bottom, region.left, region.right)
-        return try { identify(roi, slotKey) } finally { roi.release() }
+        return try { identify(roi, slotKey, tryMirror) } finally { roi.release() }
     }
 
     @Synchronized
-    private fun identify(crop: Mat, slotKey: Int): Match? {
+    private fun identify(crop: Mat, slotKey: Int, tryMirror: Boolean): Match? {
         lastCandidate = null
         val hash = hashOf(crop)
         cache[slotKey]?.let { if (PerceptualHash.hamming(it.hash, hash) <= config.cacheHamming) { lastCandidate = it.best; return it.match } }
 
-        val match = if (isEmpty(crop)) null else search(crop)
+        var match: Match? = null
+        if (!isEmpty(crop)) {
+            match = search(crop)
+            val plain = lastCandidate
+            if (tryMirror) {
+                Core.flip(crop, mirrored, 1)
+                val m2 = search(mirrored)
+                val flipped = lastCandidate
+                if ((flipped?.second ?: -1f) > (plain?.second ?: -1f)) { match = m2 } else { lastCandidate = plain; match = match ?: m2.takeIf { plain == null } }
+            }
+        }
         cache[slotKey] = SlotCache(hash, match, lastCandidate)
         return match
     }

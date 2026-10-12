@@ -10,6 +10,7 @@ Produces:
 
 Sources (public, read-only, robots.txt-respecting, rate-limited):
   fandom      mobile-legends.fandom.com  hero list, class, specialties, lanes, icons (MediaWiki API)
+  gms         api.gms.moontontech.com    Moonton's website API: in-game "head" art = the draft-card painting
   mlbbhub     mlbbhub.com/counter/<slug> ranked win-rate edges + kit reasons + official icons
   mlbbio      mlbb.io/en/hero/<slug>/counter   ranked edges + item answers + play-against tips
   mlcounter   mlcounter.com/heroes/<slug>/     weak/strong-against lists, item counters, lane tips
@@ -286,6 +287,35 @@ class PoliteClient:
         self.stats["errors"] += 1
         return None
 
+    async def post(self, url: str, body: str) -> Optional[bytes]:
+        """JSON POST with the same cache / throttle / retry policy as get()."""
+        key = url + "#" + hashlib.sha1(body.encode()).hexdigest()[:12]
+        path = self._cache_path(key)
+        if path.exists():
+            self.stats["cache_hits"] += 1
+            return path.read_bytes()
+        if self.offline:
+            return None
+        host = urlparse(url).netloc
+        async with self.sem:
+            await self._throttle(host)
+            for attempt in range(3):
+                try:
+                    r = await self._client.post(url, content=body, headers={**self._headers(), "Content-Type": "application/json"})
+                    if r.status_code in (429, 503):
+                        await asyncio.sleep(5 * (attempt + 1))
+                        continue
+                    r.raise_for_status()
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    path.write_bytes(r.content)
+                    self.stats["fetched"] += 1
+                    return r.content
+                except httpx.HTTPError as e:
+                    log.warning("post failed (%d/3) %s: %s", attempt + 1, url, e)
+                    await asyncio.sleep(2 * (attempt + 1))
+        self.stats["errors"] += 1
+        return None
+
     async def soup(self, url: str) -> Optional[BeautifulSoup]:
         raw = await self.get(url)
         if raw is None:
@@ -360,12 +390,11 @@ class FandomSource:
         log.info("fandom: %d heroes", len(heroes))
         return heroes
 
-    async def arts(self, hero: Hero, max_skins: int = 3) -> list[str]:
-        """Template arts for vision: in-game portrait (the draft-card bust) + base icon + skin icons."""
+    async def arts(self, hero: Hero) -> list[str]:
+        """Extra template art from the wiki: the in-game circular icon (differs from the website icon after reworks)."""
         if not hero.wiki_code:
             return []
-        titles = [f"File:Hero{hero.wiki_code}1-portrait.png", f"File:Hero{hero.wiki_code}1-icon.png"] + \
-                 [f"File:Hero{hero.wiki_code}{i}-icon.png" for i in range(2, 2 + max_skins)]
+        titles = [f"File:Hero{hero.wiki_code}1-icon.png"]
         url = f"{FANDOM_API}?action=query&prop=imageinfo&iiprop=url&format=json&titles=" + "|".join(titles).replace(" ", "_")
         raw = await self.client.get(url)
         if not raw:
@@ -382,6 +411,38 @@ class FandomSource:
     def _default_lane(classes: list[str]) -> str:
         m = {"Tank": "ROAM", "Support": "ROAM", "Marksman": "GOLD", "Mage": "MID", "Assassin": "JUNGLE", "Fighter": "EXP"}
         return next((m[c] for c in classes if c in m), "EXP")
+
+
+# --------------------------------------------------------------------------- #
+# Source: Moonton's own website API (api.gms.moontontech.com).  Its hero records carry the
+# in-game "head" art (the exact painting the draft-pick cards show) and the circular icon.
+# --------------------------------------------------------------------------- #
+GMS_HERO_LIST = "https://api.gms.moontontech.com/api/gms/source/2669606/2756564"
+
+
+class GmsSource:
+    name = "gms"
+
+    def __init__(self, client: PoliteClient):
+        self.client = client
+
+    async def heads(self) -> dict[str, dict]:
+        """hero_id -> {"head": url, "head_big": url, "icon": url}"""
+        body = json.dumps({"pageSize": 200, "pageIndex": 1, "sorts": [], "filters": []})
+        raw = await self.client.post(GMS_HERO_LIST, body)
+        if not raw:
+            log.warning("gms: hero list unavailable")
+            return {}
+        out = {}
+        for rec in json.loads(raw).get("data", {}).get("records", []):
+            d = rec.get("data", {})
+            name = d.get("hero", {}).get("data", {}).get("name") or re.sub(r"^\d+", "", rec.get("caption", ""))
+            if not name:
+                continue
+            out[slugify(name)] = {"head": d.get("head", ""), "head_big": d.get("head_big", ""),
+                                  "icon": d.get("hero", {}).get("data", {}).get("head", "")}
+        log.info("gms: %d heroes with head art", len(out))
+        return out
 
 
 # --------------------------------------------------------------------------- #
@@ -811,10 +872,9 @@ async def download_portraits(client: PoliteClient, heroes: dict[str, Hero], out_
             if alt is None:
                 continue
             hv = int(dhash(alt), 16)
-            # skip near-blank arts (unreleased skin placeholders, solid-colour icons): they only add noise
             if alt.convert("L").getextrema()[1] - alt.convert("L").getextrema()[0] < 60 or _std(alt) < 30:
                 continue
-            if all(bin(hv ^ x).count("1") > 6 for x in hashes):
+            if n == 1 or all(bin(hv ^ x).count("1") > 6 for x in hashes):
                 hashes.append(hv)
                 vname = f"{h.hero_id}_{n}.png"
                 alt.save(out_dir / vname, optimize=True)
@@ -849,11 +909,17 @@ async def run(args) -> int:
             heroes = dict(list(heroes.items())[: args.limit])
 
         fandom_src = FandomSource(client)
+        gms = await GmsSource(client).heads()
 
         async def gather_arts(h: Hero):
-            h.art_urls = await fandom_src.arts(h)
+            g = gms.get(h.hero_id, {})
+            # order matters: the GMS head is the draft-card painting itself → first variant
+            h.art_urls = [u for u in (g.get("head", ""),) if u] + await fandom_src.arts(h)
+            if g.get("icon") and not h.portrait_url:
+                h.portrait_url = g["icon"]
         await asyncio.gather(*(gather_arts(h) for h in heroes.values()))
-        log.info("fandom: template arts for %d/%d heroes", sum(1 for h in heroes.values() if h.art_urls), len(heroes))
+        log.info("arts: gms head for %d, wiki icon for %d of %d heroes",
+                 sum(1 for h in heroes.values() if h.hero_id in gms), sum(1 for h in heroes.values() if len(h.art_urls) > 1), len(heroes))
 
         hub, mio, mlc = MlbbHubSource(client), MlbbIoSource(client), MlCounterSource(client)
         await asyncio.gather(mio.load_slugs(), mlc.load_slugs())

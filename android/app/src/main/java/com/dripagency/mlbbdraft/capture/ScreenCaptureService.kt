@@ -311,14 +311,14 @@ class ScreenCaptureService : LifecycleService() {
             val content = det.contentRect(gray)
             var bestId: String? = null; var bestScore = 0f
             var key = 0
-            fun read(rects: List<AnchoredRect>) = rects.map { r ->
-                val m = det.identifyRegion(gray, r.toRect(content), key++)
+            fun read(rects: List<AnchoredRect>, tryMirror: Boolean) = rects.map { r ->
+                val m = det.identifyRegion(gray, r.toRect(content), key++, tryMirror)
                 det.lastCandidate?.let { if (it.second > bestScore) { bestScore = it.second; bestId = it.first } }
                 SlotReading(m?.heroId, m?.confidence ?: 0f)
             }
-            val allies = read(layout.allySlots)
-            val enemies = read(layout.enemySlots)
-            val bans = read(layout.allyBans + layout.enemyBans)
+            val allies = read(layout.allySlots, tryMirror = true)
+            val enemies = read(layout.enemySlots, tryMirror = true)
+            val bans = read(layout.allyBans + layout.enemyBans, tryMirror = false)
             val lane = if (settings.autoDetectLane && det.hasLaneTemplates)
                 layout.laneBadges.firstNotNullOfOrNull { det.detectLane(gray, it.toRect(content)) } else null
             val readings = FrameReadings(allies, enemies, bans, lane)

@@ -23,7 +23,7 @@ python scraper.py --android-dir ../android/app/src/main     # ≈5 min, ~530 pol
 Outputs in `scraper/out/`:
 
 * `matchups.json` — 133 heroes, ~1 600 directed counter edges, lane tips, item counters
-* `templates/*.png` + `index.json` — 96×96 template arts per hero: official icon (`<id>.png`) plus up to five visibly different arts from the wiki (`<id>_1.png` …: in-game portrait, base icon, skin icons). More arts = more draft cards recognised; the weekly job refreshes them, so new and reworked heroes are picked up automatically.
+* `templates/*.png` + `index.json` — 96×96 template arts per hero: the website icon (`<id>.png`, matches ban slots) and the in-game **head** painting from Moonton's own site API (`<id>_1.png`, the exact art on draft-pick cards). The weekly job refreshes them, so new and reworked heroes are picked up automatically.
 * `templates.zip`, `manifest.json` — what the app downloads when self-updating
 
 Sources and how they are merged:
@@ -31,6 +31,7 @@ Sources and how they are merged:
 | Source | Gives | Weight |
 |--------|-------|--------|
 | Fandom wiki (MediaWiki API) | canonical hero list, class, specialties, recommended lanes, icons | authoritative for roster |
+| api.gms.moontontech.com (Moonton site API) | in-game head art per hero (draft-card painting), icon | vision templates |
 | mlbbhub.com `/counter/<hero>` | ranked win-rate edge (pp), kit-matchup reasons, official icon URL | numeric → `2.2 + 0.8·pp` |
 | mlbb.io `/en/hero/<hero>/counter` | ranked edge (%), one-line reasons, item answers, "how to play against" | numeric → same scale |
 | mlcounter.com `/heroes/<hero>/` | ordered weak/strong-against lists, item counters, tips, lane-specific advice | rank → 4.0…3.0 |
@@ -69,7 +70,7 @@ JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home" ./gradle
 | `ui/MasterySettingsScreen.kt` | Pick mastered heroes per lane (persisted in Room `heroes.is_preferred`), Strict/Flexible switch (DataStore) |
 | `ui/HomeScreen.kt` | Permissions, Start/Stop, default lane, overlay tuning, data update status |
 | `capture/ScreenCaptureService.kt` | `FOREGROUND_SERVICE_MEDIA_PROJECTION` service, `ImageReader` loop, adaptive sampling, slot cropping, rotation handling |
-| `vision/VisionDetector.kt` | dHash shortlist → OpenCV `matchTemplate` (TM_CCOEFF_NORMED) with CLAHE + circular mask; lane-badge matching |
+| `vision/VisionDetector.kt` | per-slot change cache → coarse pass over every art → fine multi-scale `matchTemplate` of the icon/head face inside the card, both orientations (the game mirrors some cards) |
 | `vision/DraftStateMachine.kt` | 2-of-3 temporal voting per slot; IDLE → DRAFTING → LOCKED → IN_GAME → COOLDOWN |
 | `engine/CounterEngine.kt` | role filter · 40 % direct lane · 60 % team · ×1.4 mastery · reasons & warnings (pure Kotlin, unit-tested) |
 | `engine/RoleAssigner.kt` | optimal enemy → lane assignment (exhaustive over ≤120 permutations) |
