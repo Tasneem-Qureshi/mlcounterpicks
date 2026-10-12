@@ -1,0 +1,41 @@
+# Re-scrapes hero / counter data weekly and publishes it to the `data` branch.
+# The Android app polls  https://raw.githubusercontent.com/<owner>/<repo>/data/manifest.json
+# (set DATA_MANIFEST_URL in android/app/build.gradle.kts) and self-updates when data_version grows.
+name: scrape-and-publish
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"   # Mondays 03:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r scraper/requirements.txt
+      - name: Scrape
+        working-directory: scraper
+        run: |
+          python scraper.py --out out \
+            --base-url "https://raw.githubusercontent.com/${{ github.repository }}/data"
+      - name: Publish to data branch
+        run: |
+          set -e
+          git config user.name "mlbb-scraper-bot"
+          git config user.email "bot@users.noreply.github.com"
+          mkdir -p /tmp/publish
+          cp scraper/out/manifest.json scraper/out/matchups.json scraper/out/templates.zip /tmp/publish/
+          git fetch origin data || true
+          git checkout -B data origin/data 2>/dev/null || git checkout --orphan data
+          cp *.apk /tmp/publish/ 2>/dev/null || true      # keep published APKs
+          git rm -rfq . || true
+          cp /tmp/publish/* .
+          git add manifest.json matchups.json templates.zip *.apk 2>/dev/null || git add manifest.json matchups.json templates.zip
+          git commit -m "data: $(date -u +%F) $(python -c "import json;print(json.load(open('manifest.json'))['hero_count'])") heroes" || echo "no changes"
+          git push origin data --force

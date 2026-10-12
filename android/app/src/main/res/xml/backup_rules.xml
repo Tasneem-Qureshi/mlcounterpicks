@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android Auto Backup (Google account): mastery flags live in the Room DB, settings in DataStore.
+     Downloaded portraits are large and re-downloadable, so they are excluded. -->
+<full-backup-content>
+    <include domain="database" path="." />
+    <include domain="file" path="datastore" />
+    <include domain="file" path="data" />
+    <include domain="file" path="layouts.json" />
+</full-backup-content>

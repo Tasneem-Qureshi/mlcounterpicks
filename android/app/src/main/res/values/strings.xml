@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MLBB Draft Companion</string>
+    <string name="notif_channel_capture">Draft assistant</string>
+    <string name="notif_channel_alert">MLBB detected</string>
+    <string name="notif_capture_title">Draft assistant is running</string>
+    <string name="notif_capture_text">Tap to show the overlay card. Capture pauses while MLBB is not open.</string>
+    <string name="notif_show">Show overlay</string>
+    <string name="notif_hide">Hide</string>
+    <string name="notif_stop">Stop</string>
+    <string name="notif_open_app">App</string>
+    <string name="notif_alert_title">Mobile Legends is open</string>
+    <string name="notif_alert_text">Tap to show the draft overlay.</string>
+</resources>

@@ -1,0 +1,11 @@
+.DS_Store
+android/local.properties
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+scraper/.venv/
+scraper/.cache/
+scraper/out/
+__pycache__/
+*.apk

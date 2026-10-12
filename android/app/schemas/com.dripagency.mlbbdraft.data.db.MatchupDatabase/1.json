@@ -1,0 +1,191 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "f14126719adfadad24cc32f4ec6846b0",
+    "entities": [
+      {
+        "tableName": "heroes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hero_id` TEXT NOT NULL, `name` TEXT NOT NULL, `hero_class` TEXT NOT NULL, `specialties` TEXT NOT NULL, `primary_role` TEXT NOT NULL, `secondary_roles` TEXT NOT NULL, `portrait_file` TEXT, `win_rate` REAL, `is_preferred` INTEGER NOT NULL, PRIMARY KEY(`hero_id`))",
+        "fields": [
+          {
+            "fieldPath": "heroId",
+            "columnName": "hero_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "heroClass",
+            "columnName": "hero_class",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "specialties",
+            "columnName": "specialties",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "primaryRole",
+            "columnName": "primary_role",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secondaryRoles",
+            "columnName": "secondary_roles",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "portraitFile",
+            "columnName": "portrait_file",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "winRate",
+            "columnName": "win_rate",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "isPreferred",
+            "columnName": "is_preferred",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "hero_id"
+          ]
+        }
+      },
+      {
+        "tableName": "matchups",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hero_id` TEXT NOT NULL, `other_id` TEXT NOT NULL, `direction` TEXT NOT NULL, `other_role` TEXT NOT NULL, `edge_score` REAL NOT NULL, `reason` TEXT NOT NULL, `confidence` TEXT NOT NULL, PRIMARY KEY(`hero_id`, `other_id`, `direction`))",
+        "fields": [
+          {
+            "fieldPath": "heroId",
+            "columnName": "hero_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "otherId",
+            "columnName": "other_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "direction",
+            "columnName": "direction",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "otherRole",
+            "columnName": "other_role",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "edgeScore",
+            "columnName": "edge_score",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reason",
+            "columnName": "reason",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "confidence",
+            "columnName": "confidence",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "hero_id",
+            "other_id",
+            "direction"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_matchups_other_id",
+            "unique": false,
+            "columnNames": [
+              "other_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_matchups_other_id` ON `${TABLE_NAME}` (`other_id`)"
+          },
+          {
+            "name": "index_matchups_hero_id",
+            "unique": false,
+            "columnNames": [
+              "hero_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_matchups_hero_id` ON `${TABLE_NAME}` (`hero_id`)"
+          }
+        ]
+      },
+      {
+        "tableName": "lane_tips",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`hero_id` TEXT NOT NULL, `kind` TEXT NOT NULL, `ordinal` INTEGER NOT NULL, `text` TEXT NOT NULL, PRIMARY KEY(`hero_id`, `kind`, `ordinal`))",
+        "fields": [
+          {
+            "fieldPath": "heroId",
+            "columnName": "hero_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ordinal",
+            "columnName": "ordinal",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "hero_id",
+            "kind",
+            "ordinal"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f14126719adfadad24cc32f4ec6846b0')"
+    ]
+  }
+}

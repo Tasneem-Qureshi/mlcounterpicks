@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="database" path="." />
+        <include domain="file" path="datastore" />
+        <include domain="file" path="data" />
+        <include domain="file" path="layouts.json" />
+    </cloud-backup>
+    <device-transfer>
+        <include domain="database" path="." />
+        <include domain="file" path="datastore" />
+        <include domain="file" path="data" />
+        <include domain="file" path="layouts.json" />
+    </device-transfer>
+</data-extraction-rules>

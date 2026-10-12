@@ -1,0 +1,63 @@
+{
+  "_comment": "Hand-curated data. Always wins over scraped values for the same hero/pair. Edge scale 0..5 (>=4 hard counter). lane_tips are advice for playing AGAINST that hero.",
+  "heroes": {
+    "yu_zhong": {
+      "counters": [
+        { "hero_id": "baxia", "role": "ROAM", "edge_score": 4.5, "reason": "Passive cuts Yu Zhong's sustain and his shield mitigates dragon form damage." },
+        { "hero_id": "kaja", "role": "ROAM", "edge_score": 4.0, "reason": "Suppression ignores his CC immunity in Black Dragon form." },
+        { "hero_id": "x_borg", "role": "EXP", "edge_score": 4.2, "reason": "Armor layers absorb Sha Essence trades and Firaga out-sustains him early." }
+      ],
+      "lane_tips": [
+        "Avoid trading when his Sha Essence bar is full — back off until it decays.",
+        "Rush anti-heal (Sea Halberd / Dominance Ice) early; without it he out-sustains every trade.",
+        "His ultimate is CC-immune once transformed — land stuns before the cast, or use suppression (Kaja, Franco, Akai)."
+      ]
+    },
+    "esmeralda": {
+      "counters": [
+        { "hero_id": "baxia", "role": "ROAM", "edge_score": 4.5, "reason": "Baxia's passive reduces her shield regen and heal to a fraction." },
+        { "hero_id": "x_borg", "role": "EXP", "edge_score": 4.0, "reason": "Burns through her shield with sustained true-damage-like pressure." }
+      ],
+      "lane_tips": [
+        "Anti-heal items also reduce her shield absorption — buy Sea Halberd / Dominance Ice first.",
+        "Her shield converts yours: do not stack shields against her.",
+        "Spread out so her Frostmoon Shield does not refresh off multiple targets."
+      ]
+    },
+    "lancelot": {
+      "lane_tips": [
+        "Stand beside your minions — his Thorned Rose cannot be cast through the same target twice.",
+        "Wind of Nature or Antique Cuirass; his burst is pure physical.",
+        "He is immune only during Phantom Execution — bait it, then lock him down."
+      ]
+    },
+    "fanny": {
+      "lane_tips": [
+        "Hug walls she needs for cables; stand at awkward angles to deny chain cables.",
+        "Lock-on CC (Franco, Khufra, Kaja) and Wind Talker-free early game shut her out.",
+        "Ward the jungle entrances — her power is early tempo, so track and invade."
+      ]
+    },
+    "chou": {
+      "lane_tips": [
+        "His ultimate and skill 2 give CC immunity — hold your stun until after his dash.",
+        "Ranged poke wins: he needs three skill-1 kicks to knock you up.",
+        "Do not stand near walls — the ult-kick into terrain extends his combo."
+      ]
+    },
+    "paquito": {
+      "lane_tips": [
+        "Trade when his stance bar is empty; he wins any 3-stack exchange.",
+        "Keep the wave mid-lane so he cannot knock you into tower.",
+        "Buy Antique Cuirass; his combo is multiple physical hits."
+      ]
+    },
+    "dyrroth": {
+      "lane_tips": [
+        "He wins at low HP thresholds; back before 40% so his ult cannot execute you.",
+        "Dodge the second part of skill 1 with a sidestep — it is where his damage is.",
+        "His skills reduce physical defense: stack HP (Thunder Belt, Guardian Helmet) instead of pure armor."
+      ]
+    }
+  }
+}
