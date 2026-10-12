@@ -86,10 +86,21 @@ score  = (0.40·direct + 0.60·team) × (1.40 if mastered) × (1.03 if the lane 
 ```
 `edge(a, b)` combines `b.counters ∋ a` / `a.strong_against ∋ b` (positive) against the reverse (negative). If the lane opponent is not picked yet, `direct` mirrors `team` so weights still sum to 1. Strict mode restricts the pool to mastered heroes and falls back (flagged in the overlay) when none plays the lane. The 1-line reason is composed from the strongest contributing edges ("Hard-counters Yu Zhong in lane · beats Brody, Tigreal · wins the straight damage trade"), and a "Weak into X" warning appears for a strongly negative team matchup.
 
+### Modes
+* **Overlay only (default, no screen sharing).** Press Start once; with Usage access the card appears whenever MLBB comes to the front. Tap *Pick enemies* on the card to enter the enemy picks and your lane; counters update instantly.
+* **Screen detection (optional).** Enable from the notification's *Screen detection* action or the app. Android asks for capture consent each time. Detection switches itself off after the draft briefing, or after 10 minutes without a draft.
+
+### Google account sync
+Mastered heroes, lane and mode sync to a hidden app-data file in the user's Google Drive (last-write-wins). One-time setup in [Google Cloud Console](https://console.cloud.google.com/):
+1. Create a project → *APIs & Services → Library* → enable **Google Drive API**.
+2. *OAuth consent screen*: External, app name "MLBB Draft Companion", your email; add scope `.../auth/drive.appdata`; add yourself as a test user (or publish).
+3. *Credentials → Create credentials → OAuth client ID → Android*: package `com.dripagency.mlbbdraft`, SHA-1 of the signing keystore (`keytool -list -v -keystore ~/.android/debug.keystore -storepass android`).
+No client id goes into the app; Play Services matches package + SHA-1.
+
 ### First run on a phone
 1. Install the debug APK, open the app, grant **Draw over other apps** and **Notifications**.
 2. Choose your lane; add mastered heroes.
-3. Press **Start** and accept the screen-capture prompt (Android asks every time, by design).
+3. Press **Start**. Optionally enable screen detection from the notification.
 4. Open MLBB → ranked draft. The card appears when the first portrait is recognised and refreshes as picks come in. After the draft, the loading screen triggers the lane briefing which closes itself after 18 s (configurable).
 
 ### Calibrating slot positions (do this once per device)

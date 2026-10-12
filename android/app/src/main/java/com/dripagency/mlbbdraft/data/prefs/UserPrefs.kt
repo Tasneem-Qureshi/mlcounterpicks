@@ -33,6 +33,11 @@ class UserPrefs(private val context: Context) {
         val LAST_MSG = stringPreferencesKey("last_update_message")
         val MANIFEST_URL = stringPreferencesKey("data_manifest_url")
         val AUTO_SHOW = booleanPreferencesKey("auto_show_on_mlbb")
+        val MASTERY_AT = longPreferencesKey("mastery_updated_at")
+        val CLOUD_ENABLED = booleanPreferencesKey("cloud_enabled")
+        val CLOUD_EMAIL = stringPreferencesKey("cloud_email")
+        val CLOUD_SYNC_AT = longPreferencesKey("cloud_last_sync")
+        val CLOUD_MSG = stringPreferencesKey("cloud_message")
     }
 
     val settings: Flow<UserSettings> = context.dataStore.data.map { p ->
@@ -49,13 +54,26 @@ class UserPrefs(private val context: Context) {
             lastUpdateMessage = p[K.LAST_MSG] ?: "",
             dataManifestUrl = p[K.MANIFEST_URL] ?: "",
             autoShowOnMlbb = p[K.AUTO_SHOW] ?: true,
+            masteryUpdatedAt = p[K.MASTERY_AT] ?: 0L,
+            cloudEnabled = p[K.CLOUD_ENABLED] ?: false,
+            cloudEmail = p[K.CLOUD_EMAIL] ?: "",
+            cloudLastSync = p[K.CLOUD_SYNC_AT] ?: 0L,
+            cloudMessage = p[K.CLOUD_MSG] ?: "",
         )
     }
 
     suspend fun current(): UserSettings = settings.first()
 
-    suspend fun setMode(mode: RecommendMode) = context.dataStore.edit { it[K.MODE] = mode.name }
-    suspend fun setDefaultRole(role: Role) = context.dataStore.edit { it[K.DEFAULT_ROLE] = role.name }
+    suspend fun setMode(mode: RecommendMode) = context.dataStore.edit { it[K.MODE] = mode.name; it[K.MASTERY_AT] = System.currentTimeMillis() }
+    suspend fun setDefaultRole(role: Role) = context.dataStore.edit { it[K.DEFAULT_ROLE] = role.name; it[K.MASTERY_AT] = System.currentTimeMillis() }
+    suspend fun touchMastery() = context.dataStore.edit { it[K.MASTERY_AT] = System.currentTimeMillis() }
+    suspend fun setMasteryUpdatedAt(v: Long) = context.dataStore.edit { it[K.MASTERY_AT] = v }
+    suspend fun setCloudState(enabled: Boolean, email: String, message: String) = context.dataStore.edit {
+        it[K.CLOUD_ENABLED] = enabled; if (email.isNotBlank()) it[K.CLOUD_EMAIL] = email
+        it[K.CLOUD_SYNC_AT] = System.currentTimeMillis(); it[K.CLOUD_MSG] = message
+    }
+    suspend fun setCloudMessage(message: String) = context.dataStore.edit { it[K.CLOUD_MSG] = message }
+    suspend fun disableCloud() = context.dataStore.edit { it[K.CLOUD_ENABLED] = false; it[K.CLOUD_EMAIL] = ""; it[K.CLOUD_MSG] = "Disconnected" }
     suspend fun setAutoDetectLane(v: Boolean) = context.dataStore.edit { it[K.AUTO_LANE] = v }
     suspend fun setOverlayOpacity(v: Float) = context.dataStore.edit { it[K.OPACITY] = v }
     suspend fun setBriefingSeconds(v: Int) = context.dataStore.edit { it[K.BRIEF_SECS] = v }

@@ -82,10 +82,7 @@ fun MasterySettingsScreen(onBack: () -> Unit) {
                     }
                 }
                 Text(
-                    when (ui.mode) {
-                        RecommendMode.STRICT -> "Strict: only recommend from my mastered heroes (falls back to all heroes if none fits my lane)."
-                        RecommendMode.FLEXIBLE -> "Flexible: mastered heroes get a +40% score boost and a ⭐ badge, but hard team counters still show below."
-                    },
+                    if (ui.mode == RecommendMode.STRICT) "Only mastered heroes are recommended." else "Mastered heroes get +40% and a ⭐; others still show.",
                     style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 OutlinedTextField(

@@ -42,12 +42,25 @@ class DraftStateMachine(
         val cooldownMs: Long = 90_000L,
     )
 
+    /**
+     * Majority vote with hysteresis: a hero is adopted once it wins `needed` of the last `size`
+     * frames, and only dropped once the slot has read as empty for the whole window.  A single
+     * missed frame therefore never flips the output (which is what made the card flicker).
+     */
     private class VoteBuffer(private val size: Int, private val needed: Int) {
         private val ring = arrayOfNulls<String>(size)
         private var i = 0
+        private var held: String? = null
         fun push(v: String?) { ring[i % size] = v; i++ }
-        fun stable(): String? = ring.filterNotNull().groupingBy { it }.eachCount().filter { it.value >= needed }.maxByOrNull { it.value }?.key
-        fun clear() { ring.fill(null); i = 0 }
+        fun stable(): String? {
+            val majority = ring.filterNotNull().groupingBy { it }.eachCount().filter { it.value >= needed }.maxByOrNull { it.value }?.key
+            when {
+                majority != null -> held = majority
+                ring.all { it == null } -> held = null
+            }
+            return held
+        }
+        fun clear() { ring.fill(null); i = 0; held = null }
     }
 
     private val allyVotes = List(5) { VoteBuffer(config.votes, config.needed) }

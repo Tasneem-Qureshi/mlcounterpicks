@@ -42,6 +42,30 @@ class HomeViewModel(private val graph: AppGraph) : ViewModel() {
     fun setDataManifestUrl(v: String) = viewModelScope.launch { graph.prefs.setDataManifestUrl(v) }
 
     val backupMessage = MutableStateFlow("")
+
+    /** Consent intent the UI must launch (set when Google needs the user to approve access). */
+    val cloudConsent = MutableStateFlow<android.app.PendingIntent?>(null)
+    val cloudBusy = MutableStateFlow(false)
+
+    fun connectGoogle() = viewModelScope.launch {
+        cloudBusy.value = true
+        try {
+            when (val r = graph.cloud.sync()) {
+                is com.dripagency.mlbbdraft.data.cloud.GoogleDriveSync.SyncResult.NeedsConsent -> cloudConsent.value = r.pendingIntent
+                else -> Unit // message is written to prefs by the sync itself
+            }
+        } finally { cloudBusy.value = false }
+    }
+
+    fun onGoogleConsent(data: android.content.Intent?) = viewModelScope.launch {
+        cloudConsent.value = null
+        val token = graph.cloud.tokenFromConsent(data)
+        if (token == null) { graph.prefs.setCloudMessage("Google access was not granted"); return@launch }
+        cloudBusy.value = true
+        try { graph.cloud.sync(token) } finally { cloudBusy.value = false }
+    }
+
+    fun disconnectGoogle() = viewModelScope.launch { graph.prefs.disableCloud() }
     fun exportBackup(uri: android.net.Uri) = viewModelScope.launch {
         backupMessage.value = runCatching { "Exported ${graph.backup.export(uri)} mastered heroes" }.getOrElse { "Export failed: ${it.message}" }
     }

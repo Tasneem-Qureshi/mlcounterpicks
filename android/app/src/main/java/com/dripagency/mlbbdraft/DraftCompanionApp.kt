@@ -9,6 +9,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 import org.opencv.android.OpenCVLoader
 
 class DraftCompanionApp : Application(), Configuration.Provider {
@@ -24,6 +31,21 @@ class DraftCompanionApp : Application(), Configuration.Provider {
         if (!OpenCVLoader.initLocal()) Log.e("DraftCompanionApp", "OpenCV failed to initialise")
         appScope.launch { runCatching { graph.seeder.seedIfNeeded() }.onFailure { Log.e("DraftCompanionApp", "seed failed", it) } }
         DataUpdateWorker.schedulePeriodic(this)
+        startCloudAutoSync()
+    }
+
+    /** Pushes mastery/settings changes to the Google account ~8 s after the last edit (silent; needs prior consent). */
+    @OptIn(FlowPreview::class)
+    private fun startCloudAutoSync() {
+        appScope.launch {
+            graph.prefs.settings
+                .filter { it.cloudEnabled }
+                .map { it.masteryUpdatedAt }
+                .distinctUntilChanged()
+                .drop(1)
+                .debounce(8_000)
+                .collectLatest { runCatching { graph.cloud.sync() }.onFailure { Log.w("DraftCompanionApp", "auto-sync failed", it) } }
+        }
     }
 
     companion object {

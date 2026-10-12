@@ -36,7 +36,7 @@ class MasteryViewModel(private val graph: AppGraph) : ViewModel() {
         Ui(h, p, s.mode, q, r)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), Ui())
 
-    fun toggle(heroId: String, preferred: Boolean) = viewModelScope.launch { graph.repository.setPreferred(heroId, preferred) }
+    fun toggle(heroId: String, preferred: Boolean) = viewModelScope.launch { graph.repository.setPreferred(heroId, preferred); graph.prefs.touchMastery() }
     fun setMode(mode: RecommendMode) = viewModelScope.launch { graph.prefs.setMode(mode) }
-    fun clearAll() = viewModelScope.launch { ui.value.preferred.forEach { graph.repository.setPreferred(it, false) } }
+    fun clearAll() = viewModelScope.launch { ui.value.preferred.forEach { graph.repository.setPreferred(it, false) }; graph.prefs.touchMastery() }
 }

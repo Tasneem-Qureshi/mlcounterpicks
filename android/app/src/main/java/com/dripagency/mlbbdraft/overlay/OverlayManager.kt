@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.WindowManager
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import com.dripagency.mlbbdraft.data.model.Role
 import com.dripagency.mlbbdraft.ui.theme.MlbbDraftTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,9 +17,9 @@ import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Owns the floating window.  State transitions:
- *   Hidden → Counters (draft) → Briefing (loading screen) → fade-out → Hidden
+ *   Hidden → Counters (draft / manual picks) → Briefing (loading screen) → fade-out → Hidden
  * The window is FLAG_NOT_FOCUSABLE so it never steals game input; only its own card area
- * consumes touches (drag / collapse / close).
+ * consumes touches (drag / collapse / close / picker).
  */
 class OverlayManager(private val context: Context, private val scope: CoroutineScope) {
 
@@ -29,6 +30,7 @@ class OverlayManager(private val context: Context, private val scope: CoroutineS
     private val _visible = MutableStateFlow(false)
     private val _collapsed = MutableStateFlow(false)
     private val _opacity = MutableStateFlow(0.92f)
+    private val _catalog = MutableStateFlow<List<HeroLite>>(emptyList())
 
     private var view: ComposeView? = null
     private var owner: OverlayLifecycleOwner? = null
@@ -46,8 +48,13 @@ class OverlayManager(private val context: Context, private val scope: CoroutineS
 
     /** Invoked when the user taps the card's close button (so the service can drop its "pinned" flag). */
     var onClosedByUser: (() -> Unit)? = null
+    /** Picker callbacks, wired by the coordinator. */
+    var onToggleEnemy: ((String) -> Unit)? = null
+    var onClearEnemies: (() -> Unit)? = null
+    var onSetLane: ((Role) -> Unit)? = null
 
     fun setOpacity(alpha: Float) { _opacity.value = alpha.coerceIn(0.4f, 1f) }
+    fun setCatalog(heroes: List<HeroLite>) { _catalog.value = heroes }
 
     fun show(ui: OverlayUiState) = main.post {
         ensureAttached()
@@ -72,10 +79,13 @@ class OverlayManager(private val context: Context, private val scope: CoroutineS
             setContent {
                 MlbbDraftTheme {
                     OverlayRoot(
-                        state = _state, visible = _visible, collapsed = _collapsed, opacity = _opacity,
+                        state = _state, visible = _visible, collapsed = _collapsed, opacity = _opacity, catalog = _catalog,
                         onToggleCollapse = { _collapsed.value = !_collapsed.value },
                         onClose = { onClosedByUser?.invoke(); dismiss() },
                         onDrag = { dx, dy -> moveBy(dx, dy) },
+                        onToggleEnemy = { onToggleEnemy?.invoke(it) },
+                        onClearEnemies = { onClearEnemies?.invoke() },
+                        onSetLane = { onSetLane?.invoke(it) },
                     )
                 }
             }

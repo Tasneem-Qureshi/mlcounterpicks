@@ -1,7 +1,7 @@
 package com.dripagency.mlbbdraft.overlay
 
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -11,6 +11,7 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,10 +20,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -32,13 +38,13 @@ import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -48,9 +54,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.dripagency.mlbbdraft.data.model.Role
 import com.dripagency.mlbbdraft.engine.Recommendation
 import com.dripagency.mlbbdraft.ui.HeroAvatar
 import kotlinx.coroutines.delay
@@ -60,7 +68,10 @@ private val CardBg = Color(0xEE0E131C)
 private val Accent = Color(0xFF59C3FF)
 private val Gold = Color(0xFFFFC95C)
 private val Warn = Color(0xFFFF8A65)
+private val Enemy = Color(0xFFFF5C5C)
 private val Muted = Color(0xFF9AA4B2)
+
+private enum class Mode { COUNTERS, BRIEFING }
 
 @Composable
 fun OverlayRoot(
@@ -68,14 +79,20 @@ fun OverlayRoot(
     visible: StateFlow<Boolean>,
     collapsed: StateFlow<Boolean>,
     opacity: StateFlow<Float>,
+    catalog: StateFlow<List<HeroLite>>,
     onToggleCollapse: () -> Unit,
     onClose: () -> Unit,
     onDrag: (Float, Float) -> Unit,
+    onToggleEnemy: (String) -> Unit,
+    onClearEnemies: () -> Unit,
+    onSetLane: (Role) -> Unit,
 ) {
     val ui by state.collectAsState()
     val isVisible by visible.collectAsState()
     val isCollapsed by collapsed.collectAsState()
     val alpha by opacity.collectAsState()
+    val heroes by catalog.collectAsState()
+    var pickerOpen by remember { mutableStateOf(false) }
 
     AnimatedVisibility(
         visible = isVisible && ui !is OverlayUiState.Hidden,
@@ -85,18 +102,24 @@ fun OverlayRoot(
         Column(
             modifier = Modifier
                 .padding(8.dp)
-                .widthIn(min = 220.dp, max = 360.dp)
+                .widthIn(min = 240.dp, max = 360.dp)
                 .alpha(alpha)
                 .clip(RoundedCornerShape(14.dp))
                 .background(CardBg)
                 .border(1.dp, Color.White.copy(alpha = 0.08f), RoundedCornerShape(14.dp)),
         ) {
             Header(ui, isCollapsed, onToggleCollapse, onClose, onDrag)
-            AnimatedContent(targetState = isCollapsed to ui, label = "overlay-body") { (collapsedNow, s) ->
-                if (!collapsedNow) when (s) {
-                    is OverlayUiState.Counters -> CountersBody(s)
-                    is OverlayUiState.Briefing -> BriefingBody(s)
-                    OverlayUiState.Hidden -> Unit
+            // Animate only when the *kind* of content changes (counters ↔ briefing ↔ collapsed).
+            // Data refreshes inside a mode update in place, which is what stops the flicker.
+            val mode = when { isCollapsed -> null; ui is OverlayUiState.Briefing -> Mode.BRIEFING; ui is OverlayUiState.Counters -> Mode.COUNTERS; else -> null }
+            Crossfade(targetState = mode, animationSpec = tween(200), label = "overlay-body") { m ->
+                when (m) {
+                    Mode.COUNTERS -> (ui as? OverlayUiState.Counters)?.let { s ->
+                        if (pickerOpen) EnemyPicker(s, heroes, onToggleEnemy, onClearEnemies, onSetLane, onDone = { pickerOpen = false })
+                        else CountersBody(s, onOpenPicker = { pickerOpen = true }, onToggleEnemy = onToggleEnemy)
+                    }
+                    Mode.BRIEFING -> (ui as? OverlayUiState.Briefing)?.let { BriefingBody(it) }
+                    null -> Unit
                 }
             }
         }
@@ -127,7 +150,7 @@ private fun Header(
         if (role != null) {
             Spacer(Modifier.width(8.dp))
             Chip(role.short, Accent)
-            if (ui is OverlayUiState.Counters && !ui.laneDetected) { Spacer(Modifier.width(4.dp)); Chip("default", Muted) }
+            if (ui is OverlayUiState.Counters && !ui.laneDetected && !ui.manualOnly) { Spacer(Modifier.width(4.dp)); Chip("default", Muted) }
         }
         Spacer(Modifier.weight(1f))
         IconButton(onClick = onToggleCollapse, modifier = Modifier.size(30.dp)) {
@@ -140,31 +163,77 @@ private fun Header(
 }
 
 @Composable
-private fun Chip(text: String, color: Color) {
+private fun Chip(text: String, color: Color, onClick: (() -> Unit)? = null) {
     Text(
         text, color = color, fontSize = 10.sp, fontWeight = FontWeight.Bold,
         modifier = Modifier
             .clip(RoundedCornerShape(6.dp))
             .background(color.copy(alpha = 0.15f))
+            .let { if (onClick != null) it.clickable(onClick = onClick) else it }
             .padding(horizontal = 6.dp, vertical = 2.dp),
     )
 }
 
 @Composable
-private fun CountersBody(s: OverlayUiState.Counters) {
+private fun CountersBody(s: OverlayUiState.Counters, onOpenPicker: () -> Unit, onToggleEnemy: (String) -> Unit) {
     Column(Modifier.padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        if (s.enemies.isNotEmpty()) {
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
             Text(
-                "vs " + s.enemies.joinToString(", ") + (s.directOpponent?.let { "  ·  lane: $it" } ?: "  ·  lane opponent not yet picked"),
-                color = Muted, fontSize = 11.sp, maxLines = 2, overflow = TextOverflow.Ellipsis,
+                if (s.enemies.isNotEmpty()) "vs " + s.enemies.joinToString(", ") + (s.directOpponent?.let { "  ·  lane: $it" } ?: "")
+                else if (s.manualOnly) "Tap “Pick enemies” as they lock in." else "Waiting for enemy picks…",
+                color = Muted, fontSize = 11.sp, maxLines = 2, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f),
             )
-        } else {
-            Text("Waiting for enemy picks…", color = Muted, fontSize = 11.sp)
+            Spacer(Modifier.width(6.dp))
+            Chip(if (s.manualEnemyIds.isEmpty()) "Pick enemies" else "Edit (${s.manualEnemyIds.size})", Enemy, onClick = onOpenPicker)
         }
         if (s.strictFallback) Text("No mastered hero fits this lane — showing all counters", color = Warn, fontSize = 11.sp)
         s.statusLine?.let { Text(it, color = Muted, fontSize = 10.sp, maxLines = 2, overflow = TextOverflow.Ellipsis) }
         s.picks.forEachIndexed { i, r -> PickRow(i + 1, r) }
         if (s.picks.isEmpty()) Text("No candidates left for ${s.myRole.label}", color = Warn, fontSize = 12.sp)
+    }
+}
+
+@Composable
+private fun EnemyPicker(
+    s: OverlayUiState.Counters, heroes: List<HeroLite>,
+    onToggleEnemy: (String) -> Unit, onClearEnemies: () -> Unit, onSetLane: (Role) -> Unit, onDone: () -> Unit,
+) {
+    var filter by remember { mutableStateOf<Role?>(null) }
+    val selected = s.manualEnemyIds.toSet()
+    Column(Modifier.padding(horizontal = 10.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("My lane", color = Muted, fontSize = 10.sp, modifier = Modifier.width(52.dp))
+            Role.entries.forEach { r -> Chip(r.short, if (s.myRole == r) Accent else Muted, onClick = { onSetLane(r) }); Spacer(Modifier.width(4.dp)) }
+        }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("Enemies", color = Muted, fontSize = 10.sp, modifier = Modifier.width(52.dp))
+            Chip("All", if (filter == null) Enemy else Muted, onClick = { filter = null }); Spacer(Modifier.width(4.dp))
+            Role.entries.forEach { r -> Chip(r.short, if (filter == r) Enemy else Muted, onClick = { filter = if (filter == r) null else r }); Spacer(Modifier.width(4.dp)) }
+        }
+        val list = heroes.filter { filter == null || it.role == filter }
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(6),
+            modifier = Modifier.fillMaxWidth().heightIn(max = 230.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            items(list, key = { it.id }) { h ->
+                val sel = h.id in selected
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.clip(RoundedCornerShape(8.dp)).background(if (sel) Enemy.copy(alpha = 0.25f) else Color.Transparent)
+                        .clickable { if (sel || selected.size < 5) onToggleEnemy(h.id) }.padding(2.dp),
+                ) {
+                    Box(Modifier.size(38.dp).clip(CircleShape).border(2.dp, if (sel) Enemy else Color.Transparent, CircleShape)) { HeroAvatar(h.id, h.name, size = 38.dp) }
+                    Text(h.name, color = if (sel) Color.White else Muted, fontSize = 8.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, textAlign = TextAlign.Center)
+                }
+            }
+        }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("${selected.size}/5 selected", color = Muted, fontSize = 10.sp)
+            Spacer(Modifier.weight(1f))
+            if (selected.isNotEmpty()) { Chip("Clear", Muted, onClick = onClearEnemies); Spacer(Modifier.width(6.dp)) }
+            Chip("Done", Accent, onClick = onDone)
+        }
     }
 }
 
@@ -208,10 +277,7 @@ private fun BriefingBody(s: OverlayUiState.Briefing) {
     LaunchedEffect(s) { while (remaining > 0) { delay(1000); remaining-- } }
     val progress by animateFloatAsState(remaining / s.totalSeconds.toFloat(), tween(900, easing = LinearEasing), label = "countdown")
     Column(Modifier.padding(horizontal = 12.dp, vertical = 6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        Text(
-            s.opponent?.let { "Your lane: vs $it" } ?: "Lane opponent unknown",
-            color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold,
-        )
+        Text(s.opponent?.let { "Your lane: vs $it" } ?: "Lane opponent unknown", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
         s.tips.forEach { tip ->
             Row { Text("•", color = Accent, fontSize = 12.sp, modifier = Modifier.width(12.dp)); Text(tip, color = Color.White.copy(alpha = 0.9f), fontSize = 12.sp) }
         }
@@ -219,10 +285,7 @@ private fun BriefingBody(s: OverlayUiState.Briefing) {
             Row { Text("⚔", color = Gold, fontSize = 11.sp, modifier = Modifier.width(14.dp)); Text(item, color = Muted, fontSize = 11.sp, maxLines = 2, overflow = TextOverflow.Ellipsis) }
         }
         Box(Modifier.fillMaxWidth().padding(top = 2.dp)) {
-            LinearProgressIndicator(
-                progress = { progress }, modifier = Modifier.fillMaxWidth().height(3.dp).clip(RoundedCornerShape(2.dp)),
-                color = Muted, trackColor = Color.White.copy(alpha = 0.06f),
-            )
+            LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth().height(3.dp).clip(RoundedCornerShape(2.dp)), color = Muted, trackColor = Color.White.copy(alpha = 0.06f))
         }
         Text("closing in ${remaining}s", color = Muted, fontSize = 10.sp, modifier = Modifier.align(Alignment.End))
     }

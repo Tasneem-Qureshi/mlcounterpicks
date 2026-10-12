@@ -42,6 +42,7 @@ class MasteryBackup(private val context: Context, private val repository: HeroRe
         com.dripagency.mlbbdraft.data.model.RecommendMode.entries.firstOrNull { it.name == doc.optString("mode") }?.let { prefs.setMode(it) }
         com.dripagency.mlbbdraft.data.model.Role.parse(doc.optString("default_role"))?.let { prefs.setDefaultRole(it) }
         doc.optString("data_manifest_url").takeIf { it.isNotBlank() }?.let { prefs.setDataManifestUrl(it) }
+        prefs.touchMastery()
         n
     }
 }

@@ -12,8 +12,8 @@ android {
         applicationId = "com.dripagency.mlbbdraft"
         minSdk = 29          // MediaProjection foreground-service type + ImageReader HARDWARE path
         targetSdk = 35
-        versionCode = 3
-        versionName = "1.1.1"
+        versionCode = 4
+        versionName = "1.2.0"
 
         // Where the app polls for new hero/counter data.  Point this at wherever the
         // scraper's out/ folder is published (GitHub raw URL of the `data` branch works).
@@ -87,6 +87,10 @@ dependencies {
 
     implementation("androidx.datastore:datastore-preferences:1.1.7")
     implementation("androidx.work:work-runtime-ktx:2.10.2")
+
+    // Google account sync: Play Services authorization (Drive appDataFolder scope) + coroutine bridge.
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
 
     // OpenCV for Android from Maven Central (AAR with native libs; no manual SDK import needed).
     implementation("org.opencv:opencv:4.10.0")

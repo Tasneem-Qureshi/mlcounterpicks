@@ -9,6 +9,9 @@
     <string name="notif_hide">Hide</string>
     <string name="notif_stop">Stop</string>
     <string name="notif_open_app">App</string>
+    <string name="notif_enable_detection">Screen detection</string>
+    <string name="notif_disable_detection">Detection off</string>
+    <string name="notif_overlay_only_text">Overlay only. Tap to show the card; use “Screen detection” to read picks automatically.</string>
     <string name="notif_alert_title">Mobile Legends is open</string>
     <string name="notif_alert_text">Tap to show the draft overlay.</string>
 </resources>

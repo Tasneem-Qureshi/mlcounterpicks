@@ -7,6 +7,8 @@
     <!-- Screen capture runs in a foreground service (required by Android 10+ / 14+) -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <!-- Overlay-only mode (no screen capture) runs the same service as a special-use FGS -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- Self-update of hero / counter data -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -41,11 +43,22 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".capture.ProjectionConsentActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <service
             android:name=".capture.ScreenCaptureService"
             android:exported="false"
-            android:foregroundServiceType="mediaProjection"
-            android:stopWithTask="false" />
+            android:foregroundServiceType="mediaProjection|specialUse"
+            android:stopWithTask="false">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Floating draft-assistant overlay shown while the game is in the foreground" />
+        </service>
 
         <!-- WorkManager: on-demand initialisation is configured in DraftCompanionApp -->
         <provider

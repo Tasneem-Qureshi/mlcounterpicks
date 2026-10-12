@@ -59,4 +59,10 @@ data class UserSettings(
     /** empty = use BuildConfig.DATA_MANIFEST_URL */
     val dataManifestUrl: String = "",
     val autoShowOnMlbb: Boolean = true,
+    /** last local change to mastered heroes / synced settings (epoch ms) — drives cloud merge */
+    val masteryUpdatedAt: Long = 0,
+    val cloudEnabled: Boolean = false,
+    val cloudEmail: String = "",
+    val cloudLastSync: Long = 0,
+    val cloudMessage: String = "",
 )
