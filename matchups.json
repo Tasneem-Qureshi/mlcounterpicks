@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-12T09:31:47+00:00",
-  "data_version": 1791797507,
+  "generated_at": "2026-10-12T10:03:31+00:00",
+  "data_version": 1791799411,
   "sources": [
     "fandom",
     "mlbbhub",
@@ -34530,7 +34530,7 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/7/7a/Hero831-icon.png/revision/latest?cb=20241021153015",
-      "portrait_file": "",
+      "portrait_file": "templates/x_borg.png",
       "counters": [
         {
           "hero_id": "floryn",
