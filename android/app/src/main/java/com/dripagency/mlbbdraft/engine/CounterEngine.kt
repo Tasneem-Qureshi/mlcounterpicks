@@ -23,6 +23,8 @@ data class DraftContext(
     val banned: List<String> = emptyList(),
     val mastered: Set<String> = emptySet(),
     val mode: RecommendMode = RecommendMode.FLEXIBLE,
+    /** multiply mastered heroes' score (reorders the list); off = badge only, pure counter ranking */
+    val boostMastered: Boolean = false,
 )
 
 data class Recommendation(
@@ -49,6 +51,7 @@ data class RecommendationResult(
  * where direct/team are normalised edges (edge/10 + 0.5) in [0, 1].
  */
 class CounterEngine(private val index: MatchupIndex, private val config: EngineConfig = EngineConfig()) {
+    private val GENERIC = Regex("wins the matchup against|in ranked data|favourable matchup", RegexOption.IGNORE_CASE)
 
     fun recommend(ctx: DraftContext, topN: Int = 3): RecommendationResult {
         val enemies = ctx.enemies.distinct().mapNotNull { index.hero(it) }
@@ -77,7 +80,7 @@ class CounterEngine(private val index: MatchupIndex, private val config: EngineC
         val mastered = c.id in ctx.mastered
         var composite = config.directWeight * direct + config.teamWeight * team
         c.winRate?.let { wr -> composite += config.metaPriorWeight * ((wr - 50.0) / 3.0).coerceIn(-1.0, 1.0) }
-        if (mastered) composite *= config.masteryMultiplier
+        if (mastered && ctx.boostMastered) composite *= config.masteryMultiplier
         if (c.primaryRole == ctx.myRole) composite *= config.primaryRoleBonus
 
         val reason = buildReason(c, opponent, directDetail, teamEdges)
@@ -104,7 +107,7 @@ class CounterEngine(private val index: MatchupIndex, private val config: EngineC
         val beats = teamEdges.filter { it.second.score >= 1.0 }.sortedByDescending { it.second.score }.map { it.first.name }
         if (beats.isNotEmpty()) parts += "beats " + beats.take(3).joinToString(", ")
         val detail = (listOfNotNull(direct) + teamEdges.map { it.second })
-            .filter { it.score >= 1.0 && it.reason.isNotBlank() && it.confidence != "derived" }
+            .filter { it.score >= 1.0 && it.reason.isNotBlank() && it.confidence != "derived" && !GENERIC.containsMatchIn(it.reason) }
             .maxByOrNull { it.score }?.reason
         if (detail != null) parts += detail.take(90).trimEnd('.')
         return if (parts.isEmpty()) "Solid ${c.primaryRole.label} pick with no bad matchups" else parts.joinToString(" · ")

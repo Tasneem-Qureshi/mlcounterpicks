@@ -63,7 +63,7 @@ class CounterEngineTest {
 
     @Test
     fun `mastery multiplies composite by 1point4 in flexible mode and reorders`() {
-        val ctx = DraftContext(Role.EXP, enemies = listOf("yu_zhong", "brody"), mastered = setOf("paquito"), mode = RecommendMode.FLEXIBLE)
+        val ctx = DraftContext(Role.EXP, enemies = listOf("yu_zhong", "brody"), mastered = setOf("paquito"), mode = RecommendMode.FLEXIBLE, boostMastered = true)
         val res = CounterEngine(index, noBonus).recommend(ctx, topN = 10)
         val paq = res.picks.first { it.hero.id == "paquito" }
         // paquito: direct neutral 0.5, team vs brody +3.5 → 0.85 ; base = 0.2 + 0.51 = 0.71 ; ×1.4 = 0.994
@@ -71,6 +71,16 @@ class CounterEngineTest {
         assertTrue(paq.mastered)
         assertEquals("paquito", res.picks.first().hero.id)
         assertFalse(res.strictFallback)
+    }
+
+    @Test
+    fun `without boost mastered heroes keep their pure counter rank`() {
+        val ctx = DraftContext(Role.EXP, enemies = listOf("yu_zhong", "brody"), mastered = setOf("paquito"))
+        val res = CounterEngine(index, noBonus).recommend(ctx, topN = 10)
+        val paq = res.picks.first { it.hero.id == "paquito" }
+        assertEquals(0.71, paq.composite, 1e-9)
+        assertTrue(paq.mastered)
+        assertEquals("paquito", res.picks.first().hero.id) // still best here on merit (0.71 > x_borg 0.668)
     }
 
     @Test

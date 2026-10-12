@@ -39,9 +39,13 @@ class VisionDetector private constructor(
         val workHeight: Int = 80,
         /** template face sizes relative to the crop height (fine pass) */
         val fineScales: FloatArray = floatArrayOf(0.35f, 0.40f, 0.45f, 0.50f, 0.55f, 0.60f, 0.65f, 0.70f, 0.75f, 0.80f),
-        val coarseScales: FloatArray = floatArrayOf(0.45f, 0.60f),
-        val shortlist: Int = 16,
-        val acceptScore: Float = 0.72f,
+        val coarseScales: FloatArray = floatArrayOf(0.40f, 0.55f, 0.70f),
+        /** coarse pass runs at this fraction of workHeight (0.6 keeps every validated hero at rank 1) */
+        val coarseFactor: Double = 0.6,
+        val shortlist: Int = 12,
+        /** shortlisted heroes beyond this rank are refined with their best coarse art only */
+        val fullRefine: Int = 4,
+        val acceptScore: Float = 0.74f,
         val acceptMargin: Float = 0.08f,
         /** at or above this score the margin requirement is waived (wrong heroes never score this high) */
         val sureScore: Float = 0.80f,
@@ -50,7 +54,9 @@ class VisionDetector private constructor(
         val cacheHamming: Int = 3,
     )
 
-    class HeroTemplate(val heroId: String, val fine: List<Mat>, val coarse: List<Mat>)
+    /** One art of a hero (official icon, in-game portrait, skin icon …) prepared at every search scale. */
+    class ArtTemplate(val fine: List<Mat>, val coarse: List<Mat>)
+    class HeroTemplate(val heroId: String, val arts: List<ArtTemplate>)
     class LaneTemplate(val role: Role, val gray: Mat)
     data class Match(val heroId: String, val confidence: Float)
 
@@ -120,15 +126,21 @@ class VisionDetector private constructor(
         val scale = config.workHeight.toDouble() / crop.rows()
         Imgproc.resize(crop, work, Size(crop.cols() * scale, config.workHeight.toDouble()), 0.0, 0.0, if (scale < 1) Imgproc.INTER_AREA else Imgproc.INTER_LINEAR)
         clahe.apply(work, work)
-        Imgproc.resize(work, half, Size(work.cols() / 2.0, work.rows() / 2.0), 0.0, 0.0, Imgproc.INTER_AREA)
+        Imgproc.resize(work, half, Size(work.cols() * config.coarseFactor, work.rows() * config.coarseFactor), 0.0, 0.0, Imgproc.INTER_AREA)
 
-        // coarse pass: every hero at half resolution
-        val coarse = templates.map { t -> t to t.coarse.maxOf { score(half, it) } }
-            .sortedByDescending { it.second }.take(config.shortlist)
+        // coarse pass: every art of every hero at reduced resolution → shortlist + best art per hero
+        class Coarse(val t: HeroTemplate, val score: Float, val artIndex: Int)
+        val coarse = templates.map { t ->
+            var bs = -1f; var bi = 0
+            t.arts.forEachIndexed { i, a -> val s = a.coarse.maxOf { score(half, it) }; if (s > bs) { bs = s; bi = i } }
+            Coarse(t, bs, bi)
+        }.sortedByDescending { it.score }.take(config.shortlist)
 
         var best: HeroTemplate? = null; var bestScore = -1f; var second = -1f
-        for ((t, _) in coarse) {
-            val s = t.fine.maxOf { score(work, it) }
+        coarse.forEachIndexed { rank, c ->
+            val t = c.t
+            val arts = if (rank < config.fullRefine) t.arts else listOf(t.arts[c.artIndex])
+            val s = arts.maxOf { a -> a.fine.maxOf { score(work, it) } }
             if (s > bestScore) { second = bestScore; bestScore = s; best = t } else if (s > second) second = s
         }
         val b = best ?: return null
@@ -176,17 +188,41 @@ class VisionDetector private constructor(
     companion object {
         private const val TAG = "VisionDetector"
 
-        /** Downloaded templates (self-update) win over the ones bundled in assets. */
+        /**
+         * Downloaded templates (self-update) win over the ones bundled in assets.  index.json maps each
+         * hero to its base file plus art variants ("<id>_1.png" …); without it, file names are used.
+         */
         fun load(context: Context, config: Config = Config()): VisionDetector {
             val downloaded = File(context.filesDir, "templates")
             val useDownloaded = File(downloaded, "index.json").exists()
-            val names: List<String> = if (useDownloaded) downloaded.list().orEmpty().toList() else context.assets.list("templates").orEmpty().toList()
+            fun readText(name: String): String? = runCatching {
+                if (useDownloaded) File(downloaded, name).readText() else context.assets.open("templates/$name").bufferedReader().readText()
+            }.getOrNull()
+            fun decode(name: String): Bitmap? = runCatching {
+                if (useDownloaded) BitmapFactory.decodeFile(File(downloaded, name).path)
+                else context.assets.open("templates/$name").use { BitmapFactory.decodeStream(it) }
+            }.getOrNull()
+
+            // hero id -> art files
+            val byHero = LinkedHashMap<String, MutableList<String>>()
+            val index = readText("index.json")?.let { runCatching { org.json.JSONObject(it) }.getOrNull() }
+            if (index != null) {
+                for (id in index.keys()) {
+                    val e = index.getJSONObject(id)
+                    val files = mutableListOf(e.optString("file", "$id.png"))
+                    e.optJSONArray("variants")?.let { v -> for (i in 0 until v.length()) files += v.getString(i) }
+                    byHero[id] = files
+                }
+            } else {
+                val names = if (useDownloaded) downloaded.list().orEmpty().toList() else context.assets.list("templates").orEmpty().toList()
+                for (f in names.filter { it.endsWith(".png") }) {
+                    val id = f.removeSuffix(".png").replace(Regex("_\\d+$"), "")
+                    byHero.getOrPut(id) { mutableListOf() } += f
+                }
+            }
+
             val clahe = Imgproc.createCLAHE(2.0, Size(4.0, 4.0))
-            val templates = names.filter { it.endsWith(".png") }.mapNotNull { file ->
-                val bmp = runCatching {
-                    if (useDownloaded) BitmapFactory.decodeFile(File(downloaded, file).path)
-                    else context.assets.open("templates/$file").use { BitmapFactory.decodeStream(it) }
-                }.getOrNull() ?: return@mapNotNull null
+            fun prepare(bmp: Bitmap): ArtTemplate {
                 val m = Mat(); Utils.bitmapToMat(bmp, m); bmp.recycle()
                 Imgproc.cvtColor(m, m, Imgproc.COLOR_RGBA2GRAY)
                 val n = m.rows(); val c = (n * 0.18).toInt()
@@ -195,9 +231,14 @@ class VisionDetector private constructor(
                     val out = Mat(); Imgproc.resize(face, out, Size(px.toDouble(), px.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA); clahe.apply(out, out); return out
                 }
                 val fine = config.fineScales.map { scaled((config.workHeight * it).toInt().coerceAtLeast(12)) }
-                val coarse = config.coarseScales.map { scaled((config.workHeight / 2 * it).toInt().coerceAtLeast(8)) }
+                val coarse = config.coarseScales.map { scaled((config.workHeight * config.coarseFactor * it).toInt().coerceAtLeast(8)) }
                 face.release(); m.release()
-                HeroTemplate(file.removeSuffix(".png"), fine, coarse)
+                return ArtTemplate(fine, coarse)
+            }
+            var artCount = 0
+            val templates = byHero.mapNotNull { (id, files) ->
+                val arts = files.mapNotNull { f -> decode(f)?.let { prepare(it) } }
+                if (arts.isEmpty()) null else { artCount += arts.size; HeroTemplate(id, arts) }
             }
             val lanes = Role.entries.mapNotNull { role ->
                 val bmp = runCatching { context.assets.open("lanes/${role.name.lowercase()}.png").use { BitmapFactory.decodeStream(it) } }.getOrNull() ?: return@mapNotNull null
@@ -205,7 +246,7 @@ class VisionDetector private constructor(
                 Imgproc.resize(m, m, Size(28.0, 28.0), 0.0, 0.0, Imgproc.INTER_AREA)
                 LaneTemplate(role, m)
             }
-            Log.i(TAG, "loaded ${templates.size} hero templates (${if (useDownloaded) "downloaded" else "assets"}), ${lanes.size} lane badges")
+            Log.i(TAG, "loaded ${templates.size} heroes / $artCount arts (${if (useDownloaded) "downloaded" else "assets"}), ${lanes.size} lane badges")
             return VisionDetector(templates, lanes, config)
         }
     }

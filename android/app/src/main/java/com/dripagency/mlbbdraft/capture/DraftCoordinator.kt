@@ -70,8 +70,12 @@ class DraftCoordinator(
         val role = manualRole ?: (if (s.autoDetectLane) snap?.myLane else null) ?: s.defaultRole
         val enemies = (detectedEnemies + manualEnemies).distinct()
         val result = eng.recommend(
-            DraftContext(myRole = role, enemies = enemies, allies = snap?.allies.orEmpty(), banned = snap?.bans.orEmpty(), mastered = mastered(), mode = s.mode),
+            DraftContext(myRole = role, enemies = enemies, allies = snap?.allies.orEmpty(), banned = snap?.bans.orEmpty(),
+                mastered = mastered(), mode = s.mode, boostMastered = s.boostMastered),
+            topN = MAX_PICKS,
         )
+        // Everything with a favourable composite (> neutral 0.5), at least MIN_PICKS, best first.
+        val picks = result.picks.filterIndexed { i, r -> i < MIN_PICKS || r.composite > 0.5 }
         lastRole = role
         lastDirectOpponentId = result.directOpponent?.id
         val drafting = snap?.phase == DraftPhase.DRAFTING || snap?.phase == DraftPhase.LOCKED
@@ -85,7 +89,7 @@ class DraftCoordinator(
             OverlayUiState.Counters(
                 myRole = role,
                 laneDetected = manualRole != null || (s.autoDetectLane && snap?.myLane != null),
-                picks = result.picks,
+                picks = picks,
                 enemies = enemies.mapNotNull { idx.hero(it)?.name },
                 manualEnemyIds = manualEnemies.toList(),
                 directOpponent = result.directOpponent?.name,
@@ -150,5 +154,5 @@ class DraftCoordinator(
         manualEnemies.clear(); manualRole = null
     }
 
-    private companion object { const val TAG = "DraftCoordinator" }
+    private companion object { const val TAG = "DraftCoordinator"; const val MAX_PICKS = 20; const val MIN_PICKS = 5 }
 }

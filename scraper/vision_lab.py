@@ -8,24 +8,37 @@ Offline twin of the app's VisionDetector (Kotlin) for tuning without a phone.
 Algorithm (keep in sync with android/.../vision/VisionDetector.kt):
   crop card → gray → resize to 80 px high → CLAHE → for each hero, the inner-64 % face patch of
   its head icon is searched inside the crop at 35–80 % of the crop height (TM_CCOEFF_NORMED);
-  coarse pass at half resolution picks 16 candidates, fine pass decides; accept ≥0.72 with ≥0.08 margin (margin waived ≥0.80).
+  coarse pass at 0.6 resolution (3 sizes, all arts) picks 12 candidates, fine pass decides; accept ≥0.74 with ≥0.08 margin (waived ≥0.80).
 Layout boxes are [anchor, x, y, w, h] in units of the frame height, from ../android/app/src/main/assets/layouts.json.
 """
-import argparse, glob, json, os, sys
+import argparse, glob, json, os, re, sys
 import cv2, numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-WORK_H, FINE, COARSE, SHORTLIST, ACCEPT, MARGIN, SURE = 80, tuple(0.35 + 0.05 * i for i in range(10)), (0.45, 0.60), 16, 0.72, 0.08, 0.80
+WORK_H, FINE, COARSE, COARSE_F, SHORTLIST, ACCEPT, MARGIN, SURE = 80, tuple(0.35 + 0.05 * i for i in range(10)), (0.40, 0.55, 0.70), 0.6, 12, 0.74, 0.08, 0.80
 clahe = cv2.createCLAHE(2.0, (4, 4))
 
 
 def load_templates(tdir):
+    """hero -> list of arts; each art prepared at every scale (mirrors VisionDetector.load)."""
+    index_path = os.path.join(tdir, "index.json")
+    by_hero = {}
+    if os.path.exists(index_path):
+        for hid, e in json.load(open(index_path)).items():
+            by_hero[hid] = [e.get("file", hid + ".png")] + list(e.get("variants", []))
+    else:
+        for p in sorted(glob.glob(os.path.join(tdir, "*.png"))):
+            f = os.path.basename(p); hid = re.sub(r"_\d+$", "", f[:-4]); by_hero.setdefault(hid, []).append(f)
     out = []
-    for p in sorted(glob.glob(os.path.join(tdir, "*.png"))):
-        g = cv2.cvtColor(cv2.imread(p), cv2.COLOR_BGR2GRAY); n = g.shape[0]; c = int(n * 0.18)
-        face = g[c:n - c, c:n - c]
-        def sc(px): return clahe.apply(cv2.resize(face, (px, px), interpolation=cv2.INTER_AREA))
-        out.append((os.path.basename(p)[:-4], [sc(max(12, int(WORK_H * s))) for s in FINE], [sc(max(8, int(WORK_H / 2 * s))) for s in COARSE]))
+    for hid, files in by_hero.items():
+        arts = []
+        for f in files:
+            im = cv2.imread(os.path.join(tdir, f))
+            if im is None: continue
+            g = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY); n = g.shape[0]; c = int(n * 0.18); face = g[c:n - c, c:n - c]
+            def sc(px, face=face): return clahe.apply(cv2.resize(face, (px, px), interpolation=cv2.INTER_AREA))
+            arts.append(([sc(max(12, int(WORK_H * s))) for s in FINE], [sc(max(8, int(WORK_H * COARSE_F * s))) for s in COARSE]))
+        if arts: out.append((hid, arts))
     return out
 
 
@@ -38,9 +51,9 @@ def identify(crop, templates):
     if crop.std() < 14: return None, None
     s = WORK_H / crop.shape[0]
     work = clahe.apply(cv2.resize(crop, (int(crop.shape[1] * s), WORK_H), interpolation=cv2.INTER_AREA if s < 1 else cv2.INTER_LINEAR))
-    half = cv2.resize(work, (work.shape[1] // 2, work.shape[0] // 2), interpolation=cv2.INTER_AREA)
-    coarse = sorted(templates, key=lambda t: -max(score(half, c) for c in t[2]))[:SHORTLIST]
-    ranked = sorted(((max(score(work, f) for f in t[1]), t[0]) for t in coarse), reverse=True)
+    half = cv2.resize(work, (int(work.shape[1] * COARSE_F), int(work.shape[0] * COARSE_F)), interpolation=cv2.INTER_AREA)
+    coarse = sorted(templates, key=lambda t: -max(score(half, c) for a in t[1] for c in a[1]))[:SHORTLIST]
+    ranked = sorted(((max(score(work, f) for a in t[1] for f in a[0]), t[0]) for t in coarse), reverse=True)
     best, second = ranked[0], ranked[1]
     ok = best[0] >= ACCEPT and (best[0] >= SURE or best[0] - second[0] >= MARGIN)
     return (best[1] if ok else None), ranked[:3]

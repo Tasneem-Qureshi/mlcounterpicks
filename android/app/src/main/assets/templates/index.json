@@ -2,661 +2,1452 @@
  "aamon": {
   "dhash": "1b3161c9c1430307",
   "file": "aamon.png",
-  "name": "Aamon"
+  "name": "Aamon",
+  "variants": [
+   "aamon_1.png",
+   "aamon_3.png",
+   "aamon_4.png",
+   "aamon_5.png"
+  ]
  },
  "akai": {
   "dhash": "0f230d4c7623130b",
   "file": "akai.png",
-  "name": "Akai"
+  "name": "Akai",
+  "variants": [
+   "akai_1.png",
+   "akai_3.png",
+   "akai_4.png",
+   "akai_5.png"
+  ]
  },
  "aldous": {
   "dhash": "0f0d24068ecf6f1f",
   "file": "aldous.png",
-  "name": "Aldous"
+  "name": "Aldous",
+  "variants": [
+   "aldous_1.png",
+   "aldous_3.png",
+   "aldous_4.png",
+   "aldous_5.png"
+  ]
  },
  "alice": {
   "dhash": "0f23454c1737170f",
   "file": "alice.png",
-  "name": "Alice"
+  "name": "Alice",
+  "variants": [
+   "alice_1.png",
+   "alice_3.png",
+   "alice_4.png",
+   "alice_5.png"
+  ]
  },
  "alpha": {
   "dhash": "37335b4f6f6f3f1f",
   "file": "alpha.png",
-  "name": "Alpha"
+  "name": "Alpha",
+  "variants": [
+   "alpha_1.png",
+   "alpha_3.png",
+   "alpha_4.png",
+   "alpha_5.png"
+  ]
  },
  "alucard": {
   "dhash": "0f5b3c351b1b2323",
   "file": "alucard.png",
-  "name": "Alucard"
+  "name": "Alucard",
+  "variants": [
+   "alucard_1.png",
+   "alucard_3.png",
+   "alucard_4.png",
+   "alucard_5.png"
+  ]
  },
  "angela": {
   "dhash": "0f3f6f9ccf4b3b0f",
   "file": "angela.png",
-  "name": "Angela"
+  "name": "Angela",
+  "variants": [
+   "angela_1.png",
+   "angela_3.png",
+   "angela_4.png",
+   "angela_5.png"
+  ]
  },
  "argus": {
   "dhash": "0767252727171f1f",
   "file": "argus.png",
-  "name": "Argus"
+  "name": "Argus",
+  "variants": [
+   "argus_1.png",
+   "argus_3.png",
+   "argus_4.png",
+   "argus_5.png"
+  ]
  },
  "arlott": {
   "dhash": "07030b0c0b07070f",
   "file": "arlott.png",
-  "name": "Arlott"
+  "name": "Arlott",
+  "variants": [
+   "arlott_1.png",
+   "arlott_3.png",
+   "arlott_4.png",
+   "arlott_5.png"
+  ]
  },
  "atlas": {
   "dhash": "1f71e1b293413d0f",
   "file": "atlas.png",
-  "name": "Atlas"
+  "name": "Atlas",
+  "variants": [
+   "atlas_1.png",
+   "atlas_3.png",
+   "atlas_4.png",
+   "atlas_5.png"
+  ]
  },
  "aulus": {
   "dhash": "1f4f4973170b0d1f",
   "file": "aulus.png",
-  "name": "Aulus"
+  "name": "Aulus",
+  "variants": [
+   "aulus_1.png",
+   "aulus_3.png",
+   "aulus_4.png",
+   "aulus_5.png"
+  ]
  },
  "aurora": {
   "dhash": "070b4160446d2b0f",
   "file": "aurora.png",
-  "name": "Aurora"
+  "name": "Aurora",
+  "variants": [
+   "aurora_1.png",
+   "aurora_3.png",
+   "aurora_4.png",
+   "aurora_5.png"
+  ]
  },
  "badang": {
   "dhash": "071731071f87270f",
   "file": "badang.png",
-  "name": "Badang"
+  "name": "Badang",
+  "variants": [
+   "badang_1.png",
+   "badang_3.png",
+   "badang_4.png",
+   "badang_5.png"
+  ]
  },
  "balmond": {
   "dhash": "0f0f1d5f472f0f1f",
   "file": "balmond.png",
-  "name": "Balmond"
+  "name": "Balmond",
+  "variants": [
+   "balmond_1.png",
+   "balmond_3.png",
+   "balmond_4.png",
+   "balmond_5.png"
+  ]
  },
  "bane": {
   "dhash": "172749960d050d0f",
   "file": "bane.png",
-  "name": "Bane"
+  "name": "Bane",
+  "variants": [
+   "bane_1.png",
+   "bane_3.png",
+   "bane_4.png",
+   "bane_5.png"
+  ]
  },
  "barats": {
   "dhash": "0f33757de85b191f",
   "file": "barats.png",
-  "name": "Barats"
+  "name": "Barats",
+  "variants": [
+   "barats_1.png",
+   "barats_3.png",
+   "barats_4.png",
+   "barats_5.png"
+  ]
  },
  "baxia": {
   "dhash": "0f136564c4456913",
   "file": "baxia.png",
-  "name": "Baxia"
+  "name": "Baxia",
+  "variants": [
+   "baxia_1.png",
+   "baxia_3.png",
+   "baxia_4.png",
+   "baxia_5.png"
+  ]
  },
  "beatrix": {
   "dhash": "0f2921034233130b",
   "file": "beatrix.png",
-  "name": "Beatrix"
+  "name": "Beatrix",
+  "variants": [
+   "beatrix_1.png",
+   "beatrix_3.png",
+   "beatrix_4.png",
+   "beatrix_5.png"
+  ]
  },
  "belerick": {
   "dhash": "170b0f46f7dd7307",
   "file": "belerick.png",
-  "name": "Belerick"
+  "name": "Belerick",
+  "variants": [
+   "belerick_1.png",
+   "belerick_3.png",
+   "belerick_4.png",
+   "belerick_5.png"
+  ]
  },
  "benedetta": {
   "dhash": "2f0707130b07070f",
   "file": "benedetta.png",
-  "name": "Benedetta"
+  "name": "Benedetta",
+  "variants": [
+   "benedetta_1.png",
+   "benedetta_3.png",
+   "benedetta_4.png",
+   "benedetta_5.png"
+  ]
  },
  "brody": {
   "dhash": "0f6d2d3cb69f571f",
   "file": "brody.png",
-  "name": "Brody"
+  "name": "Brody",
+  "variants": [
+   "brody_1.png",
+   "brody_3.png",
+   "brody_4.png",
+   "brody_5.png"
+  ]
  },
  "bruno": {
   "dhash": "173b7d7ef655652f",
   "file": "bruno.png",
-  "name": "Bruno"
+  "name": "Bruno",
+  "variants": [
+   "bruno_1.png",
+   "bruno_3.png",
+   "bruno_4.png",
+   "bruno_5.png"
+  ]
  },
  "carmilla": {
   "dhash": "1f3b77676b373f1f",
   "file": "carmilla.png",
-  "name": "Carmilla"
+  "name": "Carmilla",
+  "variants": [
+   "carmilla_1.png",
+   "carmilla_3.png",
+   "carmilla_4.png",
+   "carmilla_5.png"
+  ]
  },
  "cecilion": {
   "dhash": "066747cf4b4b373b",
   "file": "cecilion.png",
-  "name": "Cecilion"
+  "name": "Cecilion",
+  "variants": [
+   "cecilion_1.png",
+   "cecilion_3.png",
+   "cecilion_4.png",
+   "cecilion_5.png"
+  ]
  },
  "chang_e": {
   "dhash": "0f2f1f4f1d0f270f",
   "file": "chang_e.png",
-  "name": "Chang'e"
+  "name": "Chang'e",
+  "variants": [
+   "chang_e_1.png",
+   "chang_e_3.png",
+   "chang_e_4.png",
+   "chang_e_5.png"
+  ]
  },
  "chip": {
   "dhash": "0f69c699c9632f1f",
   "file": "chip.png",
-  "name": "Chip"
+  "name": "Chip",
+  "variants": [
+   "chip_1.png",
+   "chip_3.png",
+   "chip_4.png",
+   "chip_5.png"
+  ]
  },
  "chou": {
   "dhash": "073f89c1c1b11b07",
   "file": "chou.png",
-  "name": "Chou"
+  "name": "Chou",
+  "variants": [
+   "chou_1.png",
+   "chou_3.png",
+   "chou_4.png",
+   "chou_5.png"
+  ]
  },
  "cici": {
   "dhash": "071341270e23170f",
   "file": "cici.png",
-  "name": "Cici"
+  "name": "Cici",
+  "variants": [
+   "cici_1.png",
+   "cici_3.png",
+   "cici_4.png",
+   "cici_5.png"
+  ]
  },
  "claude": {
   "dhash": "03030b1989814307",
   "file": "claude.png",
-  "name": "Claude"
+  "name": "Claude",
+  "variants": [
+   "claude_1.png",
+   "claude_3.png",
+   "claude_4.png",
+   "claude_5.png"
+  ]
  },
  "clint": {
   "dhash": "134117071f5b471f",
   "file": "clint.png",
-  "name": "Clint"
+  "name": "Clint",
+  "variants": [
+   "clint_1.png",
+   "clint_3.png",
+   "clint_4.png",
+   "clint_5.png"
+  ]
  },
  "cyclops": {
   "dhash": "0f07594c0d063127",
   "file": "cyclops.png",
-  "name": "Cyclops"
+  "name": "Cyclops",
+  "variants": [
+   "cyclops_1.png",
+   "cyclops_3.png",
+   "cyclops_4.png",
+   "cyclops_5.png"
+  ]
  },
  "diggie": {
   "dhash": "0f3f6e0b314b0f36",
   "file": "diggie.png",
-  "name": "Diggie"
+  "name": "Diggie",
+  "variants": [
+   "diggie_1.png",
+   "diggie_3.png",
+   "diggie_4.png",
+   "diggie_5.png"
+  ]
  },
  "dyrroth": {
   "dhash": "0f6b67765e2b371b",
   "file": "dyrroth.png",
-  "name": "Dyrroth"
+  "name": "Dyrroth",
+  "variants": [
+   "dyrroth_1.png",
+   "dyrroth_3.png",
+   "dyrroth_4.png",
+   "dyrroth_5.png"
+  ]
  },
  "edith": {
   "dhash": "0b3b67062e1f1f0f",
   "file": "edith.png",
-  "name": "Edith"
+  "name": "Edith",
+  "variants": [
+   "edith_1.png",
+   "edith_3.png",
+   "edith_4.png",
+   "edith_5.png"
+  ]
  },
  "esmeralda": {
   "dhash": "0f2733772f33171f",
   "file": "esmeralda.png",
-  "name": "Esmeralda"
+  "name": "Esmeralda",
+  "variants": [
+   "esmeralda_1.png",
+   "esmeralda_3.png",
+   "esmeralda_4.png",
+   "esmeralda_5.png"
+  ]
  },
  "estes": {
   "dhash": "1f3f73362f7d3b0f",
   "file": "estes.png",
-  "name": "Estes"
+  "name": "Estes",
+  "variants": [
+   "estes_1.png",
+   "estes_3.png",
+   "estes_4.png",
+   "estes_5.png"
+  ]
  },
  "eudora": {
   "dhash": "0f2531d3c331330f",
   "file": "eudora.png",
-  "name": "Eudora"
+  "name": "Eudora",
+  "variants": [
+   "eudora_1.png",
+   "eudora_3.png",
+   "eudora_4.png",
+   "eudora_5.png"
+  ]
  },
  "fanny": {
   "dhash": "0f3365cc5e7f0d0f",
   "file": "fanny.png",
-  "name": "Fanny"
+  "name": "Fanny",
+  "variants": [
+   "fanny_1.png",
+   "fanny_3.png",
+   "fanny_4.png",
+   "fanny_5.png"
+  ]
  },
  "faramis": {
   "dhash": "070733374f69291f",
   "file": "faramis.png",
-  "name": "Faramis"
+  "name": "Faramis",
+  "variants": [
+   "faramis_1.png",
+   "faramis_3.png",
+   "faramis_4.png",
+   "faramis_5.png"
+  ]
  },
  "floryn": {
   "dhash": "0729730a0f13070f",
   "file": "floryn.png",
-  "name": "Floryn"
+  "name": "Floryn",
+  "variants": [
+   "floryn_1.png",
+   "floryn_3.png",
+   "floryn_4.png",
+   "floryn_5.png"
+  ]
  },
  "franco": {
   "dhash": "2f2f646c735d7f17",
   "file": "franco.png",
-  "name": "Franco"
+  "name": "Franco",
+  "variants": [
+   "franco_1.png",
+   "franco_3.png",
+   "franco_4.png",
+   "franco_5.png"
+  ]
  },
  "fredrinn": {
   "dhash": "0723c3d9d9150707",
   "file": "fredrinn.png",
-  "name": "Fredrinn"
+  "name": "Fredrinn",
+  "variants": [
+   "fredrinn_1.png",
+   "fredrinn_3.png",
+   "fredrinn_4.png",
+   "fredrinn_5.png"
+  ]
  },
  "freya": {
   "dhash": "072363d34367271f",
   "file": "freya.png",
-  "name": "Freya"
+  "name": "Freya",
+  "variants": [
+   "freya_1.png",
+   "freya_3.png",
+   "freya_4.png",
+   "freya_5.png"
+  ]
  },
  "gatotkaca": {
   "dhash": "273131a878612307",
   "file": "gatotkaca.png",
-  "name": "Gatotkaca"
+  "name": "Gatotkaca",
+  "variants": [
+   "gatotkaca_1.png",
+   "gatotkaca_3.png",
+   "gatotkaca_4.png",
+   "gatotkaca_5.png"
+  ]
  },
  "gloo": {
   "dhash": "17131b9b43270703",
   "file": "gloo.png",
-  "name": "Gloo"
+  "name": "Gloo",
+  "variants": [
+   "gloo_1.png",
+   "gloo_3.png",
+   "gloo_4.png",
+   "gloo_5.png"
+  ]
  },
  "gord": {
   "dhash": "0f0f4de7cf4f6b1f",
   "file": "gord.png",
-  "name": "Gord"
+  "name": "Gord",
+  "variants": [
+   "gord_1.png",
+   "gord_3.png",
+   "gord_4.png",
+   "gord_5.png"
+  ]
  },
  "granger": {
   "dhash": "074f4f1b3a1d030f",
   "file": "granger.png",
-  "name": "Granger"
+  "name": "Granger",
+  "variants": [
+   "granger_1.png",
+   "granger_3.png",
+   "granger_4.png",
+   "granger_5.png"
+  ]
  },
  "grock": {
   "dhash": "17276b734f4d3f3f",
   "file": "grock.png",
-  "name": "Grock"
+  "name": "Grock",
+  "variants": [
+   "grock_1.png",
+   "grock_3.png",
+   "grock_4.png",
+   "grock_5.png"
+  ]
  },
  "guinevere": {
   "dhash": "071127363213170f",
   "file": "guinevere.png",
-  "name": "Guinevere"
+  "name": "Guinevere",
+  "variants": [
+   "guinevere_1.png",
+   "guinevere_3.png",
+   "guinevere_4.png",
+   "guinevere_5.png"
+  ]
  },
  "gusion": {
   "dhash": "1f37261331310d0f",
   "file": "gusion.png",
-  "name": "Gusion"
+  "name": "Gusion",
+  "variants": [
+   "gusion_1.png",
+   "gusion_3.png",
+   "gusion_4.png",
+   "gusion_5.png"
+  ]
  },
  "hanabi": {
   "dhash": "061f0d484713130f",
   "file": "hanabi.png",
-  "name": "Hanabi"
+  "name": "Hanabi",
+  "variants": [
+   "hanabi_1.png",
+   "hanabi_3.png",
+   "hanabi_4.png",
+   "hanabi_5.png"
+  ]
  },
  "hanzo": {
   "dhash": "0f1f1fa40c1d0f0e",
   "file": "hanzo.png",
-  "name": "Hanzo"
+  "name": "Hanzo",
+  "variants": [
+   "hanzo_1.png",
+   "hanzo_3.png",
+   "hanzo_4.png",
+   "hanzo_5.png"
+  ]
  },
  "harith": {
   "dhash": "070b1919cb893307",
   "file": "harith.png",
-  "name": "Harith"
+  "name": "Harith",
+  "variants": [
+   "harith_1.png",
+   "harith_3.png",
+   "harith_4.png",
+   "harith_5.png"
+  ]
  },
  "harley": {
   "dhash": "1f1f33970f271f0f",
   "file": "harley.png",
-  "name": "Harley"
+  "name": "Harley",
+  "variants": [
+   "harley_1.png",
+   "harley_3.png",
+   "harley_4.png",
+   "harley_5.png"
+  ]
  },
  "hayabusa": {
   "dhash": "0301448298996107",
   "file": "hayabusa.png",
-  "name": "Hayabusa"
+  "name": "Hayabusa",
+  "variants": [
+   "hayabusa_1.png",
+   "hayabusa_3.png",
+   "hayabusa_4.png",
+   "hayabusa_5.png"
+  ]
  },
  "helcurt": {
   "dhash": "072b15143421311f",
   "file": "helcurt.png",
-  "name": "Helcurt"
+  "name": "Helcurt",
+  "variants": [
+   "helcurt_1.png",
+   "helcurt_3.png",
+   "helcurt_4.png",
+   "helcurt_5.png"
+  ]
  },
  "hilda": {
   "dhash": "1f33070f43170f06",
   "file": "hilda.png",
-  "name": "Hilda"
+  "name": "Hilda",
+  "variants": [
+   "hilda_1.png",
+   "hilda_3.png",
+   "hilda_4.png",
+   "hilda_5.png"
+  ]
  },
  "hirara": {
   "dhash": "070b0d46a3054307",
   "file": "hirara.png",
-  "name": "Hirara"
+  "name": "Hirara",
+  "variants": [
+   "hirara_1.png",
+   "hirara_3.png"
+  ]
  },
  "hylos": {
   "dhash": "07050d9891854707",
   "file": "hylos.png",
-  "name": "Hylos"
+  "name": "Hylos",
+  "variants": [
+   "hylos_1.png",
+   "hylos_3.png",
+   "hylos_4.png",
+   "hylos_5.png"
+  ]
  },
  "irithel": {
   "dhash": "17070f06931b0307",
   "file": "irithel.png",
-  "name": "Irithel"
+  "name": "Irithel",
+  "variants": [
+   "irithel_1.png",
+   "irithel_3.png",
+   "irithel_4.png",
+   "irithel_5.png"
+  ]
  },
  "ixia": {
   "dhash": "0f0703990b17070f",
   "file": "ixia.png",
-  "name": "Ixia"
+  "name": "Ixia",
+  "variants": [
+   "ixia_1.png",
+   "ixia_3.png",
+   "ixia_4.png",
+   "ixia_5.png"
+  ]
  },
  "jawhead": {
   "dhash": "37674f185d7f3b1b",
   "file": "jawhead.png",
-  "name": "Jawhead"
+  "name": "Jawhead",
+  "variants": [
+   "jawhead_1.png",
+   "jawhead_3.png",
+   "jawhead_4.png",
+   "jawhead_5.png"
+  ]
  },
  "johnson": {
   "dhash": "07130583731b4327",
   "file": "johnson.png",
-  "name": "Johnson"
+  "name": "Johnson",
+  "variants": [
+   "johnson_1.png",
+   "johnson_3.png",
+   "johnson_4.png",
+   "johnson_5.png"
+  ]
  },
  "joy": {
   "dhash": "070b5dd9d977270f",
   "file": "joy.png",
-  "name": "Joy"
+  "name": "Joy",
+  "variants": [
+   "joy_1.png",
+   "joy_3.png",
+   "joy_4.png"
+  ]
  },
  "julian": {
   "dhash": "07031d092b03070f",
   "file": "julian.png",
-  "name": "Julian"
+  "name": "Julian",
+  "variants": [
+   "julian_1.png",
+   "julian_3.png",
+   "julian_4.png",
+   "julian_5.png"
+  ]
  },
  "kadita": {
   "dhash": "076d4d860e07030f",
   "file": "kadita.png",
-  "name": "Kadita"
+  "name": "Kadita",
+  "variants": [
+   "kadita_1.png",
+   "kadita_3.png",
+   "kadita_4.png",
+   "kadita_5.png"
+  ]
  },
  "kagura": {
   "dhash": "173359f9396d2f1f",
   "file": "kagura.png",
-  "name": "Kagura"
+  "name": "Kagura",
+  "variants": [
+   "kagura_1.png",
+   "kagura_3.png",
+   "kagura_4.png",
+   "kagura_5.png"
+  ]
  },
  "kaja": {
   "dhash": "0f1b3f3e363b7b17",
   "file": "kaja.png",
-  "name": "Kaja"
+  "name": "Kaja",
+  "variants": [
+   "kaja_1.png",
+   "kaja_3.png",
+   "kaja_4.png",
+   "kaja_5.png"
+  ]
  },
  "kalea": {
   "dhash": "136325999929071f",
   "file": "kalea.png",
-  "name": "Kalea"
+  "name": "Kalea",
+  "variants": [
+   "kalea_1.png",
+   "kalea_3.png",
+   "kalea_4.png",
+   "kalea_5.png"
+  ]
  },
  "karina": {
   "dhash": "0f372726465b130f",
   "file": "karina.png",
-  "name": "Karina"
+  "name": "Karina",
+  "variants": [
+   "karina_1.png",
+   "karina_3.png",
+   "karina_4.png",
+   "karina_5.png"
+  ]
  },
  "karrie": {
   "dhash": "1f2b2d8c8625391b",
   "file": "karrie.png",
-  "name": "Karrie"
+  "name": "Karrie",
+  "variants": [
+   "karrie_1.png",
+   "karrie_3.png",
+   "karrie_4.png",
+   "karrie_5.png"
+  ]
  },
  "khaleed": {
   "dhash": "27295994f6de673f",
   "file": "khaleed.png",
-  "name": "Khaleed"
+  "name": "Khaleed",
+  "variants": [
+   "khaleed_1.png",
+   "khaleed_3.png",
+   "khaleed_4.png",
+   "khaleed_5.png"
+  ]
  },
  "khufra": {
   "dhash": "0f0f190b05010303",
   "file": "khufra.png",
-  "name": "Khufra"
+  "name": "Khufra",
+  "variants": [
+   "khufra_1.png",
+   "khufra_3.png",
+   "khufra_4.png",
+   "khufra_5.png"
+  ]
  },
  "kimmy": {
   "dhash": "070371b19227270f",
   "file": "kimmy.png",
-  "name": "Kimmy"
+  "name": "Kimmy",
+  "variants": [
+   "kimmy_1.png",
+   "kimmy_3.png",
+   "kimmy_4.png",
+   "kimmy_5.png"
+  ]
  },
  "lancelot": {
   "dhash": "075b99dc8f4f4f0f",
   "file": "lancelot.png",
-  "name": "Lancelot"
+  "name": "Lancelot",
+  "variants": [
+   "lancelot_1.png",
+   "lancelot_3.png",
+   "lancelot_4.png",
+   "lancelot_5.png"
+  ]
  },
  "lapu_lapu": {
   "dhash": "0b09c9899103030b",
   "file": "lapu_lapu.png",
-  "name": "Lapu-Lapu"
+  "name": "Lapu-Lapu",
+  "variants": [
+   "lapu_lapu_1.png",
+   "lapu_lapu_3.png",
+   "lapu_lapu_4.png",
+   "lapu_lapu_5.png"
+  ]
  },
  "layla": {
   "dhash": "1f1b65cc833b1f0f",
   "file": "layla.png",
-  "name": "Layla"
+  "name": "Layla",
+  "variants": [
+   "layla_1.png",
+   "layla_3.png",
+   "layla_4.png",
+   "layla_5.png"
+  ]
  },
  "leomord": {
   "dhash": "0e27231713120707",
   "file": "leomord.png",
-  "name": "Leomord"
+  "name": "Leomord",
+  "variants": [
+   "leomord_1.png",
+   "leomord_3.png",
+   "leomord_4.png",
+   "leomord_5.png"
+  ]
  },
  "lesley": {
   "dhash": "1f173736263d1d0f",
   "file": "lesley.png",
-  "name": "Lesley"
+  "name": "Lesley",
+  "variants": [
+   "lesley_1.png",
+   "lesley_3.png",
+   "lesley_4.png",
+   "lesley_5.png"
+  ]
  },
  "ling": {
   "dhash": "0f1b4f24040b170f",
   "file": "ling.png",
-  "name": "Ling"
+  "name": "Ling",
+  "variants": [
+   "ling_1.png",
+   "ling_3.png",
+   "ling_4.png",
+   "ling_5.png"
+  ]
  },
  "lolita": {
   "dhash": "1f1d45cd8d0d270f",
   "file": "lolita.png",
-  "name": "Lolita"
+  "name": "Lolita",
+  "variants": [
+   "lolita_1.png",
+   "lolita_3.png",
+   "lolita_4.png",
+   "lolita_5.png"
+  ]
  },
  "lukas": {
   "dhash": "0f33531e6e731b07",
   "file": "lukas.png",
-  "name": "Lukas"
+  "name": "Lukas",
+  "variants": [
+   "lukas_1.png",
+   "lukas_3.png",
+   "lukas_4.png"
+  ]
  },
  "lunox": {
   "dhash": "37636dde3f27271f",
   "file": "lunox.png",
-  "name": "Lunox"
+  "name": "Lunox",
+  "variants": [
+   "lunox_1.png",
+   "lunox_3.png",
+   "lunox_4.png",
+   "lunox_5.png"
+  ]
  },
  "luo_yi": {
   "dhash": "07171f8d0f97170f",
   "file": "luo_yi.png",
-  "name": "Luo Yi"
+  "name": "Luo Yi",
+  "variants": [
+   "luo_yi_1.png",
+   "luo_yi_3.png",
+   "luo_yi_4.png",
+   "luo_yi_5.png"
+  ]
  },
  "lylia": {
   "dhash": "1f3f3f8d8f13170f",
   "file": "lylia.png",
-  "name": "Lylia"
+  "name": "Lylia",
+  "variants": [
+   "lylia_1.png",
+   "lylia_3.png",
+   "lylia_4.png",
+   "lylia_5.png"
+  ]
  },
  "marcel": {
   "dhash": "07133d1e9743470f",
   "file": "marcel.png",
-  "name": "Marcel"
+  "name": "Marcel",
+  "variants": [
+   "marcel_1.png",
+   "marcel_3.png"
+  ]
  },
  "martis": {
   "dhash": "0b1366920e4b0307",
   "file": "martis.png",
-  "name": "Martis"
+  "name": "Martis",
+  "variants": [
+   "martis_1.png",
+   "martis_3.png",
+   "martis_4.png",
+   "martis_5.png"
+  ]
  },
  "masha": {
   "dhash": "0f19052442130307",
   "file": "masha.png",
-  "name": "Masha"
+  "name": "Masha",
+  "variants": [
+   "masha_1.png",
+   "masha_3.png",
+   "masha_4.png"
+  ]
  },
  "mathilda": {
   "dhash": "07271f0f2533070f",
   "file": "mathilda.png",
-  "name": "Mathilda"
+  "name": "Mathilda",
+  "variants": [
+   "mathilda_1.png",
+   "mathilda_3.png",
+   "mathilda_4.png",
+   "mathilda_5.png"
+  ]
  },
  "melissa": {
   "dhash": "1f0f2793bd3f1f1f",
   "file": "melissa.png",
-  "name": "Melissa"
+  "name": "Melissa",
+  "variants": [
+   "melissa_1.png",
+   "melissa_3.png",
+   "melissa_4.png",
+   "melissa_5.png"
+  ]
  },
  "minotaur": {
   "dhash": "0f0f858f0941030b",
   "file": "minotaur.png",
-  "name": "Minotaur"
+  "name": "Minotaur",
+  "variants": [
+   "minotaur_1.png",
+   "minotaur_3.png",
+   "minotaur_4.png",
+   "minotaur_5.png"
+  ]
  },
  "minsitthar": {
   "dhash": "0f4d61294b672527",
   "file": "minsitthar.png",
-  "name": "Minsitthar"
+  "name": "Minsitthar",
+  "variants": [
+   "minsitthar_1.png",
+   "minsitthar_3.png",
+   "minsitthar_4.png"
+  ]
  },
  "miya": {
   "dhash": "173369c9cb67470f",
   "file": "miya.png",
-  "name": "Miya"
+  "name": "Miya",
+  "variants": [
+   "miya_1.png",
+   "miya_3.png",
+   "miya_4.png",
+   "miya_5.png"
+  ]
  },
  "moskov": {
   "dhash": "0f13399606030707",
   "file": "moskov.png",
-  "name": "Moskov"
+  "name": "Moskov",
+  "variants": [
+   "moskov_1.png",
+   "moskov_3.png",
+   "moskov_4.png",
+   "moskov_5.png"
+  ]
  },
  "nana": {
   "dhash": "0f17478bd94f270f",
   "file": "nana.png",
-  "name": "Nana"
+  "name": "Nana",
+  "variants": [
+   "nana_1.png",
+   "nana_3.png",
+   "nana_4.png",
+   "nana_5.png"
+  ]
  },
  "natalia": {
   "dhash": "07038d8b8707231e",
   "file": "natalia.png",
-  "name": "Natalia"
+  "name": "Natalia",
+  "variants": [
+   "natalia_1.png",
+   "natalia_3.png",
+   "natalia_4.png",
+   "natalia_5.png"
+  ]
  },
  "natan": {
   "dhash": "1739616869713317",
   "file": "natan.png",
-  "name": "Natan"
+  "name": "Natan",
+  "variants": [
+   "natan_1.png",
+   "natan_3.png",
+   "natan_4.png",
+   "natan_5.png"
+  ]
  },
  "nolan": {
   "dhash": "1f1b1d3cb44d0307",
   "file": "nolan.png",
-  "name": "Nolan"
+  "name": "Nolan",
+  "variants": [
+   "nolan_1.png",
+   "nolan_3.png",
+   "nolan_4.png",
+   "nolan_5.png"
+  ]
  },
  "novaria": {
   "dhash": "076371e58f270f1f",
   "file": "novaria.png",
-  "name": "Novaria"
+  "name": "Novaria",
+  "variants": [
+   "novaria_1.png",
+   "novaria_3.png",
+   "novaria_4.png",
+   "novaria_5.png"
+  ]
  },
  "obsidia": {
   "dhash": "377353ca2b2f0f0f",
   "file": "obsidia.png",
-  "name": "Obsidia"
+  "name": "Obsidia",
+  "variants": [
+   "obsidia_1.png",
+   "obsidia_3.png",
+   "obsidia_4.png",
+   "obsidia_5.png"
+  ]
  },
  "odette": {
   "dhash": "070f1524041d0f17",
   "file": "odette.png",
-  "name": "Odette"
+  "name": "Odette",
+  "variants": [
+   "odette_1.png",
+   "odette_3.png",
+   "odette_4.png",
+   "odette_5.png"
+  ]
  },
  "paquito": {
   "dhash": "13634bdb4e2f350f",
   "file": "paquito.png",
-  "name": "Paquito"
+  "name": "Paquito",
+  "variants": [
+   "paquito_1.png",
+   "paquito_3.png",
+   "paquito_4.png",
+   "paquito_5.png"
+  ]
  },
  "pharsa": {
   "dhash": "232d060e9c36170f",
   "file": "pharsa.png",
-  "name": "Pharsa"
+  "name": "Pharsa",
+  "variants": [
+   "pharsa_1.png",
+   "pharsa_3.png",
+   "pharsa_4.png",
+   "pharsa_5.png"
+  ]
  },
  "phoveus": {
   "dhash": "0f03054907070f0f",
   "file": "phoveus.png",
-  "name": "Phoveus"
+  "name": "Phoveus",
+  "variants": [
+   "phoveus_1.png",
+   "phoveus_3.png",
+   "phoveus_4.png",
+   "phoveus_5.png"
+  ]
  },
  "popol_and_kupa": {
   "dhash": "1f2f4cd8d775370e",
   "file": "popol_and_kupa.png",
-  "name": "Popol and Kupa"
+  "name": "Popol and Kupa",
+  "variants": [
+   "popol_and_kupa_1.png",
+   "popol_and_kupa_3.png",
+   "popol_and_kupa_4.png",
+   "popol_and_kupa_5.png"
+  ]
  },
  "rafaela": {
   "dhash": "0f4f4d267773270f",
   "file": "rafaela.png",
-  "name": "Rafaela"
+  "name": "Rafaela",
+  "variants": [
+   "rafaela_1.png",
+   "rafaela_3.png",
+   "rafaela_4.png",
+   "rafaela_5.png"
+  ]
  },
  "roger": {
   "dhash": "070f5b432baf472f",
   "file": "roger.png",
-  "name": "Roger"
+  "name": "Roger",
+  "variants": [
+   "roger_1.png",
+   "roger_3.png",
+   "roger_4.png",
+   "roger_5.png"
+  ]
  },
  "ruby": {
   "dhash": "1f275756421b170f",
   "file": "ruby.png",
-  "name": "Ruby"
+  "name": "Ruby",
+  "variants": [
+   "ruby_1.png",
+   "ruby_3.png",
+   "ruby_4.png",
+   "ruby_5.png"
+  ]
  },
  "saber": {
   "dhash": "1f354d1ccf4b0f07",
   "file": "saber.png",
-  "name": "Saber"
+  "name": "Saber",
+  "variants": [
+   "saber_1.png",
+   "saber_3.png",
+   "saber_4.png",
+   "saber_5.png"
+  ]
  },
  "selena": {
   "dhash": "07010907070d0707",
   "file": "selena.png",
-  "name": "Selena"
+  "name": "Selena",
+  "variants": [
+   "selena_1.png",
+   "selena_3.png",
+   "selena_4.png",
+   "selena_5.png"
+  ]
  },
  "silvanna": {
   "dhash": "070759cba667271f",
   "file": "silvanna.png",
-  "name": "Silvanna"
+  "name": "Silvanna",
+  "variants": [
+   "silvanna_1.png",
+   "silvanna_3.png",
+   "silvanna_4.png",
+   "silvanna_5.png"
+  ]
  },
  "sora": {
   "dhash": "0f2d7c646739190f",
   "file": "sora.png",
-  "name": "Sora"
+  "name": "Sora",
+  "variants": [
+   "sora_1.png",
+   "sora_3.png"
+  ]
  },
  "sun": {
   "dhash": "0f5f1526ce373f1f",
   "file": "sun.png",
-  "name": "Sun"
+  "name": "Sun",
+  "variants": [
+   "sun_1.png",
+   "sun_3.png",
+   "sun_4.png",
+   "sun_5.png"
+  ]
  },
  "suyou": {
   "dhash": "072757db476b470e",
   "file": "suyou.png",
-  "name": "Suyou"
+  "name": "Suyou",
+  "variants": [
+   "suyou_1.png",
+   "suyou_3.png",
+   "suyou_4.png",
+   "suyou_5.png"
+  ]
  },
  "terizla": {
   "dhash": "1f334f06ae5f0f07",
   "file": "terizla.png",
-  "name": "Terizla"
+  "name": "Terizla",
+  "variants": [
+   "terizla_1.png",
+   "terizla_3.png",
+   "terizla_4.png",
+   "terizla_5.png"
+  ]
  },
  "thamuz": {
   "dhash": "1f1739a58d5c3307",
   "file": "thamuz.png",
-  "name": "Thamuz"
+  "name": "Thamuz",
+  "variants": [
+   "thamuz_1.png",
+   "thamuz_3.png",
+   "thamuz_4.png",
+   "thamuz_5.png"
+  ]
  },
  "tigreal": {
   "dhash": "1f0f0e24091b0307",
   "file": "tigreal.png",
-  "name": "Tigreal"
+  "name": "Tigreal",
+  "variants": [
+   "tigreal_1.png",
+   "tigreal_3.png",
+   "tigreal_5.png"
+  ]
  },
  "uranus": {
   "dhash": "1f337bdce44d4d0f",
   "file": "uranus.png",
-  "name": "Uranus"
+  "name": "Uranus",
+  "variants": [
+   "uranus_1.png",
+   "uranus_3.png",
+   "uranus_4.png",
+   "uranus_5.png"
+  ]
  },
  "vale": {
   "dhash": "0f3345c5e5274b13",
   "file": "vale.png",
-  "name": "Vale"
+  "name": "Vale",
+  "variants": [
+   "vale_1.png",
+   "vale_3.png",
+   "vale_4.png",
+   "vale_5.png"
+  ]
  },
  "valentina": {
   "dhash": "2b2365eee6566726",
   "file": "valentina.png",
-  "name": "Valentina"
+  "name": "Valentina",
+  "variants": [
+   "valentina_1.png",
+   "valentina_3.png",
+   "valentina_4.png",
+   "valentina_5.png"
+  ]
  },
  "valir": {
   "dhash": "1343452525230307",
   "file": "valir.png",
-  "name": "Valir"
+  "name": "Valir",
+  "variants": [
+   "valir_1.png",
+   "valir_3.png",
+   "valir_4.png",
+   "valir_5.png"
+  ]
  },
  "vexana": {
   "dhash": "072347271613170f",
   "file": "vexana.png",
-  "name": "Vexana"
+  "name": "Vexana",
+  "variants": [
+   "vexana_1.png",
+   "vexana_3.png",
+   "vexana_4.png",
+   "vexana_5.png"
+  ]
  },
  "wanwan": {
   "dhash": "0f194d0535310307",
   "file": "wanwan.png",
-  "name": "Wanwan"
+  "name": "Wanwan",
+  "variants": [
+   "wanwan_1.png",
+   "wanwan_3.png",
+   "wanwan_4.png",
+   "wanwan_5.png"
+  ]
+ },
+ "x_borg": {
+  "dhash": "0f13cb994b231306",
+  "file": "x_borg.png",
+  "name": "X.Borg",
+  "variants": [
+   "x_borg_1.png",
+   "x_borg_3.png",
+   "x_borg_4.png",
+   "x_borg_5.png"
+  ]
  },
  "xavier": {
   "dhash": "1737251e0b190907",
   "file": "xavier.png",
-  "name": "Xavier"
+  "name": "Xavier",
+  "variants": [
+   "xavier_1.png",
+   "xavier_3.png",
+   "xavier_4.png",
+   "xavier_5.png"
+  ]
  },
  "yi_sun_shin": {
   "dhash": "0f13d2840d090b26",
   "file": "yi_sun_shin.png",
-  "name": "Yi Sun-shin"
+  "name": "Yi Sun-shin",
+  "variants": [
+   "yi_sun_shin_1.png",
+   "yi_sun_shin_3.png",
+   "yi_sun_shin_5.png"
+  ]
  },
  "yin": {
   "dhash": "0f0b212121030307",
   "file": "yin.png",
-  "name": "Yin"
+  "name": "Yin",
+  "variants": [
+   "yin_1.png",
+   "yin_3.png",
+   "yin_4.png",
+   "yin_5.png"
+  ]
  },
  "yu_zhong": {
   "dhash": "0f178c6b2f371f1e",
   "file": "yu_zhong.png",
-  "name": "Yu Zhong"
+  "name": "Yu Zhong",
+  "variants": [
+   "yu_zhong_1.png",
+   "yu_zhong_3.png",
+   "yu_zhong_4.png",
+   "yu_zhong_5.png"
+  ]
  },
  "yve": {
   "dhash": "0707130b0d3d170f",
   "file": "yve.png",
-  "name": "Yve"
+  "name": "Yve",
+  "variants": [
+   "yve_1.png",
+   "yve_3.png",
+   "yve_4.png",
+   "yve_5.png"
+  ]
  },
  "zetian": {
   "dhash": "1f3b5fbe3f0f0f1f",
   "file": "zetian.png",
-  "name": "Zetian"
+  "name": "Zetian",
+  "variants": [
+   "zetian_1.png",
+   "zetian_3.png",
+   "zetian_4.png",
+   "zetian_5.png"
+  ]
  },
  "zhask": {
   "dhash": "2b2b6fcf8f2f0d0f",
   "file": "zhask.png",
-  "name": "Zhask"
+  "name": "Zhask",
+  "variants": [
+   "zhask_1.png",
+   "zhask_3.png",
+   "zhask_4.png",
+   "zhask_5.png"
+  ]
  },
  "zhuxin": {
   "dhash": "0f37428687470707",
   "file": "zhuxin.png",
-  "name": "Zhuxin"
+  "name": "Zhuxin",
+  "variants": [
+   "zhuxin_1.png",
+   "zhuxin_3.png",
+   "zhuxin_4.png",
+   "zhuxin_5.png"
+  ]
  },
  "zilong": {
   "dhash": "0709251113530d0f",
   "file": "zilong.png",
-  "name": "Zilong"
+  "name": "Zilong",
+  "variants": [
+   "zilong_1.png",
+   "zilong_3.png",
+   "zilong_4.png",
+   "zilong_5.png"
+  ]
  }
 }

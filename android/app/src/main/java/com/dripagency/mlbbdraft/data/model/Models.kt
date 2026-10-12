@@ -61,6 +61,8 @@ data class UserSettings(
     val autoShowOnMlbb: Boolean = true,
     /** run detection in any app (testing with recorded drafts) instead of only while MLBB is in front */
     val detectAnywhere: Boolean = false,
+    /** multiply mastered heroes' score by 1.4 (reorders the list); off = ⭐ badge only */
+    val boostMastered: Boolean = false,
     /** last local change to mastered heroes / synced settings (epoch ms) — drives cloud merge */
     val masteryUpdatedAt: Long = 0,
     val cloudEnabled: Boolean = false,

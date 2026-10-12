@@ -181,6 +181,9 @@ class Hero:
     primary_role: str = ""
     secondary_roles: list[str] = field(default_factory=list)
     portrait_url: str = ""
+    alt_portrait_url: str = ""      # second art source (in-game icon from the wiki) for template matching
+    wiki_code: str = ""             # "95" for Hero951-icon.png → used to find portrait + skin icons
+    art_urls: list[str] = field(default_factory=list)  # extra template arts (wiki portrait, skin icons)
     portrait_file: str = ""
     counters: list[Edge] = field(default_factory=list)        # heroes that beat THIS hero
     strong_against: list[Edge] = field(default_factory=list)  # heroes THIS hero beats
@@ -217,9 +220,15 @@ class PoliteClient:
         h = hashlib.sha1(url.encode()).hexdigest()[:24]
         return self.cache_dir / urlparse(url).netloc.replace(":", "_") / h
 
-    def _headers(self) -> dict:
-        return {"User-Agent": random.choice(USER_AGENTS), "Accept-Language": "en-US,en;q=0.9",
-                "Accept": "text/html,application/json;q=0.9,image/*;q=0.8,*/*;q=0.7"}
+    def _headers(self, url: str = "") -> dict:
+        h = {"User-Agent": random.choice(USER_AGENTS), "Accept-Language": "en-US,en;q=0.9",
+             "Accept": "text/html,application/json;q=0.9,image/*;q=0.8,*/*;q=0.7",
+             "sec-ch-ua": '"Chromium";v="124", "Google Chrome";v="124"', "sec-ch-ua-mobile": "?0", "sec-ch-ua-platform": '"macOS"'}
+        if re.search(r"\.(png|jpe?g|webp)(\?|/|$)", url) or "static.wikia" in url or "akmweb" in url:
+            h.update({"Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+                      "Sec-Fetch-Dest": "image", "Sec-Fetch-Mode": "no-cors", "Sec-Fetch-Site": "cross-site",
+                      "Referer": "https://mobile-legends.fandom.com/" if "wikia" in url else "https://mlbbhub.com/"})
+        return h
 
     async def _allowed(self, url: str) -> bool:
         p = urlparse(url)
@@ -257,7 +266,7 @@ class PoliteClient:
             await self._throttle(host)
             for attempt in range(3):
                 try:
-                    r = await self._client.get(url, headers=self._headers())
+                    r = await self._client.get(url, headers=self._headers(url))
                     if r.status_code == 404:
                         path.parent.mkdir(parents=True, exist_ok=True)
                         path.write_bytes(b"__404__")  # negative cache
@@ -334,7 +343,10 @@ class FandomSource:
                     if lane and lane not in lanes:
                         lanes.append(lane)
             icon = ""
+            code = ""
             if c_icon is not None and (img := tds[c_icon].find("img")):
+                if (mm := re.match(r"Hero(\d+)(\d)-icon\.png", img.get("data-image-name", ""))):
+                    code = mm.group(1)
                 icon = img.get("data-src") or img.get("src") or ""
                 icon = re.sub(r"/revision/latest/scale-to-width-down/\d+", "/revision/latest", icon)
                 if icon.startswith("data:"):
@@ -344,9 +356,27 @@ class FandomSource:
             hid = slugify(name)
             heroes[hid] = Hero(hero_id=hid, name=name, hero_class=classes[0] if classes else "",
                                specialties=specs, primary_role=lanes[0], secondary_roles=lanes[1:],
-                               portrait_url=icon, sources=[self.name])
+                               portrait_url=icon, wiki_code=code, sources=[self.name])
         log.info("fandom: %d heroes", len(heroes))
         return heroes
+
+    async def arts(self, hero: Hero, max_skins: int = 3) -> list[str]:
+        """Template arts for vision: in-game portrait (the draft-card bust) + base icon + skin icons."""
+        if not hero.wiki_code:
+            return []
+        titles = [f"File:Hero{hero.wiki_code}1-portrait.png", f"File:Hero{hero.wiki_code}1-icon.png"] + \
+                 [f"File:Hero{hero.wiki_code}{i}-icon.png" for i in range(2, 2 + max_skins)]
+        url = f"{FANDOM_API}?action=query&prop=imageinfo&iiprop=url&format=json&titles=" + "|".join(titles).replace(" ", "_")
+        raw = await self.client.get(url)
+        if not raw:
+            return []
+        pages = json.loads(raw).get("query", {}).get("pages", {})
+        found = {}
+        for p in pages.values():
+            info = p.get("imageinfo")
+            if info:
+                found[p["title"].replace(" ", "_")] = info[0]["url"]
+        return [found[t.replace(" ", "_")] for t in titles if t.replace(" ", "_") in found]
 
     @staticmethod
     def _default_lane(classes: list[str]) -> str:
@@ -718,6 +748,13 @@ def validate(doc: dict):
 # --------------------------------------------------------------------------- #
 # Portrait templates
 # --------------------------------------------------------------------------- #
+def _std(im) -> float:
+    g = im.convert("L")
+    px = list(g.getdata())
+    m = sum(px) / len(px)
+    return (sum((v - m) ** 2 for v in px) / len(px)) ** 0.5
+
+
 def dhash(im, hash_size: int = 8) -> str:
     """Difference hash — identical algorithm to PerceptualHash.kt on Android."""
     g = im.convert("L").resize((hash_size + 1, hash_size), Image.LANCZOS)
@@ -729,7 +766,7 @@ def dhash(im, hash_size: int = 8) -> str:
     return f"{bits:016x}"
 
 
-async def download_portraits(client: PoliteClient, heroes: dict[str, Hero], out_dir: Path, size: int):
+async def download_portraits(client: PoliteClient, heroes: dict[str, Hero], out_dir: Path, size: int, max_variants: int = 5):
     if Image is None:
         log.warning("Pillow missing; skipping portraits")
         return
@@ -738,31 +775,55 @@ async def download_portraits(client: PoliteClient, heroes: dict[str, Hero], out_
     out_dir.mkdir(parents=True)
     index: dict[str, dict] = {}
 
-    async def one(h: Hero):
-        if not h.portrait_url:
-            return
-        raw = await client.get(h.portrait_url)
+    async def fetch_square(url: str, hero_id: str):
+        raw = await client.get(url)
         if not raw:
-            return
+            return None
         try:
             im = Image.open(io.BytesIO(raw)).convert("RGBA")
         except Exception as e:
-            log.warning("bad image %s: %s", h.hero_id, e)
-            return
+            log.warning("bad image %s: %s", hero_id, e)
+            return None
         w, hh = im.size
         side = min(w, hh)
         im = im.crop(((w - side) // 2, (hh - side) // 2, (w - side) // 2 + side, (hh - side) // 2 + side))
         im = im.resize((size, size), Image.LANCZOS)
         bg = Image.new("RGB", im.size, (0, 0, 0))  # flatten: draft slots are dark
         bg.paste(im, mask=im.split()[3])
+        return bg
+
+    async def one(h: Hero):
+        if not h.portrait_url:
+            return
+        bg = await fetch_square(h.portrait_url, h.hero_id)
+        if bg is None:
+            return
         fname = f"{h.hero_id}.png"
         bg.save(out_dir / fname, optimize=True)
         h.portrait_file = f"templates/{fname}"
-        index[h.hero_id] = {"file": fname, "dhash": dhash(bg), "name": h.name}
+        entry = {"file": fname, "dhash": dhash(bg), "name": h.name, "variants": []}
+        # Extra arts for vision: the draft card uses the in-game portrait / skin art, which is not
+        # always the official-site icon.  Every visibly different art becomes "<id>_<n>.png".
+        hashes = [int(dhash(bg), 16)]
+        candidates = list(dict.fromkeys(h.art_urls + ([h.alt_portrait_url] if h.alt_portrait_url else [])))
+        for n, url in enumerate(candidates[:max_variants], start=1):
+            alt = await fetch_square(url, h.hero_id)
+            if alt is None:
+                continue
+            hv = int(dhash(alt), 16)
+            # skip near-blank arts (unreleased skin placeholders, solid-colour icons): they only add noise
+            if alt.convert("L").getextrema()[1] - alt.convert("L").getextrema()[0] < 60 or _std(alt) < 30:
+                continue
+            if all(bin(hv ^ x).count("1") > 6 for x in hashes):
+                hashes.append(hv)
+                vname = f"{h.hero_id}_{n}.png"
+                alt.save(out_dir / vname, optimize=True)
+                entry["variants"].append(vname)
+        index[h.hero_id] = entry
 
     await asyncio.gather(*(one(h) for h in heroes.values()))
     (out_dir / "index.json").write_text(json.dumps(index, indent=1, sort_keys=True))
-    log.info("portraits: %d written", len(index))
+    log.info("portraits: %d heroes, %d template files", len(index), len(index) + sum(len(e["variants"]) for e in index.values()))
 
 
 def sha256_of(path: Path) -> str:
@@ -787,6 +848,13 @@ async def run(args) -> int:
         if args.limit:
             heroes = dict(list(heroes.items())[: args.limit])
 
+        fandom_src = FandomSource(client)
+
+        async def gather_arts(h: Hero):
+            h.art_urls = await fandom_src.arts(h)
+        await asyncio.gather(*(gather_arts(h) for h in heroes.values()))
+        log.info("fandom: template arts for %d/%d heroes", sum(1 for h in heroes.values() if h.art_urls), len(heroes))
+
         hub, mio, mlc = MlbbHubSource(client), MlbbIoSource(client), MlCounterSource(client)
         await asyncio.gather(mio.load_slugs(), mlc.load_slugs())
         sources = [s for s in (hub, mio, mlc) if s.name not in set(args.skip_source)]
@@ -805,7 +873,9 @@ async def run(args) -> int:
                 h.item_counters += r.items
                 if r.win_rate is not None and h.win_rate is None:
                     h.win_rate = r.win_rate
-                if r.icon and args.prefer_official_icons:
+                if r.icon and args.prefer_official_icons and r.icon != h.portrait_url:
+                    if h.portrait_url and not h.alt_portrait_url:
+                        h.alt_portrait_url = h.portrait_url   # keep the wiki icon as a second template
                     h.portrait_url = r.icon
                 h.sources.append(src.name)
 

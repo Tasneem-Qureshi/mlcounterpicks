@@ -23,7 +23,7 @@ python scraper.py --android-dir ../android/app/src/main     # ≈5 min, ~530 pol
 Outputs in `scraper/out/`:
 
 * `matchups.json` — 133 heroes, ~1 600 directed counter edges, lane tips, item counters
-* `templates/*.png` + `index.json` — 96×96 portraits (official Moonton icons, black background) + dHash
+* `templates/*.png` + `index.json` — 96×96 template arts per hero: official icon (`<id>.png`) plus up to five visibly different arts from the wiki (`<id>_1.png` …: in-game portrait, base icon, skin icons). More arts = more draft cards recognised; the weekly job refreshes them, so new and reworked heroes are picked up automatically.
 * `templates.zip`, `manifest.json` — what the app downloads when self-updating
 
 Sources and how they are merged:
@@ -82,9 +82,9 @@ JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home" ./gradle
 ```
 direct = norm(edge(candidate, enemy in my lane))        norm(x) = x/10 + 0.5   (x ∈ [-5, 5])
 team   = mean over the other enemies of norm(edge(candidate, enemy))
-score  = (0.40·direct + 0.60·team) × (1.40 if mastered) × (1.03 if the lane is the hero's primary lane)
+score  = (0.40·direct + 0.60·team) × (1.03 if the lane is the hero's primary lane) [× 1.40 if mastered and "Boost mastered" is on]
 ```
-`edge(a, b)` combines `b.counters ∋ a` / `a.strong_against ∋ b` (positive) against the reverse (negative). If the lane opponent is not picked yet, `direct` mirrors `team` so weights still sum to 1. Strict mode restricts the pool to mastered heroes and falls back (flagged in the overlay) when none plays the lane. The 1-line reason is composed from the strongest contributing edges ("Hard-counters Yu Zhong in lane · beats Brody, Tigreal · wins the straight damage trade"), and a "Weak into X" warning appears for a strongly negative team matchup.
+`edge(a, b)` combines `b.counters ∋ a` / `a.strong_against ∋ b` (positive) against the reverse (negative). If the lane opponent is not picked yet, `direct` mirrors `team` so weights still sum to 1. The overlay lists every favourable pick (composite > 0.5, at least 5, up to 20) best first; mastered heroes carry a ⭐ badge and only move up if "Boost mastered" is switched on. Strict mode restricts the pool to mastered heroes and falls back (flagged in the overlay) when none plays the lane. The 1-line reason is composed from the strongest contributing edges ("Hard-counters Yu Zhong in lane · beats Brody, Tigreal · wins the straight damage trade"), and a "Weak into X" warning appears for a strongly negative team matchup.
 
 ### Modes
 * **Overlay only (default, no screen sharing).** Press Start once; with Usage access the card appears whenever MLBB comes to the front. Tap *Pick enemies* on the card to enter the enemy picks and your lane; counters update instantly.

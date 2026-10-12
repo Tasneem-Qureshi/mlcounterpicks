@@ -25,6 +25,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -188,8 +190,14 @@ private fun CountersBody(s: OverlayUiState.Counters, onOpenPicker: () -> Unit, o
         }
         if (s.strictFallback) Text("No mastered hero fits this lane — showing all counters", color = Warn, fontSize = 11.sp)
         s.statusLine?.let { Text(it, color = Muted, fontSize = 10.sp, maxLines = 2, overflow = TextOverflow.Ellipsis) }
-        s.picks.forEachIndexed { i, r -> PickRow(i + 1, r) }
         if (s.picks.isEmpty()) Text("No candidates left for ${s.myRole.label}", color = Warn, fontSize = 12.sp)
+        else {
+            Text("${s.picks.size} picks, best first", color = Muted, fontSize = 10.sp)
+            // Scrollable so a long ranked list never grows the card past the screen.
+            LazyColumn(Modifier.fillMaxWidth().heightIn(max = 300.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                itemsIndexed(s.picks, key = { _, r -> r.hero.id }) { i, r -> PickRow(i + 1, r) }
+            }
+        }
     }
 }
 
@@ -253,7 +261,7 @@ private fun PickRow(rank: Int, r: Recommendation) {
             ScoreBar("lane", r.directScore, Modifier.weight(0.4f))
             ScoreBar("team", r.teamScore, Modifier.weight(0.6f))
         }
-        Text(r.reason, color = Muted, fontSize = 11.sp, maxLines = 2, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(start = 14.dp, top = 2.dp))
+        Text(r.reason, color = Muted, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(start = 14.dp, top = 2.dp))
         r.warning?.let { Text(it, color = Warn, fontSize = 11.sp, modifier = Modifier.padding(start = 14.dp)) }
     }
 }

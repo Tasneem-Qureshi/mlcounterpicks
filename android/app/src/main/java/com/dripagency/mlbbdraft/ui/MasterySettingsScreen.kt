@@ -82,9 +82,10 @@ fun MasterySettingsScreen(onBack: () -> Unit) {
                     }
                 }
                 Text(
-                    if (ui.mode == RecommendMode.STRICT) "Only mastered heroes are recommended." else "Mastered heroes get +40% and a ⭐; others still show.",
+                    if (ui.mode == RecommendMode.STRICT) "Only mastered heroes are listed." else "Best counters first; mastered heroes carry a ⭐.",
                     style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                SwitchRow("Boost mastered heroes (+40%, moves them up)", ui.boost) { vm.setBoost(it) }
                 OutlinedTextField(
                     value = ui.query, onValueChange = { vm.query.value = it },
                     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
