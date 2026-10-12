@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-12T10:03:31+00:00",
-  "data_version": 1791799411,
+  "generated_at": "2026-10-12T11:45:54+00:00",
+  "data_version": 1791805554,
   "sources": [
     "fandom",
     "mlbbhub",
@@ -22,6 +22,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_b3a7602fe7ffd1e54bf8ea79ceadfa72.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/b/bc/Hero1091-icon.png/revision/latest?cb=20241021153241",
+      "wiki_code": "109",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c8/Hero1091-portrait.png/revision/latest?cb=20251225192214",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bc/Hero1091-icon.png/revision/latest?cb=20241021153241",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/09/Hero1092-icon.png/revision/latest?cb=20220118095053",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c0/Hero1093-icon.png/revision/latest?cb=20220628175618",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ad/Hero1094-icon.png/revision/latest?cb=20221223124541"
+      ],
       "portrait_file": "templates/aamon.png",
       "counters": [
         {
@@ -304,6 +313,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_28f223447f0174336ff0922d364d81d3.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/b/be/Hero091-icon.png/revision/latest?cb=20241021145133",
+      "wiki_code": "09",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9d/Hero091-portrait.png/revision/latest?cb=20241021140401",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/be/Hero091-icon.png/revision/latest?cb=20241021145133",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/ca/Hero092-icon.png/revision/latest?cb=20220125055637",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1e/Hero093-icon.png/revision/latest?cb=20220125055634",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8b/Hero094-icon.png/revision/latest?cb=20220125055631"
+      ],
       "portrait_file": "templates/akai.png",
       "counters": [
         {
@@ -587,6 +605,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_0eb32187d08f14779585a8be53b83f01.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/95/Hero641-icon.png/revision/latest?cb=20241021145655",
+      "wiki_code": "64",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/61/Hero641-portrait.png/revision/latest?cb=20241021142204",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/95/Hero641-icon.png/revision/latest?cb=20241021145655",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/51/Hero642-icon.png/revision/latest?cb=20220126142236",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/41/Hero643-icon.png/revision/latest?cb=20220126142234",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/80/Hero644-icon.png/revision/latest?cb=20220126142232"
+      ],
       "portrait_file": "templates/aldous.png",
       "counters": [
         {
@@ -871,6 +898,15 @@
         "JUNGLE"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_18300163a5a912a84adb52b8d59b4618.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/fd/Hero041-icon.png/revision/latest?cb=20250917073910",
+      "wiki_code": "04",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero041-portrait.png/revision/latest?cb=20250917074230",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fd/Hero041-icon.png/revision/latest?cb=20250917073910",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8e/Hero042-icon.png/revision/latest?cb=20250703151358",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6a/Hero043-icon.png/revision/latest?cb=20260424021034",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fe/Hero044-icon.png/revision/latest?cb=20220125055704"
+      ],
       "portrait_file": "templates/alice.png",
       "counters": [
         {
@@ -1154,6 +1190,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_86c9f91f530727db6498f920d19180d1.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/3/38/Hero281-icon.png/revision/latest?cb=20250802155834",
+      "wiki_code": "28",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b0/Hero281-portrait.png/revision/latest?cb=20250802155020",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/38/Hero281-icon.png/revision/latest?cb=20250802155834",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9f/Hero282-icon.png/revision/latest?cb=20221022085443",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/76/Hero283-icon.png/revision/latest?cb=20220126042038",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2d/Hero284-icon.png/revision/latest?cb=20220126042036"
+      ],
       "portrait_file": "templates/alpha.png",
       "counters": [
         {
@@ -1439,6 +1484,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_0f51b6906e08897aa02330d65b0deeac.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/c7/Hero071-icon.png/revision/latest?cb=20241021145111",
+      "wiki_code": "07",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/01/Hero071-portrait.png/revision/latest?cb=20241021140353",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c7/Hero071-icon.png/revision/latest?cb=20241021145111",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e7/Hero072-icon.png/revision/latest?cb=20220920084827",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero073-icon.png/revision/latest?cb=20220920084843",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7f/Hero074-icon.png/revision/latest?cb=20250522143032"
+      ],
       "portrait_file": "templates/alucard.png",
       "counters": [
         {
@@ -1724,6 +1778,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_c7e0183956b2c2fd6d3fa0b18fe46917.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/13/Hero551-icon.png/revision/latest?cb=20250406000608",
+      "wiki_code": "55",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6b/Hero551-portrait.png/revision/latest?cb=20250406000910",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/13/Hero551-icon.png/revision/latest?cb=20250406000608",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/94/Hero552-icon.png/revision/latest?cb=20220126141947",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b8/Hero553-icon.png/revision/latest?cb=20220126141949",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/56/Hero554-icon.png/revision/latest?cb=20220126141945"
+      ],
       "portrait_file": "templates/angela.png",
       "counters": [
         {
@@ -2005,6 +2068,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_0bd96658e5b8ec578226ea1622bd7231.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/c7/Hero451-icon.png/revision/latest?cb=20241021145507",
+      "wiki_code": "45",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ac/Hero451-portrait.png/revision/latest?cb=20250407160733",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c7/Hero451-icon.png/revision/latest?cb=20241021145507",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d2/Hero452-icon.png/revision/latest?cb=20220126141813",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero453-icon.png/revision/latest?cb=20220126141811",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f1/Hero454-icon.png/revision/latest?cb=20220118094827"
+      ],
       "portrait_file": "templates/argus.png",
       "counters": [
         {
@@ -2289,6 +2361,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_f666faa5ec6be5353f10dcd1d8997a42.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/22/Hero1201-icon.png/revision/latest?cb=20241021153344",
+      "wiki_code": "120",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/49/Hero1201-portrait.png/revision/latest?cb=20241021140737",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/22/Hero1201-icon.png/revision/latest?cb=20241021153344",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/48/Hero1202-icon.png/revision/latest?cb=20230212040140",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/47/Hero1203-icon.png/revision/latest?cb=20240411083152",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f5/Hero1204-icon.png/revision/latest?cb=20241013071707"
+      ],
       "portrait_file": "templates/arlott.png",
       "counters": [
         {
@@ -2573,6 +2654,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_d974ac796678180ff8724b88e192898b.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/6/6e/Hero931-icon.png/revision/latest?cb=20241021153111",
+      "wiki_code": "93",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7c/Hero931-portrait.png/revision/latest?cb=20241021142917",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6e/Hero931-icon.png/revision/latest?cb=20241021153111",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/82/Hero932-icon.png/revision/latest?cb=20220118094848",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fe/Hero933-icon.png/revision/latest?cb=20221022085452",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/76/Hero934-icon.png/revision/latest?cb=20220805125401"
+      ],
       "portrait_file": "templates/atlas.png",
       "counters": [
         {
@@ -2858,6 +2948,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_1366d775809e52ee6526b5b58d93cdff.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/b/bf/Hero1081-icon.png/revision/latest?cb=20260423095836",
+      "wiki_code": "108",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1d/Hero1081-portrait.png/revision/latest?cb=20260423100521",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bf/Hero1081-icon.png/revision/latest?cb=20260423095836",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f4/Hero1082-icon.png/revision/latest?cb=20260619053034",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9b/Hero1083-icon.png/revision/latest?cb=20260619053115",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fd/Hero1084-icon.png/revision/latest?cb=20260619053147"
+      ],
       "portrait_file": "templates/aulus.png",
       "counters": [
         {
@@ -3137,6 +3236,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_f9b2be0150361018bb98f941b9667c42.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/2c/Hero361-icon.png/revision/latest?cb=20241021145411",
+      "wiki_code": "36",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/30/Hero361-portrait.png/revision/latest?cb=20241021141501",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2c/Hero361-icon.png/revision/latest?cb=20241021145411",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1e/Hero362-icon.png/revision/latest?cb=20241201053032",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a5/Hero363-icon.png/revision/latest?cb=20220118094819",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ad/Hero364-icon.png/revision/latest?cb=20220119131812"
+      ],
       "portrait_file": "templates/aurora.png",
       "counters": [
         {
@@ -3420,6 +3528,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_a81815e34246147b672d48209089da9c.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero771-icon.png/revision/latest?cb=20260919020751",
+      "wiki_code": "77",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d8/Hero771-portrait.png/revision/latest?cb=20260919020718",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero771-icon.png/revision/latest?cb=20260919020751",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ed/Hero772-icon.png/revision/latest?cb=20260919022136",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/61/Hero773-icon.png/revision/latest?cb=20220126142141",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ac/Hero774-icon.png/revision/latest?cb=20260919043634"
+      ],
       "portrait_file": "templates/badang.png",
       "counters": [
         {
@@ -3705,6 +3822,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_df9a6990b1946d045e4d3a46c90725cf.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/93/Hero021-icon.png/revision/latest?cb=20251110110542",
+      "wiki_code": "02",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c4/Hero021-portrait.png/revision/latest?cb=20251110110543",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/93/Hero021-icon.png/revision/latest?cb=20251110110542",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/44/Hero022-icon.png/revision/latest?cb=20260424020831",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/11/Hero023-icon.png/revision/latest?cb=20220125050157",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f6/Hero024-icon.png/revision/latest?cb=20220125050200"
+      ],
       "portrait_file": "templates/balmond.png",
       "counters": [
         {
@@ -3958,6 +4084,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_7e4e74bb161da0f477cc0d1819fa39e6.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/e7/Hero111-icon.png/revision/latest?cb=20241021145146",
+      "wiki_code": "11",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8d/Hero111-portrait.png/revision/latest?cb=20241021140922",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e7/Hero111-icon.png/revision/latest?cb=20241021145146",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/76/Hero112-icon.png/revision/latest?cb=20220125055622",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/10/Hero113-icon.png/revision/latest?cb=20220125055620",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b8/Hero114-icon.png/revision/latest?cb=20220125055618"
+      ],
       "portrait_file": "templates/bane.png",
       "counters": [
         {
@@ -4222,6 +4357,15 @@
         "JUNGLE"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_6495be044c2d28106e200f6918391d54.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/1a/Hero991-icon.png/revision/latest?cb=20241021153146",
+      "wiki_code": "99",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0f/Hero991-portrait.png/revision/latest?cb=20241021143047",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1a/Hero991-icon.png/revision/latest?cb=20241021153146",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c5/Hero992-icon.png/revision/latest?cb=20220126142243",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/01/Hero993-icon.png/revision/latest?cb=20220126142746",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/51/Hero994-icon.png/revision/latest?cb=20220126142659"
+      ],
       "portrait_file": "templates/barats.png",
       "counters": [
         {
@@ -4507,6 +4651,15 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_80e408203869ca99302af195ac4f756c.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/0/09/Hero871-icon.png/revision/latest?cb=20241021153038",
+      "wiki_code": "87",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d0/Hero871-portrait.png/revision/latest?cb=20241021142746",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/09/Hero871-icon.png/revision/latest?cb=20241021153038",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b5/Hero872-icon.png/revision/latest?cb=20220126142715",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/29/Hero873-icon.png/revision/latest?cb=20220126142711",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3e/Hero874-icon.png/revision/latest?cb=20220126142245"
+      ],
       "portrait_file": "templates/baxia.png",
       "counters": [
         {
@@ -4792,6 +4945,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_4687eca874feec9017b448a0b9110d65.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/a9/Hero1051-icon.png/revision/latest?cb=20241021153218",
+      "wiki_code": "105",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/de/Hero1051-portrait.png/revision/latest?cb=20241021143216",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a9/Hero1051-icon.png/revision/latest?cb=20241021153218",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/da/Hero1052-icon.png/revision/latest?cb=20220126142652",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/10/Hero1053-icon.png/revision/latest?cb=20220126142701",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4a/Hero1054-icon.png/revision/latest?cb=20220218031012"
+      ],
       "portrait_file": "templates/beatrix.png",
       "counters": [
         {
@@ -5077,6 +5239,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_5f2a9eca0bafd4ed8dc39a93c771b3af.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/d/d7/Hero701-icon.png/revision/latest?cb=20241021145730",
+      "wiki_code": "70",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8d/Hero701-portrait.png/revision/latest?cb=20241021142334",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d7/Hero701-icon.png/revision/latest?cb=20241021145730",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e3/Hero702-icon.png/revision/latest?cb=20220126142207",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bd/Hero703-icon.png/revision/latest?cb=20220126142202",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/76/Hero704-icon.png/revision/latest?cb=20220118094825"
+      ],
       "portrait_file": "templates/belerick.png",
       "counters": [
         {
@@ -5361,6 +5532,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_b4a5e537894bdc00787e80e4d3ada5dd.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/4/47/Hero971-icon.png/revision/latest?cb=20241021153134",
+      "wiki_code": "97",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1d/Hero971-portrait.png/revision/latest?cb=20241021143017",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/47/Hero971-icon.png/revision/latest?cb=20241021153134",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/af/Hero972-icon.png/revision/latest?cb=20240314070055",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b9/Hero973-icon.png/revision/latest?cb=20220126142249",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/96/Hero974-icon.png/revision/latest?cb=20220126142247"
+      ],
       "portrait_file": "templates/benedetta.png",
       "counters": [
         {
@@ -5645,6 +5825,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_cbb309b63cdf838fce79bd9cb95d4ed7.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/12/Hero1001-icon.png/revision/latest?cb=20260916131929",
+      "wiki_code": "100",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2c/Hero1001-portrait.png/revision/latest?cb=20260916131931",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/12/Hero1001-icon.png/revision/latest?cb=20260916131929",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a6/Hero1002-icon.png/revision/latest?cb=20260917003303",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4e/Hero1003-icon.png/revision/latest?cb=20220126142650",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5d/Hero1004-icon.png/revision/latest?cb=20220126142657"
+      ],
       "portrait_file": "templates/brody.png",
       "counters": [
         {
@@ -5919,6 +6108,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_2a733ac5b7d1f97093e82940af6f5008.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/f9/Hero121-icon.png/revision/latest?cb=20260916132625",
+      "wiki_code": "12",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/44/Hero121-portrait.png/revision/latest?cb=20260916132624",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f9/Hero121-icon.png/revision/latest?cb=20260916132625",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/32/Hero122-icon.png/revision/latest?cb=20260917014223",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/41/Hero123-icon.png/revision/latest?cb=20260423012343",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8a/Hero124-icon.png/revision/latest?cb=20220125063125"
+      ],
       "portrait_file": "templates/bruno.png",
       "counters": [
         {
@@ -6199,6 +6397,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_6fb8f120dafdcbc1b5da2a2667016ad5.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/23/Hero921-icon.png/revision/latest?cb=20241021153106",
+      "wiki_code": "92",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/30/Hero921-portrait.png/revision/latest?cb=20241021142902",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/23/Hero921-icon.png/revision/latest?cb=20241021153106",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a6/Hero922-icon.png/revision/latest?cb=20220126142740",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/38/Hero923-icon.png/revision/latest?cb=20200724050319",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/66/Hero924-icon.png/revision/latest?cb=20221022064339"
+      ],
       "portrait_file": "templates/carmilla.png",
       "counters": [
         {
@@ -6481,6 +6688,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_045399c265021d47da6512e6de20b64f.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/85/Hero911-icon.png/revision/latest?cb=20241021153102",
+      "wiki_code": "91",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7f/Hero911-portrait.png/revision/latest?cb=20241021142846",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/85/Hero911-icon.png/revision/latest?cb=20241021153102",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ac/Hero912-icon.png/revision/latest?cb=20220126142742",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9a/Hero913-icon.png/revision/latest?cb=20220531093154",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/18/Hero914-icon.png/revision/latest?cb=20220126142801"
+      ],
       "portrait_file": "templates/cecilion.png",
       "counters": [
         {
@@ -6766,6 +6982,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_46cfe9c30e8a14f85b4d022496aca274.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/5c/Hero611-icon.png/revision/latest?cb=20241021145640",
+      "wiki_code": "61",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/63/Hero611-portrait.png/revision/latest?cb=20241021142120",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5c/Hero611-icon.png/revision/latest?cb=20241021145640",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d2/Hero612-icon.png/revision/latest?cb=20220126141811",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/61/Hero613-icon.png/revision/latest?cb=20220126141813",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8f/Hero614-icon.png/revision/latest?cb=20220126141809"
+      ],
       "portrait_file": "templates/chang_e.png",
       "counters": [
         {
@@ -7029,6 +7254,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_79224d297f14377ad2eda8543432330d.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/94/Hero1241-icon.png/revision/latest?cb=20241021153409",
+      "wiki_code": "124",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero1241-portrait.png/revision/latest?cb=20241021140835",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/94/Hero1241-icon.png/revision/latest?cb=20241021153409",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/18/Hero1242-icon.png/revision/latest?cb=20240321080227",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f7/Hero1243-icon.png/revision/latest?cb=20240903050720",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero1244-icon.png/revision/latest?cb=20260420081957"
+      ],
       "portrait_file": "templates/chip.png",
       "counters": [
         {
@@ -7312,6 +7546,15 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_158209b180032c4564b8f3bde8c48888.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/a9/Hero261-icon.png/revision/latest?cb=20241021145315",
+      "wiki_code": "26",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ed/Hero261-portrait.png/revision/latest?cb=20241021141231",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a9/Hero261-icon.png/revision/latest?cb=20241021145315",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/ba/Hero262-icon.png/revision/latest?cb=20221022075048",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d1/Hero263-icon.png/revision/latest?cb=20220126042108",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4e/Hero264-icon.png/revision/latest?cb=20220126042106"
+      ],
       "portrait_file": "templates/chou.png",
       "counters": [
         {
@@ -7598,6 +7841,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_60e3e11da30f404c77fff9e22d3bdc72.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/6/65/Hero1231-icon.png/revision/latest?cb=20241021153402",
+      "wiki_code": "123",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4f/Hero1231-portrait.png/revision/latest?cb=20241021140820",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/65/Hero1231-icon.png/revision/latest?cb=20241021153402",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/40/Hero1232-icon.png/revision/latest?cb=20231227090816",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/94/Hero1233-icon.png/revision/latest?cb=20250106155515",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/13/Hero1234-icon.png/revision/latest?cb=20251001064157"
+      ],
       "portrait_file": "templates/cici.png",
       "counters": [
         {
@@ -7881,6 +8133,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_e1097b9d3e1d5e9f14600d32e8b18acd.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/29/Hero651-icon.png/revision/latest?cb=20241021145701",
+      "wiki_code": "65",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/61/Hero651-portrait.png/revision/latest?cb=20241021142219",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/29/Hero651-icon.png/revision/latest?cb=20241021145701",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8e/Hero652-icon.png/revision/latest?cb=20220126142219",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/39/Hero653-icon.png/revision/latest?cb=20220715125639",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/10/Hero654-icon.png/revision/latest?cb=20240314064144"
+      ],
       "portrait_file": "templates/claude.png",
       "counters": [
         {
@@ -8144,6 +8405,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_fd120c3e9261a233442ee88a1d7c9f58.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero131-icon.png/revision/latest?cb=20260918135606",
+      "wiki_code": "13",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d9/Hero131-portrait.png/revision/latest?cb=20260918135520",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero131-icon.png/revision/latest?cb=20260918135606",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/aa/Hero132-icon.png/revision/latest?cb=20251001051251",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d7/Hero133-icon.png/revision/latest?cb=20220119131850",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/54/Hero134-icon.png/revision/latest?cb=20220125063112"
+      ],
       "portrait_file": "templates/clint.png",
       "counters": [
         {
@@ -8406,6 +8676,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_68da456f9c01b2f88d29ee320db181ed.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/96/Hero331-icon.png/revision/latest?cb=20241021145355",
+      "wiki_code": "33",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/09/Hero331-portrait.png/revision/latest?cb=20241021141415",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/96/Hero331-icon.png/revision/latest?cb=20241021145355",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/05/Hero332-icon.png/revision/latest?cb=20240310140203",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e9/Hero333-icon.png/revision/latest?cb=20240310140233",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/17/Hero334-icon.png/revision/latest?cb=20220126041845"
+      ],
       "portrait_file": "templates/cyclops.png",
       "counters": [
         {
@@ -8688,6 +8967,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_b1bdf46136cb8a7903dae6d58e8349cb.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/e3/Hero481-icon.png/revision/latest?cb=20241021145524",
+      "wiki_code": "48",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/17/Hero481-portrait.png/revision/latest?cb=20241021141804",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e3/Hero481-icon.png/revision/latest?cb=20241021145524",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/99/Hero482-icon.png/revision/latest?cb=20220126141804",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c7/Hero483-icon.png/revision/latest?cb=20220126141802",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e8/Hero484-icon.png/revision/latest?cb=20220126141800"
+      ],
       "portrait_file": "templates/diggie.png",
       "counters": [
         {
@@ -8971,6 +9259,15 @@
         "JUNGLE"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_8ec13b59871b2862d773beac2d69fa3e.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/6/62/Hero851-icon.png/revision/latest?cb=20250917081355",
+      "wiki_code": "85",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2c/Hero851-portrait.png/revision/latest?cb=20250917081250",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/62/Hero851-icon.png/revision/latest?cb=20250917081355",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cf/Hero852-icon.png/revision/latest?cb=20260424022429",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/86/Hero853-icon.png/revision/latest?cb=20220126142116",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f9/Hero854-icon.png/revision/latest?cb=20220126142115"
+      ],
       "portrait_file": "templates/dyrroth.png",
       "counters": [
         {
@@ -9256,6 +9553,15 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_daab57918de01a6d5bb2ed6f45808a7e.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/3/36/Hero1111-icon.png/revision/latest?cb=20241021153252",
+      "wiki_code": "111",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/47/Hero1111-portrait.png/revision/latest?cb=20241021143348",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/36/Hero1111-icon.png/revision/latest?cb=20241021153252",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d5/Hero1112-icon.png/revision/latest?cb=20220118095051",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/91/Hero1113-icon.png/revision/latest?cb=20230317102457",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a3/Hero1114-icon.png/revision/latest?cb=20240405035246"
+      ],
       "portrait_file": "templates/edith.png",
       "counters": [
         {
@@ -9540,6 +9846,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_4661a64a2c6b724e7b67032fcbface27.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero811-icon.png/revision/latest?cb=20241021153002",
+      "wiki_code": "81",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/42/Hero811-portrait.png/revision/latest?cb=20241021142615",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero811-icon.png/revision/latest?cb=20241021153002",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/34/Hero812-icon.png/revision/latest?cb=20220126142704",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ea/Hero813-icon.png/revision/latest?cb=20220126142702",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/74/Hero814-icon.png/revision/latest?cb=20220126142717"
+      ],
       "portrait_file": "templates/esmeralda.png",
       "counters": [
         {
@@ -9828,6 +10143,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_ff4de3b0aabd1d2f6e184db1c831f6a9.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/92/Hero341-icon.png/revision/latest?cb=20241021145400",
+      "wiki_code": "34",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c0/Hero341-portrait.png/revision/latest?cb=20241021141430",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/92/Hero341-icon.png/revision/latest?cb=20241021145400",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2d/Hero342-icon.png/revision/latest?cb=20220126041834",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f8/Hero343-icon.png/revision/latest?cb=20230212040123",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bd/Hero344-icon.png/revision/latest?cb=20220126041830"
+      ],
       "portrait_file": "templates/estes.png",
       "counters": [
         {
@@ -10108,6 +10432,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_87b2a655b254c136dce8976e21935a80.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/2a/Hero151-icon.png/revision/latest?cb=20260129103003",
+      "wiki_code": "15",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero151-portrait.png/revision/latest?cb=20260129103005",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2a/Hero151-icon.png/revision/latest?cb=20260129103003",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/74/Hero152-icon.png/revision/latest?cb=20260424020933",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3e/Hero153-icon.png/revision/latest?cb=20220125063101",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/60/Hero154-icon.png/revision/latest?cb=20250530072538"
+      ],
       "portrait_file": "templates/eudora.png",
       "counters": [
         {
@@ -10391,6 +10724,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_3391df36d6dcc54dd1c417098e15ec59.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero171-icon.png/revision/latest?cb=20241021145223",
+      "wiki_code": "17",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7f/Hero171-portrait.png/revision/latest?cb=20241021141015",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero171-icon.png/revision/latest?cb=20241021145223",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e3/Hero172-icon.png/revision/latest?cb=20221022061356",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/ba/Hero173-icon.png/revision/latest?cb=20220125063038",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/85/Hero174-icon.png/revision/latest?cb=20260619053522"
+      ],
       "portrait_file": "templates/fanny.png",
       "counters": [
         {
@@ -10679,6 +11021,15 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_04e575d648d7f7ac1174f4369595c3a2.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/3/34/Hero761-icon.png/revision/latest?cb=20241021152934",
+      "wiki_code": "76",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d0/Hero761-portrait.png/revision/latest?cb=20241021142504",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/34/Hero761-icon.png/revision/latest?cb=20241021152934",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/34/Hero762-icon.png/revision/latest?cb=20230819035909",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8f/Hero763-icon.png/revision/latest?cb=20220908164741",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b8/Hero764-icon.png/revision/latest?cb=20230623130939"
+      ],
       "portrait_file": "templates/faramis.png",
       "counters": [
         {
@@ -10960,6 +11311,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_5a57b91e4914cf071a3849e352e530a5.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/20/Hero1121-icon.png/revision/latest?cb=20241021153258",
+      "wiki_code": "112",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/11/Hero1121-portrait.png/revision/latest?cb=20241021143403",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/20/Hero1121-icon.png/revision/latest?cb=20241021153258",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bb/Hero1122-icon.png/revision/latest?cb=20220119131929",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/94/Hero1123-icon.png/revision/latest?cb=20220218031011",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e6/Hero1124-icon.png/revision/latest?cb=20230212040130"
+      ],
       "portrait_file": "templates/floryn.png",
       "counters": [
         {
@@ -11242,6 +11602,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_9bed3c0095335606e0ce616c6e5a8553.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/25/Hero101-icon.png/revision/latest?cb=20241021145139",
+      "wiki_code": "10",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b3/Hero101-portrait.png/revision/latest?cb=20260626040250",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/25/Hero101-icon.png/revision/latest?cb=20241021145139",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ac/Hero102-icon.png/revision/latest?cb=20220125055626",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/82/Hero103-icon.png/revision/latest?cb=20220125055624",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/45/Hero104-icon.png/revision/latest?cb=20220125063120"
+      ],
       "portrait_file": "templates/franco.png",
       "counters": [
         {
@@ -11525,6 +11894,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_dea170bfd5f26c41fb04e5edf72afedb.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/f4/Hero1171-icon.png/revision/latest?cb=20241021153327",
+      "wiki_code": "117",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero1171-portrait.png/revision/latest?cb=20241021140652",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f4/Hero1171-icon.png/revision/latest?cb=20241021153327",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ed/Hero1172-icon.png/revision/latest?cb=20220805125404",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3b/Hero1173-icon.png/revision/latest?cb=20221217033858",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4f/Hero1174-icon.png/revision/latest?cb=20230805044013"
+      ],
       "portrait_file": "templates/fredrinn.png",
       "counters": [
         {
@@ -11813,6 +12191,15 @@
         "JUNGLE"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_b9c34c88762ca8e66ccd4d84071bf0bc.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/4/4e/Hero221-icon.png/revision/latest?cb=20251110105914",
+      "wiki_code": "22",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/54/Hero221-portrait.png/revision/latest?cb=20251110105915",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4e/Hero221-icon.png/revision/latest?cb=20251110105914",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a5/Hero222-icon.png/revision/latest?cb=20260424021242",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/03/Hero223-icon.png/revision/latest?cb=20220125063632",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/dd/Hero224-icon.png/revision/latest?cb=20220126042153"
+      ],
       "portrait_file": "templates/freya.png",
       "counters": [
         {
@@ -12099,6 +12486,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_96f9dbbc096e0f0a28f9b9e587d06a9c.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/cb/Hero411-icon.png/revision/latest?cb=20241021145443",
+      "wiki_code": "41",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/ba/Hero411-portrait.png/revision/latest?cb=20241021141617",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cb/Hero411-icon.png/revision/latest?cb=20241021145443",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5f/Hero412-icon.png/revision/latest?cb=20220126141918",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/71/Hero413-icon.png/revision/latest?cb=20220126141916",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b9/Hero414-icon.png/revision/latest?cb=20241201053039"
+      ],
       "portrait_file": "templates/gatotkaca.png",
       "counters": [
         {
@@ -12386,6 +12782,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_c472fe0233e5ef84a3ac9ba4a229d09f.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/4/45/Hero1041-icon.png/revision/latest?cb=20250402105857",
+      "wiki_code": "104",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/12/Hero1041-portrait.png/revision/latest?cb=20250403144136",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/45/Hero1041-icon.png/revision/latest?cb=20250402105857",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d9/Hero1042-icon.png/revision/latest?cb=20250403144512",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7a/Hero1043-icon.png/revision/latest?cb=20220126142703",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero1044-icon.png/revision/latest?cb=20251001064156"
+      ],
       "portrait_file": "templates/gloo.png",
       "counters": [
         {
@@ -12668,6 +13073,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_9513f5e10ec33f76747732eaf2082259.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/27/Hero231-icon.png/revision/latest?cb=20250109162109",
+      "wiki_code": "23",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a7/Hero231-portrait.png/revision/latest?cb=20241123045016",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/27/Hero231-icon.png/revision/latest?cb=20250109162109",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/55/Hero232-icon.png/revision/latest?cb=20250109162248",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/41/Hero233-icon.png/revision/latest?cb=20220126042149",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/df/Hero234-icon.png/revision/latest?cb=20240229130734"
+      ],
       "portrait_file": "templates/gord.png",
       "counters": [
         {
@@ -12950,6 +13364,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_a7729262d5b4abdc34ae5181e964c235.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/7/7c/Hero791-icon.png/revision/latest?cb=20241108062800",
+      "wiki_code": "79",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cb/Hero791-portrait.png/revision/latest?cb=20250407160652",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7c/Hero791-icon.png/revision/latest?cb=20241108062800",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/39/Hero792-icon.png/revision/latest?cb=20241201053527",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/43/Hero793-icon.png/revision/latest?cb=20220126142649",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3f/Hero794-icon.png/revision/latest?cb=20220126142719"
+      ],
       "portrait_file": "templates/granger.png",
       "counters": [
         {
@@ -13231,6 +13654,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_f8b8c8964d3202b7b762947ac96f1ed3.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/d/dd/Hero441-icon.png/revision/latest?cb=20250811073945",
+      "wiki_code": "44",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/95/Hero441-portrait.png/revision/latest?cb=20250811073746",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/dd/Hero441-icon.png/revision/latest?cb=20250811073945",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c0/Hero442-icon.png/revision/latest?cb=20251001051345",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bc/Hero443-icon.png/revision/latest?cb=20220126141810",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/91/Hero444-icon.png/revision/latest?cb=20220118094857"
+      ],
       "portrait_file": "templates/grock.png",
       "counters": [
         {
@@ -13513,6 +13945,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_901bdd5d4432a2c0290dfc71df615a5a.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/f1/Hero801-icon.png/revision/latest?cb=20241021152957",
+      "wiki_code": "80",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero801-portrait.png/revision/latest?cb=20241021142559",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f1/Hero801-icon.png/revision/latest?cb=20241021152957",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/38/Hero802-icon.png/revision/latest?cb=20220125050143",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c4/Hero803-icon.png/revision/latest?cb=20220125050144",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7d/Hero804-icon.png/revision/latest?cb=20220125050146"
+      ],
       "portrait_file": "templates/guinevere.png",
       "counters": [
         {
@@ -13801,6 +14242,15 @@
         "MID"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_c6cd232de60da5372a7101a203e56554.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/94/Hero561-icon.png/revision/latest?cb=20241021145610",
+      "wiki_code": "56",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a2/Hero561-portrait.png/revision/latest?cb=20241021142006",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/94/Hero561-icon.png/revision/latest?cb=20241021145610",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a7/Hero562-icon.png/revision/latest?cb=20220908164644",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/94/Hero563-icon.png/revision/latest?cb=20220126141922",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/64/Hero564-icon.png/revision/latest?cb=20220126141919"
+      ],
       "portrait_file": "templates/gusion.png",
       "counters": [
         {
@@ -14086,6 +14536,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_8a9c1966feb34e85d7bdcc1ed01ffb5d.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/ff/Hero601-icon.png/revision/latest?cb=20241021145634",
+      "wiki_code": "60",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/95/Hero601-portrait.png/revision/latest?cb=20241021142105",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/ff/Hero601-icon.png/revision/latest?cb=20241021145634",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2f/Hero602-icon.png/revision/latest?cb=20221217033852",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e4/Hero603-icon.png/revision/latest?cb=20220126141823",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d9/Nephila_Icon.png/revision/latest?cb=20220118094850"
+      ],
       "portrait_file": "templates/hanabi.png",
       "counters": [
         {
@@ -14367,6 +14826,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_d2d28d2fcb060726fa27553920ca1a33.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/f4/Hero691-icon.png/revision/latest?cb=20250118142130",
+      "wiki_code": "69",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f8/Hero691-portrait.png/revision/latest?cb=20250117141953",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f4/Hero691-icon.png/revision/latest?cb=20250118142130",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero692-icon.png/revision/latest?cb=20250109162116",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a8/Hero693-icon.png/revision/latest?cb=20250118145914",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/14/Hero694-icon.png/revision/latest?cb=20250118145916"
+      ],
       "portrait_file": "templates/hanzo.png",
       "counters": [
         {
@@ -14652,6 +15120,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_d228a823b477fdf6c458c829c2e62bcf.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/5a/Hero731-icon.png/revision/latest?cb=20241021145748",
+      "wiki_code": "73",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/36/Hero731-portrait.png/revision/latest?cb=20241021142419",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5a/Hero731-icon.png/revision/latest?cb=20241021145748",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d6/Hero732-icon.png/revision/latest?cb=20220126142656",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/69/Hero733-icon.png/revision/latest?cb=20220126142700",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/db/Hero734-icon.png/revision/latest?cb=20220126142713"
+      ],
       "portrait_file": "templates/harith.png",
       "counters": [
         {
@@ -14936,6 +15413,15 @@
         "MID"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_3aa6964c07a70f9b125da447f320e1ac.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/92/Hero421-icon.png/revision/latest?cb=20241021145449",
+      "wiki_code": "42",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/81/Hero421-portrait.png/revision/latest?cb=20241021141633",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/92/Hero421-icon.png/revision/latest?cb=20241021145449",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4b/Hero422-icon.png/revision/latest?cb=20221022074922",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/85/Hero423-icon.png/revision/latest?cb=20220126141856",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c1/Hero424-icon.png/revision/latest?cb=20220126141852"
+      ],
       "portrait_file": "templates/harley.png",
       "counters": [
         {
@@ -15219,6 +15705,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_9cc074562291a02644a0ddae28eeaa42.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/cb/Hero211-icon.png/revision/latest?cb=20241021145247",
+      "wiki_code": "21",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/35/Hero211-portrait.png/revision/latest?cb=20241021141115",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cb/Hero211-icon.png/revision/latest?cb=20241021145247",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/86/Hero212-icon.png/revision/latest?cb=20220125063635",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0e/Hero213-icon.png/revision/latest?cb=20220821082622",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/92/Hero214-icon.png/revision/latest?cb=20220628173958"
+      ],
       "portrait_file": "templates/hayabusa.png",
       "counters": [
         {
@@ -15504,6 +15999,15 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_6abf0c552b59b8ca4cbc1af3662ef176.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero511-icon.png/revision/latest?cb=20241021145541",
+      "wiki_code": "51",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ac/Hero511-portrait.png/revision/latest?cb=20241021141850",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero511-icon.png/revision/latest?cb=20241021145541",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a3/Hero512-icon.png/revision/latest?cb=20240429083347",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero513-icon.png/revision/latest?cb=20221022072106",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d0/Hero514-icon.png/revision/latest?cb=20220126141750"
+      ],
       "portrait_file": "templates/helcurt.png",
       "counters": [
         {
@@ -15788,6 +16292,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_acd700708dc515f5c63a08f8835a9941.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/11/Hero351-icon.png/revision/latest?cb=20241021145405",
+      "wiki_code": "35",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/dc/Hero351-portrait.png/revision/latest?cb=20241021141445",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/11/Hero351-icon.png/revision/latest?cb=20241021145405",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ec/Hero352-icon.png/revision/latest?cb=20240310143100",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/aa/Hero353-icon.png/revision/latest?cb=20240310143042",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d7/Hero354-icon.png/revision/latest?cb=20220126041821"
+      ],
       "portrait_file": "templates/hilda.png",
       "counters": [
         {
@@ -16071,6 +16584,13 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_71224844b111f09367df00e4f9b97753.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/0/02/Hero1331-icon.png/revision/latest?cb=20260619074900",
+      "wiki_code": "133",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/19/Hero1331-portrait.png/revision/latest?cb=20260618091411",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/02/Hero1331-icon.png/revision/latest?cb=20260619074900",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/69/Hero1332-icon.png/revision/latest?cb=20260530013009"
+      ],
       "portrait_file": "templates/hirara.png",
       "counters": [
         {
@@ -16347,6 +16867,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_195ad9af866afaab415ae23a6be13b45.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/0/0c/Hero491-icon.png/revision/latest?cb=20241021145529",
+      "wiki_code": "49",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1e/Hero491-portrait.png/revision/latest?cb=20241021141819",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0c/Hero491-icon.png/revision/latest?cb=20241021145529",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/95/Hero492-icon.png/revision/latest?cb=20220126141758",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9c/Hero493-icon.png/revision/latest?cb=20220126141756",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8d/Hero494-icon.png/revision/latest?cb=20220126141754"
+      ],
       "portrait_file": "templates/hylos.png",
       "counters": [
         {
@@ -16632,6 +17161,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_a65d1e2ced64fbfdfcefdcfba719b3fd.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/58/Hero431-icon.png/revision/latest?cb=20260618090441",
+      "wiki_code": "43",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b8/Hero431-portrait.png/revision/latest?cb=20260618090446",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/58/Hero431-icon.png/revision/latest?cb=20260618090441",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f5/Hero432-icon.png/revision/latest?cb=20260619053338",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1b/Hero433-icon.png/revision/latest?cb=20220126141844",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/75/Hero434-icon.png/revision/latest?cb=20220126141842"
+      ],
       "portrait_file": "templates/irithel.png",
       "counters": [
         {
@@ -16915,6 +17453,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_f070d82521ecd2e14d4ef3f25880830a.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/a2/Hero1211-icon.png/revision/latest?cb=20241021153350",
+      "wiki_code": "121",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/24/Hero1211-portrait.png/revision/latest?cb=20241021140752",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a2/Hero1211-icon.png/revision/latest?cb=20241021153350",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5c/Hero1212-icon.png/revision/latest?cb=20230623131011",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/16/Hero1213-icon.png/revision/latest?cb=20240411083651",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/86/Hero1214-icon.png/revision/latest?cb=20250615074221"
+      ],
       "portrait_file": "templates/ixia.png",
       "counters": [
         {
@@ -17202,6 +17749,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_bd87c30b6c7de6ae3b5aa56162c48c8b.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/1c/Hero541-icon.png/revision/latest?cb=20241021145558",
+      "wiki_code": "54",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2c/Hero541-portrait.png/revision/latest?cb=20241021141935",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1c/Hero541-icon.png/revision/latest?cb=20241021145558",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/56/Hero542-icon.png/revision/latest?cb=20220126142009",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c8/Hero543-icon.png/revision/latest?cb=20220126142011",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1c/Hero544-icon.png/revision/latest?cb=20220126142007"
+      ],
       "portrait_file": "templates/jawhead.png",
       "counters": [
         {
@@ -17484,6 +18040,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_85ff988c6660b4d04f8dd3d40df988bb.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero321-icon.png/revision/latest?cb=20241021145350",
+      "wiki_code": "32",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4a/Hero321-portrait.png/revision/latest?cb=20241021141359",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/73/Hero321-icon.png/revision/latest?cb=20241021145350",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e7/Hero322-icon.png/revision/latest?cb=20220126041855",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8f/Automata_Icon.png/revision/latest?cb=20220126041849",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/99/Hero324-icon.png/revision/latest?cb=20221022081323"
+      ],
       "portrait_file": "templates/johnson.png",
       "counters": [
         {
@@ -17757,6 +18322,14 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_d3a3a55c22000ae78732fed8cba2efef.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/c1/Hero1181-icon.png/revision/latest?cb=20241021153333",
+      "wiki_code": "118",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fb/Hero1181-portrait.png/revision/latest?cb=20241021140707",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c1/Hero1181-icon.png/revision/latest?cb=20241021153333",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c4/Hero1182-icon.png/revision/latest?cb=20221103135308",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/76/Hero1184-icon.png/revision/latest?cb=20240411082308"
+      ],
       "portrait_file": "templates/joy.png",
       "counters": [
         {
@@ -18041,6 +18614,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_5511ddc0ad2789b525f32ef572b017eb.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/c2/Hero1161-icon.png/revision/latest?cb=20241021153321",
+      "wiki_code": "116",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0c/Hero1161-portrait.png/revision/latest?cb=20241021140636",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c2/Hero1161-icon.png/revision/latest?cb=20241021153321",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3a/Hero1162-icon.png/revision/latest?cb=20220525115601",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/df/Hero1163-icon.png/revision/latest?cb=20230212040135",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/61/Hero1164-icon.png/revision/latest?cb=20250615074218"
+      ],
       "portrait_file": "templates/julian.png",
       "counters": [
         {
@@ -18303,6 +18885,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_99c0a77d0e01b06ad3f4351f8ef2869c.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/4/46/Hero751-icon.png/revision/latest?cb=20260925052928",
+      "wiki_code": "75",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e8/Hero751-portrait.png/revision/latest?cb=20260925053006",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/46/Hero751-icon.png/revision/latest?cb=20260925052928",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f0/Hero752-icon.png/revision/latest?cb=20260925091452",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2b/Hero753-icon.png/revision/latest?cb=20220125050133",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e0/Hero754-icon.png/revision/latest?cb=20260807053945"
+      ],
       "portrait_file": "templates/kadita.png",
       "counters": [
         {
@@ -18585,6 +19176,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_da424b020b8ac8235d64a1b8a09aa749.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/ef/Hero251-icon.png/revision/latest?cb=20241021145310",
+      "wiki_code": "25",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8e/Hero251-portrait.png/revision/latest?cb=20241021141216",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ef/Hero251-icon.png/revision/latest?cb=20241021145310",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/89/Hero252-icon.png/revision/latest?cb=20220126042121",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/12/Hero253-icon.png/revision/latest?cb=20220126042123",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/66/Hero254-icon.png/revision/latest?cb=20231214042642"
+      ],
       "portrait_file": "templates/kagura.png",
       "counters": [
         {
@@ -18867,6 +19467,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_d558bb881e18a070eaeda1e1fdc248a8.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/28/Hero621-icon.png/revision/latest?cb=20260805104508",
+      "wiki_code": "62",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/86/Hero621-portrait.png/revision/latest?cb=20260805104241",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/28/Hero621-icon.png/revision/latest?cb=20260805104508",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a2/Hero622-icon.png/revision/latest?cb=20260807041824",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4f/Hero623-icon.png/revision/latest?cb=20220126141804",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/40/Hero624-icon.png/revision/latest?cb=20220126141802"
+      ],
       "portrait_file": "templates/kaja.png",
       "counters": [
         {
@@ -19149,6 +19758,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_4f3d4649e301c76daf20bd8811f3095c.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/56/Hero1281-icon.png/revision/latest?cb=20250402015050",
+      "wiki_code": "128",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9a/Hero1281-portrait.png/revision/latest?cb=20250407160846",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/56/Hero1281-icon.png/revision/latest?cb=20250402015050",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/92/Hero1282-icon.png/revision/latest?cb=20250402015034",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/85/Hero1283-icon.png/revision/latest?cb=20250411100954",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/06/Hero1284-icon.png/revision/latest?cb=20260824015003"
+      ],
       "portrait_file": "templates/kalea.png",
       "counters": [
         {
@@ -19420,6 +20038,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_f49394186dc0e55d545da8377be83280.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/8a/Hero081-icon.png/revision/latest?cb=20241021145117",
+      "wiki_code": "08",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/41/Hero081-portrait.png/revision/latest?cb=20241021140357",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8a/Hero081-icon.png/revision/latest?cb=20241021145117",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero082-icon.png/revision/latest?cb=20220125055642",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c2/Hero083-icon.png/revision/latest?cb=20220125055638",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c1/Hero084-icon.png/revision/latest?cb=20220125055640"
+      ],
       "portrait_file": "templates/karina.png",
       "counters": [
         {
@@ -19705,6 +20332,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_294576f2bd0dcbcc9041031969d0eb09.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/d/de/Hero401-icon.png/revision/latest?cb=20241021145437",
+      "wiki_code": "40",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/db/Hero401-portrait.png/revision/latest?cb=20241021141602",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/de/Hero401-icon.png/revision/latest?cb=20241021145437",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/06/Hero402-icon.png/revision/latest?cb=20240311082236",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bd/Hero403-icon.png/revision/latest?cb=20220126041720",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d1/Hero404-icon.png/revision/latest?cb=20220126041722"
+      ],
       "portrait_file": "templates/karrie.png",
       "counters": [
         {
@@ -19993,6 +20629,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_540a6a9d343842674ce002082366ec9d.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/d/d2/Hero981-icon.png/revision/latest?cb=20241021153140",
+      "wiki_code": "98",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c6/Hero981-portrait.png/revision/latest?cb=20241021143032",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d2/Hero981-icon.png/revision/latest?cb=20241021153140",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1c/Hero982-icon.png/revision/latest?cb=20220126142638",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d4/Hero983-icon.png/revision/latest?cb=20220126142636",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/54/Hero984-icon.png/revision/latest?cb=20240507145921"
+      ],
       "portrait_file": "templates/khaleed.png",
       "counters": [
         {
@@ -20274,6 +20919,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_2fe99f4001211d18b3d2b95d0d3dc395.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/cd/Hero781-icon.png/revision/latest?cb=20241021152946",
+      "wiki_code": "78",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0f/Hero781-portrait.png/revision/latest?cb=20241021142534",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cd/Hero781-icon.png/revision/latest?cb=20241021152946",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/47/Hero782-icon.png/revision/latest?cb=20220126142143",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fe/Hero783-icon.png/revision/latest?cb=20220126142111",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/24/Hero784-icon.png/revision/latest?cb=20220126142109"
+      ],
       "portrait_file": "templates/khufra.png",
       "counters": [
         {
@@ -20558,6 +21212,15 @@
         "GOLD"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_61295dfefd369004e5e4a7f4fc86647b.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/15/Hero711-icon.png/revision/latest?cb=20250402105900",
+      "wiki_code": "71",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/eb/Hero711-portrait.png/revision/latest?cb=20250320124912",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/15/Hero711-icon.png/revision/latest?cb=20250402105900",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/02/Hero712-icon.png/revision/latest?cb=20250402105856",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/64/Hero713-icon.png/revision/latest?cb=20220126142652",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a9/Hero714-icon.png/revision/latest?cb=20220126142651"
+      ],
       "portrait_file": "templates/kimmy.png",
       "counters": [
         {
@@ -20832,6 +21495,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_dc4b821e49b904715172136017798da3.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/29/Hero471-icon.png/revision/latest?cb=20241021145518",
+      "wiki_code": "47",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/df/Hero471-portrait.png/revision/latest?cb=20241021141749",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/29/Hero471-icon.png/revision/latest?cb=20241021145518",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bf/Hero472-icon.png/revision/latest?cb=20220125055632",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/99/Hero473-icon.png/revision/latest?cb=20220119131814",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0d/Hero474-icon.png/revision/latest?cb=20220119131815"
+      ],
       "portrait_file": "templates/lancelot.png",
       "counters": [
         {
@@ -21117,6 +21789,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_28036c4584c914c5aad4d2feeafb2452.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/ee/Hero371-icon.png/revision/latest?cb=20241021145417",
+      "wiki_code": "37",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero371-portrait.png/revision/latest?cb=20241021141516",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ee/Hero371-icon.png/revision/latest?cb=20241021145417",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f5/Hero372-icon.png/revision/latest?cb=20240311080653",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/75/Hero373-icon.png/revision/latest?cb=20220126041801",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fc/Hero374-icon.png/revision/latest?cb=20220126041759"
+      ],
       "portrait_file": "templates/lapu_lapu.png",
       "counters": [
         {
@@ -21379,6 +22060,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_b2b38e9406ea0de0b866db7674feea0f.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/0/02/Hero181-icon.png/revision/latest?cb=20241021145229",
+      "wiki_code": "18",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/58/Hero181-portrait.png/revision/latest?cb=20241021141031",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/02/Hero181-icon.png/revision/latest?cb=20241021145229",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/70/Hero182-icon.png/revision/latest?cb=20220119131848",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ae/Hero183-icon.png/revision/latest?cb=20220119131846",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2c/Hero184-icon.png/revision/latest?cb=20220119131851"
+      ],
       "portrait_file": "templates/layla.png",
       "counters": [
         {
@@ -21663,6 +22353,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_554cdf13a7587fe08c5deed60132c61c.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero671-icon.png/revision/latest?cb=20241021145713",
+      "wiki_code": "67",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/de/Hero671-portrait.png/revision/latest?cb=20241021142250",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero671-icon.png/revision/latest?cb=20241021145713",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2e/Hero672-icon.png/revision/latest?cb=20220628174324",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/27/Hero673-icon.png/revision/latest?cb=20220126142205",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/11/Hero674-icon.png/revision/latest?cb=20220126142204"
+      ],
       "portrait_file": "templates/leomord.png",
       "counters": [
         {
@@ -21947,6 +22646,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_08770893183018333f54a98e63c41ee3.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/82/Hero531-icon.png/revision/latest?cb=20241021145551",
+      "wiki_code": "53",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f1/Hero531-portrait.png/revision/latest?cb=20241021141920",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/82/Hero531-icon.png/revision/latest?cb=20241021145551",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4d/Hero532-icon.png/revision/latest?cb=20220824141628",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/be/Hero533-icon.png/revision/latest?cb=20220126141701",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/97/Hero534-icon.png/revision/latest?cb=20220126141659"
+      ],
       "portrait_file": "templates/lesley.png",
       "counters": [
         {
@@ -22230,6 +22938,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_017bade52b9fc94bbc12615de6d75c08.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/ca/Hero841-icon.png/revision/latest?cb=20241021153020",
+      "wiki_code": "84",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e0/Hero841-portrait.png/revision/latest?cb=20241021142700",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/ca/Hero841-icon.png/revision/latest?cb=20241021153020",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cc/Hero842-icon.png/revision/latest?cb=20240619162207",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/56/Hero843-icon.png/revision/latest?cb=20220126142724",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/de/Hero844-icon.png/revision/latest?cb=20220119085344"
+      ],
       "portrait_file": "templates/ling.png",
       "counters": [
         {
@@ -22515,6 +23232,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_474cea36a4bfdc7bf7d94530853a99b2.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/17/Hero201-icon.png/revision/latest?cb=20241021145241",
+      "wiki_code": "20",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/20/Hero201-portrait.png/revision/latest?cb=20241021141100",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/17/Hero201-icon.png/revision/latest?cb=20241021145241",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/83/Hero202-icon.png/revision/latest?cb=20241201053011",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6f/Hero203-icon.png/revision/latest?cb=20220125063018",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4f/Hero204-icon.png/revision/latest?cb=20220125063020"
+      ],
       "portrait_file": "templates/lolita.png",
       "counters": [
         {
@@ -22797,6 +23523,14 @@
         "JUNGLE"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_63040edd0cf15b815fcbbb8b2d08d7f7.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/1c/Hero1271-icon.png/revision/latest?cb=20250125233414",
+      "wiki_code": "127",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b0/Hero1271-portrait.png/revision/latest?cb=20250412174341",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1c/Hero1271-icon.png/revision/latest?cb=20250125233414",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/ce/Hero1272-icon.png/revision/latest?cb=20250125233257",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3c/Hero1273-icon.png/revision/latest?cb=20250411100952"
+      ],
       "portrait_file": "templates/lukas.png",
       "counters": [
         {
@@ -23078,6 +23812,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_e162688afdcaf3f6498af30badfe31c5.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/f6/Hero681-icon.png/revision/latest?cb=20241021145719",
+      "wiki_code": "68",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d8/Hero681-portrait.png/revision/latest?cb=20241021142306",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f6/Hero681-icon.png/revision/latest?cb=20241021145719",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/02/Hero682-icon.png/revision/latest?cb=20220126142158",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4d/Hero683-icon.png/revision/latest?cb=20220126142156",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f5/Hero684-icon.png/revision/latest?cb=20220126142154"
+      ],
       "portrait_file": "templates/lunox.png",
       "counters": [
         {
@@ -23362,6 +24105,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_26e03fd72532d11c7b32911b95b8d559.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/f0/Hero961-icon.png/revision/latest?cb=20260918005444",
+      "wiki_code": "96",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0f/Hero961-portrait.png/revision/latest?cb=20260918005619",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f0/Hero961-icon.png/revision/latest?cb=20260918005444",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/08/Hero962-icon.png/revision/latest?cb=20260919022946",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fb/Hero963-icon.png/revision/latest?cb=20230623124417",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b4/Hero964-icon.png/revision/latest?cb=20230805044003"
+      ],
       "portrait_file": "templates/luo_yi.png",
       "counters": [
         {
@@ -23646,6 +24398,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_706573f138055c3df3df94948b4f26bd.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero861-icon.png/revision/latest?cb=20241021153033",
+      "wiki_code": "86",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ef/Hero861-portrait.png/revision/latest?cb=20241021142730",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero861-icon.png/revision/latest?cb=20241021153033",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3a/Hero862-icon.png/revision/latest?cb=20220126142729",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ee/Hero863-icon.png/revision/latest?cb=20220126142727",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/df/Hero864-icon.png/revision/latest?cb=20220125050126"
+      ],
       "portrait_file": "templates/lylia.png",
       "counters": [
         {
@@ -23929,6 +24690,13 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_df7603c292198bf4aa7b551d401ea5c1.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/ee/Hero1321-icon.png/revision/latest?cb=20260312135432",
+      "wiki_code": "132",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/27/Hero1321-portrait.png/revision/latest?cb=20260311075303",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ee/Hero1321-icon.png/revision/latest?cb=20260312135432",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ec/Hero1322-icon.png/revision/latest?cb=20260420082523"
+      ],
       "portrait_file": "templates/marcel.png",
       "counters": [
         {
@@ -24211,6 +24979,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_cc8124b0eb6ca22d950b000744d69fbf.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/ac/Hero581-icon.png/revision/latest?cb=20241021145622",
+      "wiki_code": "58",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0b/Hero581-portrait.png/revision/latest?cb=20241021142036",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ac/Hero581-icon.png/revision/latest?cb=20241021145622",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/81/Hero582-icon.png/revision/latest?cb=20220126141846",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ed/Hero583-icon.png/revision/latest?cb=20220126141844",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6b/Hero584-icon.png/revision/latest?cb=20220805131452"
+      ],
       "portrait_file": "templates/martis.png",
       "counters": [
         {
@@ -24495,6 +25272,14 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_4d79ba6ebb0a0f2bf542917f0b19d056.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/c5/Hero881-icon.png/revision/latest?cb=20260918142337",
+      "wiki_code": "88",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ae/Hero881-portrait.png/revision/latest?cb=20260918142339",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c5/Hero881-icon.png/revision/latest?cb=20260918142337",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9b/Hero883-icon.png/revision/latest?cb=20220126142721",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/87/Hero884-icon.png/revision/latest?cb=20200724050610"
+      ],
       "portrait_file": "templates/masha.png",
       "counters": [
         {
@@ -24779,6 +25564,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_24d08ed788a9f5984bcf3b732ddcaf04.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/cf/Hero1021-icon.png/revision/latest?cb=20241021153203",
+      "wiki_code": "102",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/92/Hero1021-portrait.png/revision/latest?cb=20241021143131",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cf/Hero1021-icon.png/revision/latest?cb=20241021153203",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4d/Hero1022-icon.png/revision/latest?cb=20220126142646",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/87/Hero1023-icon.png/revision/latest?cb=20220126142640",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cd/Hero1024-icon.png/revision/latest?cb=20220218031008"
+      ],
       "portrait_file": "templates/mathilda.png",
       "counters": [
         {
@@ -25062,6 +25856,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_1fa7436301fea3f13fbcd4772051d22d.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/0/09/Hero1141-icon.png/revision/latest?cb=20241021153310",
+      "wiki_code": "114",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/14/Hero1141-portrait.png/revision/latest?cb=20241021143430",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/09/Hero1141-icon.png/revision/latest?cb=20241021153310",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f6/Hero1142-icon.png/revision/latest?cb=20220218031006",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9e/Hero1143-icon.png/revision/latest?cb=20230212040132",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/60/Hero1144-icon.png/revision/latest?cb=20231210095129"
+      ],
       "portrait_file": "templates/melissa.png",
       "counters": [
         {
@@ -25347,6 +26150,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_3ecd2c0843df7ec85044dafff6bf4553.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/0/08/Hero191-icon.png/revision/latest?cb=20241021145234",
+      "wiki_code": "19",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9f/Hero191-portrait.png/revision/latest?cb=20241021141046",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/08/Hero191-icon.png/revision/latest?cb=20241021145234",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8d/Hero192-icon.png/revision/latest?cb=20220125063030",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a0/Hero193-icon.png/revision/latest?cb=20220125063029",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/13/Hero194-icon.png/revision/latest?cb=20220125063023"
+      ],
       "portrait_file": "templates/minotaur.png",
       "counters": [
         {
@@ -25635,6 +26447,14 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_c5d24a1dad6cef21de2698a4ed1d80ce.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/1e/Hero741-icon.png/revision/latest?cb=20241021145754",
+      "wiki_code": "74",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/83/Hero741-portrait.png/revision/latest?cb=20241021142435",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1e/Hero741-icon.png/revision/latest?cb=20241021145754",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/78/Hero742-icon.png/revision/latest?cb=20230317100406",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c7/Hero743-icon.png/revision/latest?cb=20220125050130"
+      ],
       "portrait_file": "templates/minsitthar.png",
       "counters": [
         {
@@ -25920,6 +26740,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_da894b37bfb5cadb32307f371f31918a.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/8c/Hero011-icon.png/revision/latest?cb=20241021145035",
+      "wiki_code": "01",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/89/Hero011-portrait.png/revision/latest?cb=20250407160822",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8c/Hero011-icon.png/revision/latest?cb=20241021145035",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9e/Hero012-icon.png/revision/latest?cb=20220119131843",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/60/Hero013-icon.png/revision/latest?cb=20260423012220",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/de/Hero014-icon.png/revision/latest?cb=20220119131834"
+      ],
       "portrait_file": "templates/miya.png",
       "counters": [
         {
@@ -26201,6 +27030,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_a60a866ab6752a7f66766e720da987ea.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/2e/Hero311-icon.png/revision/latest?cb=20241021145343",
+      "wiki_code": "31",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/60/Hero311-portrait.png/revision/latest?cb=20241021141344",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2e/Hero311-icon.png/revision/latest?cb=20241021145343",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f5/Hero312-icon.png/revision/latest?cb=20241201053022",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/33/Hero313-icon.png/revision/latest?cb=20220118094821",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e3/Hero314-icon.png/revision/latest?cb=20220126041857"
+      ],
       "portrait_file": "templates/moskov.png",
       "counters": [
         {
@@ -26483,6 +27321,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_ee1e0d80d87bb614a0c552ef028f85ce.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/c3/Hero051-icon.png/revision/latest?cb=20241021145100",
+      "wiki_code": "05",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero051-portrait.png/revision/latest?cb=20241021140348",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c3/Hero051-icon.png/revision/latest?cb=20241021145100",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/de/Hero052-icon.png/revision/latest?cb=20220126042133",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/22/Hero053-icon.png/revision/latest?cb=20240323004708",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ef/Hero054-icon.png/revision/latest?cb=20240323004618"
+      ],
       "portrait_file": "templates/nana.png",
       "counters": [
         {
@@ -26767,6 +27614,15 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_fbb5065b6ff174d1a20ccf5b7f523514.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/6/6a/Hero241-icon.png/revision/latest?cb=20241021145304",
+      "wiki_code": "24",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/68/Hero241-portrait.png/revision/latest?cb=20241021141201",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6a/Hero241-icon.png/revision/latest?cb=20241021145304",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero242-icon.png/revision/latest?cb=20220126042142",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/4c/Hero243-icon.png/revision/latest?cb=20220126042144",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/52/Hero244-icon.png/revision/latest?cb=20220126042131"
+      ],
       "portrait_file": "templates/natalia.png",
       "counters": [
         {
@@ -27053,6 +27909,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_da02742f59013365923b216420bc4082.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/25/Hero1071-icon.png/revision/latest?cb=20241021153231",
+      "wiki_code": "107",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0b/Hero1071-portrait.png/revision/latest?cb=20241021143246",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/25/Hero1071-icon.png/revision/latest?cb=20241021153231",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0b/Hero1072-icon.png/revision/latest?cb=20220118095052",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/18/Hero1073-icon.png/revision/latest?cb=20220119131927",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d6/Hero1074-icon.png/revision/latest?cb=20220618111017"
+      ],
       "portrait_file": "templates/natan.png",
       "counters": [
         {
@@ -27327,6 +28192,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_9012ee9f73fbb4db4e1953e5fb5172e1.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/e1/Hero1221-icon.png/revision/latest?cb=20241021153356",
+      "wiki_code": "122",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fc/Hero1221-portrait.png/revision/latest?cb=20241021140807",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e1/Hero1221-icon.png/revision/latest?cb=20241021153356",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d4/Hero1222-icon.png/revision/latest?cb=20231227083708",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d5/Hero1223-icon.png/revision/latest?cb=20240502081855",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/ca/Hero1224-icon.png/revision/latest?cb=20241013071710"
+      ],
       "portrait_file": "templates/nolan.png",
       "counters": [
         {
@@ -27610,6 +28484,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_57eeea6d5bd8d21229de8df79751db9f.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/a1/Hero1191-icon.png/revision/latest?cb=20241021153339",
+      "wiki_code": "119",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d5/Hero1191-portrait.png/revision/latest?cb=20241021140722",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a1/Hero1191-icon.png/revision/latest?cb=20241021153339",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/96/Hero1192-icon.png/revision/latest?cb=20230623131005",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fc/Hero1193-icon.png/revision/latest?cb=20240411082626",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8f/Hero1194-icon.png/revision/latest?cb=20240905080720"
+      ],
       "portrait_file": "templates/novaria.png",
       "counters": [
         {
@@ -27892,6 +28775,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_9c3daef5625bfade5c4cb8a219845dd3.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/9b/Hero1301-icon.png/revision/latest?cb=20250928040150",
+      "wiki_code": "130",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0b/Hero1301-portrait.png/revision/latest?cb=20250928040037",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9b/Hero1301-icon.png/revision/latest?cb=20250928040150",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/43/Hero1302-icon.png/revision/latest?cb=20250703151405",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d7/Hero1303-icon.png/revision/latest?cb=20260422235635",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6f/Hero1304-icon.png/revision/latest?cb=20260817033415"
+      ],
       "portrait_file": "templates/obsidia.png",
       "counters": [
         {
@@ -28172,6 +29064,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_d9251718a8894546ba04cfa9ca68dedc.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/a9/Hero461-icon.png/revision/latest?cb=20250118142124",
+      "wiki_code": "46",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ed/Hero461-portrait.png/revision/latest?cb=20250117141936",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a9/Hero461-icon.png/revision/latest?cb=20250118142124",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/54/Hero462-icon.png/revision/latest?cb=20250109162321",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1d/Hero463-icon.png/revision/latest?cb=20220125050138",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/77/Hero464-icon.png/revision/latest?cb=20220125050140"
+      ],
       "portrait_file": "templates/odette.png",
       "counters": [
         {
@@ -28453,6 +29354,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_5ab87805b9107b126a3bab64a8a199ad.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/3/35/Hero1031-icon.png/revision/latest?cb=20260925051951",
+      "wiki_code": "103",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a9/Hero1031-portrait.png/revision/latest?cb=20260925052042",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/35/Hero1031-icon.png/revision/latest?cb=20260925051951",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/48/Hero1032-icon.png/revision/latest?cb=20260925092804",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5c/Hero1033-icon.png/revision/latest?cb=20220612054917",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/54/Hero1034-icon.png/revision/latest?cb=20220126142819"
+      ],
       "portrait_file": "templates/paquito.png",
       "counters": [
         {
@@ -28738,6 +29648,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_10151d43910e62f7aa9ce08df481a20f.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/ef/Hero521-icon.png/revision/latest?cb=20241021145546",
+      "wiki_code": "52",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a2/Hero521-portrait.png/revision/latest?cb=20241021141905",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ef/Hero521-icon.png/revision/latest?cb=20241021145546",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/93/Hero522-icon.png/revision/latest?cb=20220126141719",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1c/Hero523-icon.png/revision/latest?cb=20220126141721",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/13/Hero524-icon.png/revision/latest?cb=20220126141708"
+      ],
       "portrait_file": "templates/pharsa.png",
       "counters": [
         {
@@ -29008,6 +29927,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_af21c0dd8b5308c27974bff900803a9a.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero1061-icon.png/revision/latest?cb=20241021153224",
+      "wiki_code": "106",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3c/Hero1061-portrait.png/revision/latest?cb=20241021143231",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/88/Hero1061-icon.png/revision/latest?cb=20241021153224",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/74/Hero1062-icon.png/revision/latest?cb=20250917080944",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/65/Hero1063-icon.png/revision/latest?cb=20220119131914",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1a/Hero1064-icon.png/revision/latest?cb=20251001051642"
+      ],
       "portrait_file": "templates/phoveus.png",
       "counters": [
         {
@@ -29295,6 +30223,15 @@
         "GOLD"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_1acbb23b9a50f412104047a60eb18808.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero941-icon.png/revision/latest?cb=20241021153117",
+      "wiki_code": "94",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a5/Hero941-portrait.png/revision/latest?cb=20241021142932",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero941-icon.png/revision/latest?cb=20241021153117",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b8/Hero942-icon.png/revision/latest?cb=20220126142107",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1b/Hero943-icon.png/revision/latest?cb=20220126142737",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/03/Hero944-icon.png/revision/latest?cb=20220526152952"
+      ],
       "portrait_file": "templates/popol_and_kupa.png",
       "counters": [
         {
@@ -29576,6 +30513,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_68277dce415742c4a98883151c693a07.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/5e/Hero141-icon.png/revision/latest?cb=20241021145203",
+      "wiki_code": "14",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d0/Hero141-portrait.png/revision/latest?cb=20241021140932",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5e/Hero141-icon.png/revision/latest?cb=20241021145203",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/3e/Hero142-icon.png/revision/latest?cb=20220125063630",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2c/Hero143-icon.png/revision/latest?cb=20260807041009",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e7/Hero144-icon.png/revision/latest?cb=20220125063627"
+      ],
       "portrait_file": "templates/rafaela.png",
       "counters": [
         {
@@ -29858,6 +30804,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_b40e578f13465b3ae99d0a9baac7ecc9.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/9/97/Hero391-icon.png/revision/latest?cb=20241021145430",
+      "wiki_code": "39",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/33/Hero391-portrait.png/revision/latest?cb=20241021141547",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/97/Hero391-icon.png/revision/latest?cb=20241021145430",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8e/Hero392-icon.png/revision/latest?cb=20220528111029",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/67/Hero393-icon.png/revision/latest?cb=20260424021347",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/91/Hero394-icon.png/revision/latest?cb=20220126041732"
+      ],
       "portrait_file": "templates/roger.png",
       "counters": [
         {
@@ -30121,6 +31076,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_4b96c75b136290576d849309722d4d20.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/1d/Hero291-icon.png/revision/latest?cb=20250802152451",
+      "wiki_code": "29",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b4/Hero291-portrait.png/revision/latest?cb=20250802152205",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1d/Hero291-icon.png/revision/latest?cb=20250802152451",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/89/Hero292-icon.png/revision/latest?cb=20220126042030",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/71/Hero293-icon.png/revision/latest?cb=20220126042027",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/91/Hero294-icon.png/revision/latest?cb=20220126042023"
+      ],
       "portrait_file": "templates/ruby.png",
       "counters": [
         {
@@ -30410,6 +31374,15 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_6bbfac806f29d29f17fea9e98d2d2fee.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/87/Hero031-icon.png/revision/latest?cb=20250406000724",
+      "wiki_code": "03",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e7/Hero031-portrait.png/revision/latest?cb=20250406000702",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/87/Hero031-icon.png/revision/latest?cb=20250406000724",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/85/Hero032-icon.png/revision/latest?cb=20220125055709",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/ba/Hero033-icon.png/revision/latest?cb=20220125055710",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b4/Hero034-icon.png/revision/latest?cb=20260424021145"
+      ],
       "portrait_file": "templates/saber.png",
       "counters": [
         {
@@ -30695,6 +31668,15 @@
         "ROAM"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_c3f967121519ae40509c5b2fdf52b19d.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/d/d4/Hero631-icon.png/revision/latest?cb=20241021145650",
+      "wiki_code": "63",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/a4/Hero631-portrait.png/revision/latest?cb=20241021142149",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/d4/Hero631-icon.png/revision/latest?cb=20241021145650",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e3/Hero632-icon.png/revision/latest?cb=20220126142249",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b0/Hero633-icon.png/revision/latest?cb=20220126142312",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b8/Hero634-icon.png/revision/latest?cb=20230623130906"
+      ],
       "portrait_file": "templates/selena.png",
       "counters": [
         {
@@ -30978,6 +31960,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_5e7b297af7c6e32a420b897aa4998071.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/4/40/Hero901-icon.png/revision/latest?cb=20241021153056",
+      "wiki_code": "90",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/97/Hero901-portrait.png/revision/latest?cb=20241021142831",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/40/Hero901-icon.png/revision/latest?cb=20241021153056",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/37/Hero902-icon.png/revision/latest?cb=20220126142729",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1b/Hero903-icon.png/revision/latest?cb=20220126142738",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e8/Hero904-icon.png/revision/latest?cb=20220126142632"
+      ],
       "portrait_file": "templates/silvanna.png",
       "counters": [
         {
@@ -31260,6 +32251,13 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_8143d7bbd4318d7c699908e808de885e.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/cc/Hero1311-icon.png/revision/latest?cb=20251220013450",
+      "wiki_code": "131",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/00/Hero1311-portrait.png/revision/latest?cb=20251218014024",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cc/Hero1311-icon.png/revision/latest?cb=20251220013450",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6d/Hero1312-icon.png/revision/latest?cb=20260421223122"
+      ],
       "portrait_file": "templates/sora.png",
       "counters": [
         {
@@ -31525,6 +32523,15 @@
         "JUNGLE"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_117b5cdcc13232157075ce7b7f6177e9.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/fe/Hero271-icon.png/revision/latest?cb=20241021145321",
+      "wiki_code": "27",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/89/Hero271-portrait.png/revision/latest?cb=20241021141243",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fe/Hero271-icon.png/revision/latest?cb=20241021145321",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cb/Hero272-icon.png/revision/latest?cb=20241201053019",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b9/Hero273-icon.png/revision/latest?cb=20220126042051",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e8/Hero274-icon.png/revision/latest?cb=20220126042050"
+      ],
       "portrait_file": "templates/sun.png",
       "counters": [
         {
@@ -31810,6 +32817,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_5e4ca70172332dde18bb1dc158ccc5c8.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/c4/Hero1261-icon.png/revision/latest?cb=20241021153421",
+      "wiki_code": "126",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/41/Hero1261-portrait.png/revision/latest?cb=20250412174335",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c4/Hero1261-icon.png/revision/latest?cb=20241021153421",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7e/Hero1262-icon.png/revision/latest?cb=20240928232825",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6f/Hero1263-icon.png/revision/latest?cb=20250411100951",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/93/Hero1264-icon.png/revision/latest?cb=20251001064157"
+      ],
       "portrait_file": "templates/suyou.png",
       "counters": [
         {
@@ -32022,6 +33038,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_c4bb270c28c7be663f57e993b0d6d3d8.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero821-icon.png/revision/latest?cb=20250802150120",
+      "wiki_code": "82",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6d/Hero821-portrait.png/revision/latest?cb=20250802145756",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero821-icon.png/revision/latest?cb=20250802150120",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/01/Hero822-icon.png/revision/latest?cb=20220126142136",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0e/Hero823-icon.png/revision/latest?cb=20220126142134",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/83/Hero824-icon.png/revision/latest?cb=20220126142132"
+      ],
       "portrait_file": "templates/terizla.png",
       "counters": [
         {
@@ -32299,6 +33324,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_b5ad55e408b68acf6a86e7ff76f5f569.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/1/17/Hero721-icon.png/revision/latest?cb=20250917080704",
+      "wiki_code": "72",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/74/Hero721-portrait.png/revision/latest?cb=20250917080630",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/17/Hero721-icon.png/revision/latest?cb=20250917080704",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ea/Hero722-icon.png/revision/latest?cb=20220126142145",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/37/Hero723-icon.png/revision/latest?cb=20220126142146",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e2/Hero724-icon.png/revision/latest?cb=20220126142731"
+      ],
       "portrait_file": "templates/thamuz.png",
       "counters": [
         {
@@ -32583,6 +33617,15 @@
       "primary_role": "ROAM",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_8b30576754be1a4f8bebd09df8d6bec7.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/f2/Hero061-icon.png/revision/latest?cb=20241021145106",
+      "wiki_code": "06",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b8/Hero061-portrait.png/revision/latest?cb=20241021140350",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f2/Hero061-icon.png/revision/latest?cb=20241021145106",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/0b/Hero062-icon.png/revision/latest?cb=20220125055658",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/38/Hero063-icon.png/revision/latest?cb=20220125055656",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7a/Hero064-icon.png/revision/latest?cb=20220125055655"
+      ],
       "portrait_file": "templates/tigreal.png",
       "counters": [
         {
@@ -32849,6 +33892,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_2e15a0a506aaecd9b3de40a8cc9f7ec7.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/b/ba/Hero591-icon.png/revision/latest?cb=20241021145629",
+      "wiki_code": "59",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bb/Hero591-portrait.png/revision/latest?cb=20241021142052",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/ba/Hero591-icon.png/revision/latest?cb=20241021145629",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/93/Hero592-icon.png/revision/latest?cb=20221022073244",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/39/Hero593-icon.png/revision/latest?cb=20260424021631",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero594-icon.png/revision/latest?cb=20221022073247"
+      ],
       "portrait_file": "templates/uranus.png",
       "counters": [
         {
@@ -33133,6 +34185,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_2a7a8d1531a1c4f8524880413535348d.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/f/fb/Hero661-icon.png/revision/latest?cb=20241021145708",
+      "wiki_code": "66",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c7/Hero661-portrait.png/revision/latest?cb=20250406000746",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fb/Hero661-icon.png/revision/latest?cb=20241021145708",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9b/Hero662-icon.png/revision/latest?cb=20220126142226",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ae/Hero663-icon.png/revision/latest?cb=20220118094901",
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f9/Hero664-icon.png/revision/latest?cb=20220126142223"
+      ],
       "portrait_file": "templates/vale.png",
       "counters": [
         {
@@ -33415,6 +34476,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_24837021ec9d7aaf41b13fa55b6d13c9.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/6/62/Hero1101-icon.png/revision/latest?cb=20241021153247",
+      "wiki_code": "110",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/12/Hero1101-portrait.png/revision/latest?cb=20241021143333",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/62/Hero1101-icon.png/revision/latest?cb=20241021153247",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c3/Hero1102-icon.png/revision/latest?cb=20220118095049",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9e/Hero1103-icon.png/revision/latest?cb=20220805125403",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/91/Hero1104-icon.png/revision/latest?cb=20230212040129"
+      ],
       "portrait_file": "templates/valentina.png",
       "counters": [
         {
@@ -33697,6 +34767,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_bf16690876761b80822df90eb3320d69.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/6/60/Hero571-icon.png/revision/latest?cb=20241021145616",
+      "wiki_code": "57",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9e/Hero571-portrait.png/revision/latest?cb=20241021142021",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/60/Hero571-icon.png/revision/latest?cb=20241021145616",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/dc/Hero572-icon.png/revision/latest?cb=20220126141932",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/30/Hero573-icon.png/revision/latest?cb=20220126141934",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/93/Hero574-icon.png/revision/latest?cb=20220126141930"
+      ],
       "portrait_file": "templates/valir.png",
       "counters": [
         {
@@ -33980,6 +35059,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_743edd1702084c4ed247908d698bca77.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/6/6d/Hero381-icon.png/revision/latest?cb=20241021145423",
+      "wiki_code": "38",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/36/Hero381-portrait.png/revision/latest?cb=20241021141531",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/6d/Hero381-icon.png/revision/latest?cb=20241021145423",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c0/Hero382-icon.png/revision/latest?cb=20220618110832",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/67/Hero383-icon.png/revision/latest?cb=20220628173834",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/81/Hero384-icon.png/revision/latest?cb=20220618110833"
+      ],
       "portrait_file": "templates/vexana.png",
       "counters": [
         {
@@ -34246,6 +35334,15 @@
       "primary_role": "GOLD",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_44bfa1dc44deb8d7620605faaa9ffae7.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/2/24/Hero891-icon.png/revision/latest?cb=20250118142135",
+      "wiki_code": "89",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/8f/Hero891-portrait.png/revision/latest?cb=20250117142006",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/24/Hero891-icon.png/revision/latest?cb=20250118142135",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/db/Hero892-icon.png/revision/latest?cb=20220119085346",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/50/Hero893-icon.png/revision/latest?cb=20220126142731",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/82/Hero894-icon.png/revision/latest?cb=20200724051040"
+      ],
       "portrait_file": "templates/wanwan.png",
       "counters": [
         {
@@ -34530,6 +35627,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/7/7a/Hero831-icon.png/revision/latest?cb=20241021153015",
+      "alt_portrait_url": "",
+      "wiki_code": "83",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/50/Hero831-portrait.png/revision/latest?cb=20241021142646",
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7a/Hero831-icon.png/revision/latest?cb=20241021153015",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/31/Hero832-icon.png/revision/latest?cb=20220126142658",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/02/Hero833-icon.png/revision/latest?cb=20220126142726",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5a/Hero834-icon.png/revision/latest?cb=20220126142728"
+      ],
       "portrait_file": "templates/x_borg.png",
       "counters": [
         {
@@ -34817,6 +35923,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_df0a8dfc494f85ed9bbc4512cc1e5d3c.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/8/80/Hero1151-icon.png/revision/latest?cb=20241021153316",
+      "wiki_code": "115",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/e0/Hero1151-portrait.png/revision/latest?cb=20241021143446",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/80/Hero1151-icon.png/revision/latest?cb=20241021153316",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/34/Hero1152-icon.png/revision/latest?cb=20220401091159",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/12/Hero1153-icon.png/revision/latest?cb=20230212040133",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cf/Hero1154-icon.png/revision/latest?cb=20241013073226"
+      ],
       "portrait_file": "templates/xavier.png",
       "counters": [
         {
@@ -35027,6 +36142,15 @@
       "primary_role": "JUNGLE",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_961378be3f498d42c25b3defd1635ad1.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/e/ed/Hero301-icon.png/revision/latest?cb=20241021145338",
+      "wiki_code": "30",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/29/Hero301-portrait.png/revision/latest?cb=20241021141329",
+        "https://static.wikia.nocookie.net/mobile-legends/images/e/ed/Hero301-icon.png/revision/latest?cb=20241021145338",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ad/Hero302-icon.png/revision/latest?cb=20220126042021",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/44/Hero303-icon.png/revision/latest?cb=20240309054114",
+        "https://static.wikia.nocookie.net/mobile-legends/images/6/63/Hero304-icon.png/revision/latest?cb=20220126042011"
+      ],
       "portrait_file": "templates/yi_sun_shin.png",
       "counters": [
         {
@@ -35293,6 +36417,15 @@
         "EXP"
       ],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_ee1c12c84f49514a30e405fb5c617796.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/b/b5/Hero1131-icon.png/revision/latest?cb=20241021153303",
+      "wiki_code": "113",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bc/Hero1131-portrait.png/revision/latest?cb=20241021143417",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b5/Hero1131-icon.png/revision/latest?cb=20241021153303",
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/91/Hero1132-icon.png/revision/latest?cb=20240619160922",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bc/Yin_%28M-World_Yin%29.png/revision/latest?cb=20220401091203",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c5/Hero1134-icon.png/revision/latest?cb=20230212040131"
+      ],
       "portrait_file": "templates/yin.png",
       "counters": [
         {
@@ -35576,6 +36709,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_9823ce4fe5eb89c0082b24f6d5ea67f6.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/53/Hero951-icon.png/revision/latest?cb=20241021153123",
+      "wiki_code": "95",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/10/Hero951-portrait.png/revision/latest?cb=20241021142947",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/53/Hero951-icon.png/revision/latest?cb=20241021153123",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5e/Hero952-icon.png/revision/latest?cb=20260725032632",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/45/Hero953-con.png/revision/latest?cb=20220126142707",
+        "https://static.wikia.nocookie.net/mobile-legends/images/d/da/Hero954-icon.png/revision/latest?cb=20260807055309"
+      ],
       "portrait_file": "templates/yu_zhong.png",
       "counters": [
         {
@@ -35861,6 +37003,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_d9b0a1d92b1c4b3643d6332fd66aa8e6.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/c/cd/Hero1011-icon.png/revision/latest?cb=20241021153157",
+      "wiki_code": "101",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/10/Hero1011-portrait.png/revision/latest?cb=20241021143118",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cd/Hero1011-icon.png/revision/latest?cb=20241021153157",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cb/Hero1012-icon.png/revision/latest?cb=20220126142642",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/86/Hero1013-icon.png/revision/latest?cb=20220126142644",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/50/Hero1014-icon.png/revision/latest?cb=20251001064156"
+      ],
       "portrait_file": "templates/yve.png",
       "counters": [
         {
@@ -36142,6 +37293,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_8d965f05f84621a51f799aeb8fb5f4c4.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/5c/Hero1291-icon.png/revision/latest?cb=20250402020310",
+      "wiki_code": "129",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/f7/Hero1291-portrait.png/revision/latest?cb=20250802160054",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5c/Hero1291-icon.png/revision/latest?cb=20250402020310",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ab/Hero1292-icon.png/revision/latest?cb=20250430131407",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/cc/Hero1293-icon.png/revision/latest?cb=20251001064157",
+        "https://static.wikia.nocookie.net/mobile-legends/images/4/43/Hero1294-icon.png/revision/latest?cb=20260422234218"
+      ],
       "portrait_file": "templates/zetian.png",
       "counters": [
         {
@@ -36417,6 +37577,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_d8f170087cb2d5b71bb22a0a4664a927.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/54/Hero501-icon.png/revision/latest?cb=20241021145534",
+      "wiki_code": "50",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/f/fe/Hero501-portrait.png/revision/latest?cb=20241021141834",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/54/Hero501-icon.png/revision/latest?cb=20241021145534",
+        "https://static.wikia.nocookie.net/mobile-legends/images/a/ac/Hero502-icon.png/revision/latest?cb=20230623130840",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/b0/Hero503-icon.png/revision/latest?cb=20251001053050",
+        "https://static.wikia.nocookie.net/mobile-legends/images/b/bc/Hero504-icon.png/revision/latest?cb=20230623130853"
+      ],
       "portrait_file": "templates/zhask.png",
       "counters": [
         {
@@ -36699,6 +37868,15 @@
       "primary_role": "MID",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_595f85bc90df3889c711c6b1f02dc02d.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/0/05/Hero1251-icon.png/revision/latest?cb=20250406000840",
+      "wiki_code": "125",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/9/9f/Hero1251-portrait.png/revision/latest?cb=20250406000833",
+        "https://static.wikia.nocookie.net/mobile-legends/images/0/05/Hero1251-icon.png/revision/latest?cb=20250406000840",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/ce/Hero1252-icon.png/revision/latest?cb=20240619160822",
+        "https://static.wikia.nocookie.net/mobile-legends/images/1/1e/Hero1253-icon.png/revision/latest?cb=20241201053542",
+        "https://static.wikia.nocookie.net/mobile-legends/images/3/32/Hero1254-icon.png/revision/latest?cb=20251107123323"
+      ],
       "portrait_file": "templates/zhuxin.png",
       "counters": [
         {
@@ -36980,6 +38158,15 @@
       "primary_role": "EXP",
       "secondary_roles": [],
       "portrait_url": "https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1232_1/100_9db57da4f0daef6d432676e4f19101ed.png",
+      "alt_portrait_url": "https://static.wikia.nocookie.net/mobile-legends/images/5/5f/Hero161-icon.png/revision/latest?cb=20241021145216",
+      "wiki_code": "16",
+      "art_urls": [
+        "https://static.wikia.nocookie.net/mobile-legends/images/7/7a/Hero161-portrait.png/revision/latest?cb=20241021141000",
+        "https://static.wikia.nocookie.net/mobile-legends/images/5/5f/Hero161-icon.png/revision/latest?cb=20241021145216",
+        "https://static.wikia.nocookie.net/mobile-legends/images/c/c8/Hero162-icon.png/revision/latest?cb=20220125063048",
+        "https://static.wikia.nocookie.net/mobile-legends/images/8/89/Hero163-icon.png/revision/latest?cb=20220118094824",
+        "https://static.wikia.nocookie.net/mobile-legends/images/2/2d/Hero164-icon.png/revision/latest?cb=20220125063046"
+      ],
       "portrait_file": "templates/zilong.png",
       "counters": [
         {
