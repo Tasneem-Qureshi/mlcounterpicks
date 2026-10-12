@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
+      # GitHub disables cron workflows after 60 days without commits; this keeps the schedule alive.
+      - uses: gautamkrishnar/keepalive-workflow@v2
+        with:
+          time_elapsed: 45
       - uses: actions/setup-python@v6
         with: { python-version: "3.12" }
       - run: pip install -r scraper/requirements.txt

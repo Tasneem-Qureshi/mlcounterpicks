@@ -12,8 +12,8 @@ android {
         applicationId = "com.dripagency.mlbbdraft"
         minSdk = 29          // MediaProjection foreground-service type + ImageReader HARDWARE path
         targetSdk = 35
-        versionCode = 10
-        versionName = "1.6.0"
+        versionCode = 11
+        versionName = "1.6.1"
 
         // Where the app polls for new hero/counter data.  Point this at wherever the
         // scraper's out/ folder is published (GitHub raw URL of the `data` branch works).

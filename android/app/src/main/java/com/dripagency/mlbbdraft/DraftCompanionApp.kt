@@ -31,6 +31,12 @@ class DraftCompanionApp : Application(), Configuration.Provider {
         if (!OpenCVLoader.initLocal()) Log.e("DraftCompanionApp", "OpenCV failed to initialise")
         appScope.launch { runCatching { graph.seeder.seedIfNeeded() }.onFailure { Log.e("DraftCompanionApp", "seed failed", it) } }
         DataUpdateWorker.schedulePeriodic(this)
+        // Also check on every launch when the last check is older than a day (covers phones that
+        // paused background work while the app sat unused for months).
+        appScope.launch {
+            val s = graph.prefs.current()
+            if (System.currentTimeMillis() - s.lastUpdateCheck > 24 * 60 * 60 * 1000L) DataUpdateWorker.runNow(this@DraftCompanionApp)
+        }
         startCloudAutoSync()
     }
 
