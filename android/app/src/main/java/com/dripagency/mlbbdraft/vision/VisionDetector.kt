@@ -11,20 +11,23 @@ import org.opencv.core.Core
 import org.opencv.core.CvType
 import org.opencv.core.Mat
 import org.opencv.core.MatOfDouble
-import org.opencv.core.Point
-import org.opencv.core.Scalar
 import org.opencv.core.Size
 import org.opencv.imgproc.Imgproc
 import java.io.File
 
 /**
- * Resolves screen crops to hero ids.
+ * Resolves draft-screen crops to hero ids.
  *
- * Pipeline per slot:  crop → gray → resize 64 → CLAHE → circular mask → dHash shortlist (Hamming)
- *                      → OpenCV matchTemplate (TM_CCOEFF_NORMED, 56px template inside 64px crop,
- *                        so ±4px misalignment is tolerated) → accept if score and margin pass.
+ * The draft shows locked heroes as bust-art cards while bans show circular head icons.  Both
+ * are crops of the same official painting, so the *face patch* of the head icon (its inner 64 %)
+ * can be found INSIDE either crop with normalised cross-correlation at a few scales.
+ * Validated on real draft frames (scraper/testdata, scraper/vision_lab.py): correct heroes score
+ * 0.70–0.94, wrong heroes stay ≤0.65.
  *
- * The hash pre-filter keeps per-frame cost at ~12 template matches instead of ~130.
+ * Cost control:
+ *  - per-slot change detection (dHash of the crop) → a slot that has not changed since the last
+ *    frame returns the cached answer without any matching;
+ *  - coarse pass at half resolution over all heroes → top 12 → fine pass at 5 scales.
  */
 class VisionDetector private constructor(
     private val templates: List<HeroTemplate>,
@@ -32,93 +35,120 @@ class VisionDetector private constructor(
     val config: Config = Config(),
 ) {
     data class Config(
-        val slotSize: Int = 64,
-        val templateSize: Int = 56,
-        val shortlist: Int = 12,
-        val maxHamming: Int = 26,
-        val acceptScore: Float = 0.42f,
-        val acceptMargin: Float = 0.035f,
+        /** crops are normalised to this height before matching */
+        val workHeight: Int = 80,
+        /** template face sizes relative to the crop height (fine pass) */
+        val fineScales: FloatArray = floatArrayOf(0.35f, 0.40f, 0.45f, 0.50f, 0.55f, 0.60f, 0.65f, 0.70f, 0.75f, 0.80f),
+        val coarseScales: FloatArray = floatArrayOf(0.45f, 0.60f),
+        val shortlist: Int = 16,
+        val acceptScore: Float = 0.72f,
+        val acceptMargin: Float = 0.08f,
+        /** at or above this score the margin requirement is waived (wrong heroes never score this high) */
+        val sureScore: Float = 0.80f,
         val emptyStdDev: Double = 14.0,
         val laneAcceptScore: Float = 0.55f,
-        /** Template scales tried on the shortlist; draft cards are not always the icon's exact size. */
-        val scales: FloatArray = floatArrayOf(0.85f, 1.0f, 1.15f),
+        val cacheHamming: Int = 3,
     )
 
-    class HeroTemplate(val heroId: String, val gray: Mat, val hash: Long)
+    class HeroTemplate(val heroId: String, val fine: List<Mat>, val coarse: List<Mat>)
     class LaneTemplate(val role: Role, val gray: Mat)
     data class Match(val heroId: String, val confidence: Float)
+
+    private class SlotCache(var hash: Long, var match: Match?, var best: Pair<String, Float>?)
 
     val heroCount: Int get() = templates.size
     val hasLaneTemplates: Boolean get() = laneTemplates.isNotEmpty()
 
-    /** Best (heroId, score) seen in the last identifyMat() call even when below threshold — for calibration UI. */
+    /** Best (heroId, score) of the last identify call even when rejected — shown as calibration diagnostics. */
     @Volatile var lastCandidate: Pair<String, Float>? = null
         private set
 
     private val clahe = Imgproc.createCLAHE(2.0, Size(4.0, 4.0))
-    private val scaled = Mat()
-    private val mask: Mat = circleMask(config.slotSize)
-    private val templateMask: Mat = circleMask(config.templateSize)
-
-    // scratch buffers reused across frames (no per-frame allocation on the hot path)
-    private val slot = Mat(config.slotSize, config.slotSize, CvType.CV_8UC1)
+    private val work = Mat()
+    private val half = Mat()
     private val result = Mat()
-    private val grayBuf = IntArray(config.slotSize * config.slotSize)
-    private val byteBuf = ByteArray(config.slotSize * config.slotSize)
+    private val cache = HashMap<Int, SlotCache>()
+    private val hashBuf = IntArray(9 * 8)
+    private val hashMat = Mat(8, 9, CvType.CV_8UC1)
+    private val hashBytes = ByteArray(72)
 
-    /** Converts a full frame to a grayscale Mat once; callers then pass ROIs to [identifyRegion]. */
     fun toGray(frame: Bitmap): Mat {
-        val rgba = Mat()
-        Utils.bitmapToMat(frame, rgba)
-        val gray = Mat()
-        Imgproc.cvtColor(rgba, gray, Imgproc.COLOR_RGBA2GRAY)
-        rgba.release()
+        val rgba = Mat(); Utils.bitmapToMat(frame, rgba)
+        val gray = Mat(); Imgproc.cvtColor(rgba, gray, Imgproc.COLOR_RGBA2GRAY); rgba.release()
         return gray
     }
 
-    fun identifyRegion(frameGray: Mat, region: Rect): Match? {
+    /** Content area of the frame with black letterbox / pillarbox bars removed (e.g. a video inside a player). */
+    fun contentRect(gray: Mat): Rect {
+        val rows = Mat(); val cols = Mat()
+        Core.reduce(gray, rows, 1, Core.REDUCE_AVG, CvType.CV_32F)   // mean per row
+        Core.reduce(gray, cols, 0, Core.REDUCE_AVG, CvType.CV_32F)   // mean per column
+        val r = FloatArray(gray.rows()); rows.get(0, 0, r)
+        val c = FloatArray(gray.cols()); cols.get(0, 0, c)
+        rows.release(); cols.release()
+        val thr = 10f
+        var top = 0; while (top < r.size - 1 && r[top] < thr) top++
+        var bottom = r.size; while (bottom > top + 1 && r[bottom - 1] < thr) bottom--
+        var left = 0; while (left < c.size - 1 && c[left] < thr) left++
+        var right = c.size; while (right > left + 1 && c[right - 1] < thr) right--
+        // ignore tiny bars (rounded corners, UI shadows); only real letterboxing counts
+        if (top < gray.rows() * 0.02) top = 0
+        if (gray.rows() - bottom < gray.rows() * 0.02) bottom = gray.rows()
+        if (left < gray.cols() * 0.02) left = 0
+        if (gray.cols() - right < gray.cols() * 0.02) right = gray.cols()
+        return Rect(left, top, right, bottom)
+    }
+
+    fun identifyRegion(frameGray: Mat, region: Rect, slotKey: Int): Match? {
+        if (region.width() < 12 || region.height() < 12) return null
         val roi = frameGray.submat(region.top, region.bottom, region.left, region.right)
-        return try { identifyMat(roi) } finally { roi.release() }
+        return try { identify(roi, slotKey) } finally { roi.release() }
     }
 
     @Synchronized
-    fun identifyMat(crop: Mat): Match? {
-        Imgproc.resize(crop, slot, Size(config.slotSize.toDouble(), config.slotSize.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA)
+    private fun identify(crop: Mat, slotKey: Int): Match? {
         lastCandidate = null
-        if (isEmpty(slot)) return null
-        clahe.apply(slot, slot)
-        Core.bitwise_and(slot, mask, slot)
+        val hash = hashOf(crop)
+        cache[slotKey]?.let { if (PerceptualHash.hamming(it.hash, hash) <= config.cacheHamming) { lastCandidate = it.best; return it.match } }
 
-        slot.get(0, 0, byteBuf)
-        for (i in byteBuf.indices) grayBuf[i] = byteBuf[i].toInt() and 0xFF
-        val hash = PerceptualHash.dHash(grayBuf, config.slotSize, config.slotSize)
+        val match = if (isEmpty(crop)) null else search(crop)
+        cache[slotKey] = SlotCache(hash, match, lastCandidate)
+        return match
+    }
 
-        val shortlist = templates.asSequence()
-            .map { it to PerceptualHash.hamming(hash, it.hash) }
-            .filter { it.second <= config.maxHamming }
-            .sortedBy { it.second }
-            .take(config.shortlist)
-            .map { it.first }
-            .toList()
-            .ifEmpty { templates.take(config.shortlist) }
+    private fun search(crop: Mat): Match? {
+        val scale = config.workHeight.toDouble() / crop.rows()
+        Imgproc.resize(crop, work, Size(crop.cols() * scale, config.workHeight.toDouble()), 0.0, 0.0, if (scale < 1) Imgproc.INTER_AREA else Imgproc.INTER_LINEAR)
+        clahe.apply(work, work)
+        Imgproc.resize(work, half, Size(work.cols() / 2.0, work.rows() / 2.0), 0.0, 0.0, Imgproc.INTER_AREA)
+
+        // coarse pass: every hero at half resolution
+        val coarse = templates.map { t -> t to t.coarse.maxOf { score(half, it) } }
+            .sortedByDescending { it.second }.take(config.shortlist)
 
         var best: HeroTemplate? = null; var bestScore = -1f; var second = -1f
-        for (t in shortlist) {
-            var s = -1f
-            for (sc in config.scales) {
-                val tpl: Mat = if (sc == 1.0f) t.gray else {
-                    val sz = (config.templateSize * sc).toInt().coerceIn(24, config.slotSize)
-                    Imgproc.resize(t.gray, scaled, Size(sz.toDouble(), sz.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA); scaled
-                }
-                Imgproc.matchTemplate(slot, tpl, result, Imgproc.TM_CCOEFF_NORMED)
-                s = maxOf(s, Core.minMaxLoc(result).maxVal.toFloat())
-            }
+        for ((t, _) in coarse) {
+            val s = t.fine.maxOf { score(work, it) }
             if (s > bestScore) { second = bestScore; bestScore = s; best = t } else if (s > second) second = s
         }
         val b = best ?: return null
         lastCandidate = b.heroId to bestScore
-        if (bestScore < config.acceptScore || bestScore - second < config.acceptMargin) return null
+        val sure = bestScore >= config.sureScore
+        if (bestScore < config.acceptScore || (!sure && bestScore - second < config.acceptMargin)) return null
         return Match(b.heroId, bestScore)
+    }
+
+    private fun score(image: Mat, tpl: Mat): Float {
+        if (tpl.rows() >= image.rows() || tpl.cols() >= image.cols()) return -1f
+        Imgproc.matchTemplate(image, tpl, result, Imgproc.TM_CCOEFF_NORMED)
+        return Core.minMaxLoc(result).maxVal.toFloat()
+    }
+
+    private fun hashOf(crop: Mat): Long {
+        Imgproc.resize(crop, hashMat, Size(9.0, 8.0), 0.0, 0.0, Imgproc.INTER_AREA)
+        hashMat.get(0, 0, hashBytes)
+        for (i in hashBytes.indices) hashBuf[i] = hashBytes[i].toInt() and 0xFF
+        return PerceptualHash.dHash(hashBuf, 9, 8)
     }
 
     private fun isEmpty(gray: Mat): Boolean {
@@ -136,14 +166,12 @@ class VisionDetector private constructor(
         val scaled = Mat()
         Imgproc.resize(roi, scaled, Size(32.0, 32.0), 0.0, 0.0, Imgproc.INTER_AREA)
         var best: Role? = null; var bestScore = -1f
-        for (t in laneTemplates) {
-            Imgproc.matchTemplate(scaled, t.gray, result, Imgproc.TM_CCOEFF_NORMED)
-            val s = Core.minMaxLoc(result).maxVal.toFloat()
-            if (s > bestScore) { bestScore = s; best = t.role }
-        }
+        for (t in laneTemplates) { val s = score(scaled, t.gray); if (s > bestScore) { bestScore = s; best = t.role } }
         roi.release(); scaled.release()
         return if (bestScore >= config.laneAcceptScore) best else null
     }
+
+    fun clearCache() = cache.clear()
 
     companion object {
         private const val TAG = "VisionDetector"
@@ -152,53 +180,33 @@ class VisionDetector private constructor(
         fun load(context: Context, config: Config = Config()): VisionDetector {
             val downloaded = File(context.filesDir, "templates")
             val useDownloaded = File(downloaded, "index.json").exists()
-            val names: List<String> = if (useDownloaded) downloaded.list().orEmpty().toList()
-            else context.assets.list("templates").orEmpty().toList()
-
+            val names: List<String> = if (useDownloaded) downloaded.list().orEmpty().toList() else context.assets.list("templates").orEmpty().toList()
+            val clahe = Imgproc.createCLAHE(2.0, Size(4.0, 4.0))
             val templates = names.filter { it.endsWith(".png") }.mapNotNull { file ->
                 val bmp = runCatching {
                     if (useDownloaded) BitmapFactory.decodeFile(File(downloaded, file).path)
                     else context.assets.open("templates/$file").use { BitmapFactory.decodeStream(it) }
                 }.getOrNull() ?: return@mapNotNull null
-                val t = prepareTemplate(bmp, config)
-                bmp.recycle()
-                HeroTemplate(file.removeSuffix(".png"), t.first, t.second)
+                val m = Mat(); Utils.bitmapToMat(bmp, m); bmp.recycle()
+                Imgproc.cvtColor(m, m, Imgproc.COLOR_RGBA2GRAY)
+                val n = m.rows(); val c = (n * 0.18).toInt()
+                val face = m.submat(c, n - c, c, n - c)              // inner 64 %: no black corners
+                fun scaled(px: Int): Mat {
+                    val out = Mat(); Imgproc.resize(face, out, Size(px.toDouble(), px.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA); clahe.apply(out, out); return out
+                }
+                val fine = config.fineScales.map { scaled((config.workHeight * it).toInt().coerceAtLeast(12)) }
+                val coarse = config.coarseScales.map { scaled((config.workHeight / 2 * it).toInt().coerceAtLeast(8)) }
+                face.release(); m.release()
+                HeroTemplate(file.removeSuffix(".png"), fine, coarse)
             }
             val lanes = Role.entries.mapNotNull { role ->
-                val bmp = runCatching { context.assets.open("lanes/${role.name.lowercase()}.png").use { BitmapFactory.decodeStream(it) } }.getOrNull()
-                    ?: return@mapNotNull null
+                val bmp = runCatching { context.assets.open("lanes/${role.name.lowercase()}.png").use { BitmapFactory.decodeStream(it) } }.getOrNull() ?: return@mapNotNull null
                 val m = Mat(); Utils.bitmapToMat(bmp, m); Imgproc.cvtColor(m, m, Imgproc.COLOR_RGBA2GRAY)
                 Imgproc.resize(m, m, Size(28.0, 28.0), 0.0, 0.0, Imgproc.INTER_AREA)
                 LaneTemplate(role, m)
             }
             Log.i(TAG, "loaded ${templates.size} hero templates (${if (useDownloaded) "downloaded" else "assets"}), ${lanes.size} lane badges")
             return VisionDetector(templates, lanes, config)
-        }
-
-        private fun prepareTemplate(bmp: Bitmap, config: Config): Pair<Mat, Long> {
-            val m = Mat(); Utils.bitmapToMat(bmp, m)
-            Imgproc.cvtColor(m, m, Imgproc.COLOR_RGBA2GRAY)
-            // Hash is computed at slot size so it is comparable with live crops.
-            val forHash = Mat()
-            Imgproc.resize(m, forHash, Size(config.slotSize.toDouble(), config.slotSize.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA)
-            val clahe = Imgproc.createCLAHE(2.0, Size(4.0, 4.0)); clahe.apply(forHash, forHash)
-            Core.bitwise_and(forHash, circleMask(config.slotSize), forHash)
-            val buf = ByteArray(config.slotSize * config.slotSize); forHash.get(0, 0, buf)
-            val hash = PerceptualHash.dHash(IntArray(buf.size) { buf[it].toInt() and 0xFF }, config.slotSize, config.slotSize)
-            forHash.release()
-
-            val tpl = Mat()
-            Imgproc.resize(m, tpl, Size(config.templateSize.toDouble(), config.templateSize.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA)
-            clahe.apply(tpl, tpl)
-            Core.bitwise_and(tpl, circleMask(config.templateSize), tpl)
-            m.release()
-            return tpl to hash
-        }
-
-        private fun circleMask(size: Int): Mat {
-            val m = Mat.zeros(size, size, CvType.CV_8UC1)
-            Imgproc.circle(m, Point(size / 2.0, size / 2.0), (size * 0.46).toInt(), Scalar(255.0), -1)
-            return m
         }
     }
 }

@@ -34,7 +34,7 @@ import com.dripagency.mlbbdraft.vision.DraftPhase
 import com.dripagency.mlbbdraft.vision.DraftStateMachine
 import com.dripagency.mlbbdraft.vision.FrameReadings
 import com.dripagency.mlbbdraft.vision.LayoutProfile
-import com.dripagency.mlbbdraft.vision.NormRect
+import com.dripagency.mlbbdraft.vision.AnchoredRect
 import com.dripagency.mlbbdraft.vision.SlotLayouts
 import com.dripagency.mlbbdraft.vision.SlotReading
 import com.dripagency.mlbbdraft.vision.VisionDetector
@@ -75,7 +75,7 @@ class ScreenCaptureService : LifecycleService() {
     private lateinit var coordinator: DraftCoordinator
     private lateinit var watcher: ForegroundAppWatcher
     private val stateMachine = DraftStateMachine()
-    private var layouts: List<LayoutProfile> = SlotLayouts.DEFAULTS
+    private var layout: LayoutProfile = SlotLayouts.DEFAULT
     private var calibration: CalibrationDumper? = null
 
     @Volatile private var settings = UserSettings()
@@ -112,7 +112,7 @@ class ScreenCaptureService : LifecycleService() {
             it.onDraftFinished = { mainHandler.post { Log.i(TAG, "draft finished → screen detection off"); stopCapture() } }
         }
         watcher = ForegroundAppWatcher(this)
-        layouts = SlotLayouts.load(this)
+        layout = SlotLayouts.load(this)
         lifecycleScope.launch { graph.prefs.settings.collectLatest { settings = it; overlay.setOpacity(it.overlayOpacity) } }
         lifecycleScope.launch { graph.repository.preferredIds.collectLatest { mastered = it } }
         lifecycleScope.launch {
@@ -235,7 +235,7 @@ class ScreenCaptureService : LifecycleService() {
         var lastPhase: DraftPhase? = null
         while (currentCoroutineContext().isActive) {
             val now = System.currentTimeMillis()
-            val mlbbFront = watcher.isMlbbInFront()
+            val mlbbFront = if (settings.detectAnywhere) null else watcher.isMlbbInFront()
             handleMlbbTransition(mlbbFront)
 
             if (projection == null) {                       // overlay-only: just watch the foreground app
@@ -306,12 +306,13 @@ class ScreenCaptureService : LifecycleService() {
             coordinator.onSnapshot(stateMachine.onFrame(FrameReadings(emptyList(), emptyList(), emptyList(), null)), null)
             return
         }
-        val layout = SlotLayouts.forAspect(layouts, frame.width, frame.height)
         val gray = det.toGray(frame)
         try {
+            val content = det.contentRect(gray)
             var bestId: String? = null; var bestScore = 0f
-            fun read(rects: List<NormRect>) = rects.map { r ->
-                val m = det.identifyRegion(gray, r.toRect(frame.width, frame.height))
+            var key = 0
+            fun read(rects: List<AnchoredRect>) = rects.map { r ->
+                val m = det.identifyRegion(gray, r.toRect(content), key++)
                 det.lastCandidate?.let { if (it.second > bestScore) { bestScore = it.second; bestId = it.first } }
                 SlotReading(m?.heroId, m?.confidence ?: 0f)
             }
@@ -319,10 +320,10 @@ class ScreenCaptureService : LifecycleService() {
             val enemies = read(layout.enemySlots)
             val bans = read(layout.allyBans + layout.enemyBans)
             val lane = if (settings.autoDetectLane && det.hasLaneTemplates)
-                layout.laneBadges.firstNotNullOfOrNull { det.detectLane(gray, it.toRect(frame.width, frame.height)) } else null
+                layout.laneBadges.firstNotNullOfOrNull { det.detectLane(gray, it.toRect(content)) } else null
             val readings = FrameReadings(allies, enemies, bans, lane)
-            if (settings.calibrationDump) calibration?.maybeDump(frame, layout, readings)
-            val diag = "${frame.width}×${frame.height} ${layout.name} · best ${bestId ?: "–"} ${"%.2f".format(bestScore)}/${"%.2f".format(det.config.acceptScore)}"
+            val diag = "${frame.width}×${frame.height} · content ${content.width()}×${content.height()} · best ${bestId ?: "–"} ${"%.2f".format(bestScore)}/${"%.2f".format(det.config.acceptScore)}"
+            if (settings.calibrationDump) calibration?.maybeDump(frame, layout, content, readings, diag)
             coordinator.onSnapshot(stateMachine.onFrame(readings), diag)
         } finally { gray.release() }
     }
@@ -416,7 +417,7 @@ class ScreenCaptureService : LifecycleService() {
         private const val ALERT_CHANNEL_ID = "alerts"
         private const val NOTIF_ID = 1001
         private const val ALERT_ID = 1002
-        private const val CAPTURE_LONG_EDGE = 960
+        private const val CAPTURE_LONG_EDGE = 1280
         private const val IDLE_WATCH_MS = 3 * 60_000L
         private const val CAPTURE_IDLE_OFF_MS = 10 * 60_000L
         private const val STATUS_PREVIEW_MS = 10_000L

@@ -149,6 +149,7 @@ fun HomeScreen(onOpenMastery: () -> Unit) {
                 Text("Detection interval: ${s.samplingMillis} ms")
                 Slider(value = s.samplingMillis.toFloat(), onValueChange = { vm.setSamplingMillis((it / 100).toLong() * 100) }, valueRange = 1000f..3000f, steps = 19)
                 SwitchRow("Auto-detect lane badge", s.autoDetectLane) { vm.setAutoDetectLane(it) }
+                SwitchRow("Detect in any app (test with videos)", s.detectAnywhere) { vm.setDetectAnywhere(it) }
                 SwitchRow("Calibration dump", s.calibrationDump) { vm.setCalibrationDump(it) }
             }
 

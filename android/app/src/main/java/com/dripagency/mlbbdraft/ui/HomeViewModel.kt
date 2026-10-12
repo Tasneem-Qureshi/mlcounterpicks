@@ -38,6 +38,7 @@ class HomeViewModel(private val graph: AppGraph) : ViewModel() {
     fun setOverlayOpacity(v: Float) = viewModelScope.launch { graph.prefs.setOverlayOpacity(v) }
     fun setSamplingMillis(v: Long) = viewModelScope.launch { graph.prefs.setSamplingMillis(v) }
     fun setCalibrationDump(v: Boolean) = viewModelScope.launch { graph.prefs.setCalibrationDump(v) }
+    fun setDetectAnywhere(v: Boolean) = viewModelScope.launch { graph.prefs.setDetectAnywhere(v) }
     fun setAutoShowOnMlbb(v: Boolean) = viewModelScope.launch { graph.prefs.setAutoShowOnMlbb(v) }
     fun setDataManifestUrl(v: String) = viewModelScope.launch { graph.prefs.setDataManifestUrl(v) }
 

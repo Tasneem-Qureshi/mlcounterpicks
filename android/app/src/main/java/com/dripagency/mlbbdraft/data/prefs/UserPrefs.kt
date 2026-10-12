@@ -33,6 +33,7 @@ class UserPrefs(private val context: Context) {
         val LAST_MSG = stringPreferencesKey("last_update_message")
         val MANIFEST_URL = stringPreferencesKey("data_manifest_url")
         val AUTO_SHOW = booleanPreferencesKey("auto_show_on_mlbb")
+        val DETECT_ANYWHERE = booleanPreferencesKey("detect_anywhere")
         val MASTERY_AT = longPreferencesKey("mastery_updated_at")
         val CLOUD_ENABLED = booleanPreferencesKey("cloud_enabled")
         val CLOUD_EMAIL = stringPreferencesKey("cloud_email")
@@ -54,6 +55,7 @@ class UserPrefs(private val context: Context) {
             lastUpdateMessage = p[K.LAST_MSG] ?: "",
             dataManifestUrl = p[K.MANIFEST_URL] ?: "",
             autoShowOnMlbb = p[K.AUTO_SHOW] ?: true,
+            detectAnywhere = p[K.DETECT_ANYWHERE] ?: false,
             masteryUpdatedAt = p[K.MASTERY_AT] ?: 0L,
             cloudEnabled = p[K.CLOUD_ENABLED] ?: false,
             cloudEmail = p[K.CLOUD_EMAIL] ?: "",
@@ -81,6 +83,7 @@ class UserPrefs(private val context: Context) {
     suspend fun setCalibrationDump(v: Boolean) = context.dataStore.edit { it[K.CALIB] = v }
     suspend fun setSeededDataVersion(v: Long) = context.dataStore.edit { it[K.SEEDED_VERSION] = v }
     suspend fun setDataManifestUrl(v: String) = context.dataStore.edit { it[K.MANIFEST_URL] = v.trim() }
+    suspend fun setDetectAnywhere(v: Boolean) = context.dataStore.edit { it[K.DETECT_ANYWHERE] = v }
     suspend fun setAutoShowOnMlbb(v: Boolean) = context.dataStore.edit { it[K.AUTO_SHOW] = v }
     suspend fun setUpdateStatus(message: String) = context.dataStore.edit {
         it[K.LAST_CHECK] = System.currentTimeMillis(); it[K.LAST_MSG] = message
