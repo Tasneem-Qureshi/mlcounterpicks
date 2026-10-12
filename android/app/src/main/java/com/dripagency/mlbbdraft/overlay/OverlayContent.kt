@@ -16,6 +16,8 @@ import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -61,6 +63,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dripagency.mlbbdraft.data.model.Role
+import com.dripagency.mlbbdraft.engine.EnemyMatchup
 import com.dripagency.mlbbdraft.engine.Recommendation
 import com.dripagency.mlbbdraft.ui.HeroAvatar
 import kotlinx.coroutines.delay
@@ -71,6 +74,7 @@ private val Accent = Color(0xFF59C3FF)
 private val Gold = Color(0xFFFFC95C)
 private val Warn = Color(0xFFFF8A65)
 private val Enemy = Color(0xFFFF5C5C)
+private val Good = Color(0xFF5CD68A)
 private val Muted = Color(0xFF9AA4B2)
 
 private enum class Mode { COUNTERS, BRIEFING }
@@ -192,10 +196,13 @@ private fun CountersBody(s: OverlayUiState.Counters, onOpenPicker: () -> Unit, o
         s.statusLine?.let { Text(it, color = Muted, fontSize = 10.sp, maxLines = 2, overflow = TextOverflow.Ellipsis) }
         if (s.picks.isEmpty()) Text("No candidates left for ${s.myRole.label}", color = Warn, fontSize = 12.sp)
         else {
-            Text("${s.picks.size} picks, best first", color = Muted, fontSize = 10.sp)
+            var expanded by remember { mutableStateOf<String?>(null) }
+            Text("${s.picks.size} picks, best first · tap a pick for details", color = Muted, fontSize = 10.sp)
             // Scrollable so a long ranked list never grows the card past the screen.
-            LazyColumn(Modifier.fillMaxWidth().heightIn(max = 300.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                itemsIndexed(s.picks, key = { _, r -> r.hero.id }) { i, r -> PickRow(i + 1, r) }
+            LazyColumn(Modifier.fillMaxWidth().heightIn(max = 320.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                itemsIndexed(s.picks, key = { _, r -> r.hero.id }) { i, r ->
+                    PickRow(i + 1, r, expanded = expanded == r.hero.id, onToggle = { expanded = if (expanded == r.hero.id) null else r.hero.id })
+                }
             }
         }
     }
@@ -248,9 +255,10 @@ private fun EnemyPicker(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun PickRow(rank: Int, r: Recommendation) {
-    Column(Modifier.fillMaxWidth()) {
+private fun PickRow(rank: Int, r: Recommendation, expanded: Boolean, onToggle: () -> Unit) {
+    Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(if (expanded) Color.White.copy(alpha = 0.05f) else Color.Transparent).clickable(onClick = onToggle).padding(vertical = 2.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text("$rank", color = Muted, fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.width(14.dp))
             HeroAvatar(r.hero.id, r.hero.name, size = 26.dp)
@@ -259,13 +267,49 @@ private fun PickRow(rank: Int, r: Recommendation) {
             if (r.mastered) { Spacer(Modifier.width(6.dp)); Chip("⭐ Mastered", Gold) }
             Spacer(Modifier.weight(1f))
             Text(String.format("%.2f", r.composite), color = if (r.mastered) Gold else Accent, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+            Icon(if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore, contentDescription = null, tint = Muted, modifier = Modifier.size(18.dp))
         }
         Row(Modifier.padding(start = 14.dp, top = 2.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             ScoreBar("lane", r.directScore, Modifier.weight(0.4f))
             ScoreBar("team", r.teamScore, Modifier.weight(0.6f))
         }
-        Text(r.reason, color = Muted, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(start = 14.dp, top = 2.dp))
-        r.warning?.let { Text(it, color = Warn, fontSize = 11.sp, modifier = Modifier.padding(start = 14.dp)) }
+        // Collapsed summary: one chip per enemy so the count of counters is visible at a glance.
+        if (r.matchups.isNotEmpty()) {
+            FlowRow(Modifier.padding(start = 14.dp, top = 4.dp), horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                r.beats.forEach { Chip("beats ${it.enemy.name}${if (it.laneOpponent) " (lane)" else ""}", Good) }
+                r.weakInto.forEach { Chip("weak vs ${it.enemy.name}${if (it.laneOpponent) " (lane)" else ""}", Enemy) }
+                if (r.beats.isEmpty() && r.weakInto.isEmpty()) Chip("even vs all", Muted)
+            }
+        } else {
+            Text(r.reason, color = Muted, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(start = 14.dp, top = 2.dp))
+        }
+        if (expanded) {
+            Column(Modifier.padding(start = 14.dp, top = 6.dp, end = 4.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                val ordered = r.matchups.sortedWith(compareByDescending<EnemyMatchup> { it.laneOpponent }.thenByDescending { it.edge })
+                ordered.forEach { m -> MatchupLine(m) }
+            }
+        }
+    }
+}
+
+@Composable
+private fun MatchupLine(m: EnemyMatchup) {
+    val color = when { m.edge >= 1.0 -> Good; m.edge <= -1.0 -> Enemy; else -> Muted }
+    Column {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            HeroAvatar(m.enemy.id, m.enemy.name, size = 20.dp)
+            Spacer(Modifier.width(6.dp))
+            Text(m.enemy.name + (if (m.laneOpponent) " · your lane" else ""), color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+            Spacer(Modifier.width(6.dp))
+            Text(String.format("%+.1f", m.edge), color = color, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+        }
+        Text(m.reason, color = Color.White.copy(alpha = 0.85f), fontSize = 11.sp, modifier = Modifier.padding(start = 26.dp, top = 1.dp))
+        if (m.advice.isNotEmpty()) {
+            Text("How to play it", color = Warn, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 26.dp, top = 3.dp))
+            m.advice.forEach { a ->
+                Row(Modifier.padding(start = 26.dp)) { Text("•", color = Warn, fontSize = 11.sp, modifier = Modifier.width(10.dp)); Text(a, color = Muted, fontSize = 11.sp) }
+            }
+        }
     }
 }
 

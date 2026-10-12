@@ -27,6 +27,16 @@ data class DraftContext(
     val boostMastered: Boolean = false,
 )
 
+/** One enemy as seen from a candidate: signed edge, the full reason, and how to play it when it is bad. */
+data class EnemyMatchup(
+    val enemy: Hero,
+    val edge: Double,             // -5..5, positive = candidate is favoured
+    val reason: String,
+    val laneOpponent: Boolean,
+    /** advice for playing against this enemy (shown when edge is unfavourable) */
+    val advice: List<String>,
+)
+
 data class Recommendation(
     val hero: Hero,
     val composite: Double,        // 0..~1.4
@@ -36,7 +46,11 @@ data class Recommendation(
     val reason: String,
     val directOpponent: Hero?,
     val warning: String?,
-)
+    val matchups: List<EnemyMatchup> = emptyList(),
+) {
+    val beats: List<EnemyMatchup> get() = matchups.filter { it.edge >= 1.0 }.sortedByDescending { it.edge }
+    val weakInto: List<EnemyMatchup> get() = matchups.filter { it.edge <= -1.0 }.sortedBy { it.edge }
+}
 
 data class RecommendationResult(
     val picks: List<Recommendation>,
@@ -84,9 +98,19 @@ class CounterEngine(private val index: MatchupIndex, private val config: EngineC
         if (c.primaryRole == ctx.myRole) composite *= config.primaryRoleBonus
 
         val reason = buildReason(c, opponent, directDetail, teamEdges)
-        val worst = teamEdges.minByOrNull { it.second.score }?.takeIf { it.second.score <= -2.5 }
-        val warning = worst?.let { "Weak into ${it.first.name}" }
-        return Recommendation(c, composite, direct, team, mastered, reason, opponent, warning)
+        val all = (if (opponent != null && directDetail != null) listOf(opponent to directDetail) else emptyList()) + teamEdges
+        val matchups = all.map { (e, d) ->
+            val profile = index.profile(e.id)
+            EnemyMatchup(
+                enemy = e, edge = d.score, laneOpponent = e.id == opponent?.id,
+                reason = d.reason.takeUnless { it.isBlank() || GENERIC.containsMatchIn(it) || d.confidence == "derived" }
+                    ?: if (d.score >= 1.0) "${c.name} wins this matchup in ranked data" else if (d.score <= -1.0) "${e.name} wins this matchup in ranked data" else "Even matchup",
+                advice = if (d.score <= -1.0) (profile?.laneTips.orEmpty().take(2) + profile?.itemCounters.orEmpty().take(1)) else emptyList(),
+            )
+        }
+        val weak = matchups.filter { it.edge <= -1.0 }.sortedBy { it.edge }
+        val warning = weak.takeIf { it.isNotEmpty() }?.let { w -> "Weak into " + w.joinToString(", ") { it.enemy.name } }
+        return Recommendation(c, composite, direct, team, mastered, reason, opponent, warning, matchups)
     }
 
     private fun norm(edge: Double) = (edge / 10.0 + 0.5).coerceIn(0.0, 1.0)
