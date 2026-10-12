@@ -4,7 +4,8 @@ import com.dripagency.mlbbdraft.data.model.Role
 
 enum class DraftPhase { IDLE, DRAFTING, LOCKED, IN_GAME, COOLDOWN }
 
-data class SlotReading(val heroId: String?, val confidence: Float)
+/** @param empty true when the slot shows no card at all (placeholder); false = a card is there even if unrecognised */
+data class SlotReading(val heroId: String?, val confidence: Float, val empty: Boolean = heroId == null)
 
 data class FrameReadings(
     val allies: List<SlotReading>,
@@ -44,29 +45,32 @@ class DraftStateMachine(
 
     /**
      * Majority vote with hysteresis: a hero is adopted once it wins `needed` of the last `size`
-     * frames, and only dropped once the slot has read as empty for the whole window.  A single
-     * missed frame therefore never flips the output (which is what made the card flicker).
+     * frames; it is replaced only by another majority and dropped only once the slot has been
+     * EMPTY for the whole window.  An unrecognised-but-occupied card (skin art after lock-in,
+     * a hero we have no template for) keeps the last hero, so picks survive the skin screen.
      */
     private class VoteBuffer(private val size: Int, private val needed: Int) {
         private val ring = arrayOfNulls<String>(size)
+        private val empties = BooleanArray(size)
         private var i = 0
         private var held: String? = null
-        fun push(v: String?) { ring[i % size] = v; i++ }
+        fun push(v: String?, empty: Boolean) { ring[i % size] = v; empties[i % size] = empty; i++ }
         fun stable(): String? {
             val majority = ring.filterNotNull().groupingBy { it }.eachCount().filter { it.value >= needed }.maxByOrNull { it.value }?.key
             when {
                 majority != null -> held = majority
-                ring.all { it == null } -> held = null
+                empties.all { it } -> held = null
             }
             return held
         }
-        fun clear() { ring.fill(null); i = 0; held = null }
+        fun clear() { ring.fill(null); empties.fill(false); i = 0; held = null }
     }
 
     private val allyVotes = List(5) { VoteBuffer(config.votes, config.needed) }
     private val enemyVotes = List(5) { VoteBuffer(config.votes, config.needed) }
     private val banVotes = List(10) { VoteBuffer(config.votes, config.needed) }
     private val laneVotes = VoteBuffer(5, 3)
+    private val RESET = SlotReading(null, 0f, empty = true)
 
     var phase: DraftPhase = DraftPhase.IDLE
         private set
@@ -76,10 +80,11 @@ class DraftStateMachine(
     private var last: DraftSnapshot? = null
 
     fun onFrame(r: FrameReadings): DraftSnapshot {
-        r.allies.forEachIndexed { i, s -> allyVotes.getOrNull(i)?.push(s.heroId) }
-        r.enemies.forEachIndexed { i, s -> enemyVotes.getOrNull(i)?.push(s.heroId) }
-        r.bans.forEachIndexed { i, s -> banVotes.getOrNull(i)?.push(s.heroId) }
-        laneVotes.push(r.myLane?.name)
+        // A frame with no readings at all (portrait / other app) counts as empty for every slot.
+        fun feed(buffers: List<VoteBuffer>, readings: List<SlotReading>) =
+            buffers.forEachIndexed { i, b -> val s = readings.getOrNull(i) ?: RESET; b.push(s.heroId, s.empty) }
+        feed(allyVotes, r.allies); feed(enemyVotes, r.enemies); feed(banVotes, r.bans)
+        laneVotes.push(r.myLane?.name, r.myLane == null)
 
         val allies = allyVotes.mapNotNull { it.stable() }.distinct()
         val enemies = enemyVotes.mapNotNull { it.stable() }.distinct()

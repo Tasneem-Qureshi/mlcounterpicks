@@ -314,7 +314,7 @@ class ScreenCaptureService : LifecycleService() {
             fun read(rects: List<AnchoredRect>, tryMirror: Boolean) = rects.map { r ->
                 val m = det.identifyRegion(gray, r.toRect(content), key++, tryMirror)
                 det.lastCandidate?.let { if (it.second > bestScore) { bestScore = it.second; bestId = it.first } }
-                SlotReading(m?.heroId, m?.confidence ?: 0f)
+                SlotReading(m?.heroId, m?.confidence ?: 0f, empty = det.lastWasEmpty)
             }
             val allies = read(layout.allySlots, tryMirror = true)
             val enemies = read(layout.enemySlots, tryMirror = true)

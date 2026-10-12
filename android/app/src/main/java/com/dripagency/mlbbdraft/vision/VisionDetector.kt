@@ -60,13 +60,16 @@ class VisionDetector private constructor(
     class LaneTemplate(val role: Role, val gray: Mat)
     data class Match(val heroId: String, val confidence: Float)
 
-    private class SlotCache(var hash: Long, var match: Match?, var best: Pair<String, Float>?)
+    private class SlotCache(var hash: Long, var match: Match?, var best: Pair<String, Float>?, var empty: Boolean)
 
     val heroCount: Int get() = templates.size
     val hasLaneTemplates: Boolean get() = laneTemplates.isNotEmpty()
 
     /** Best (heroId, score) of the last identify call even when rejected — shown as calibration diagnostics. */
     @Volatile var lastCandidate: Pair<String, Float>? = null
+        private set
+    /** true when the last identified region held no card (flat placeholder) */
+    @Volatile var lastWasEmpty: Boolean = true
         private set
 
     private val clahe = Imgproc.createCLAHE(2.0, Size(4.0, 4.0))
@@ -120,10 +123,11 @@ class VisionDetector private constructor(
     private fun identify(crop: Mat, slotKey: Int, tryMirror: Boolean): Match? {
         lastCandidate = null
         val hash = hashOf(crop)
-        cache[slotKey]?.let { if (PerceptualHash.hamming(it.hash, hash) <= config.cacheHamming) { lastCandidate = it.best; return it.match } }
+        cache[slotKey]?.let { if (PerceptualHash.hamming(it.hash, hash) <= config.cacheHamming) { lastCandidate = it.best; lastWasEmpty = it.empty; return it.match } }
 
         var match: Match? = null
-        if (!isEmpty(crop)) {
+        lastWasEmpty = isEmpty(crop)
+        if (!lastWasEmpty) {
             match = search(crop)
             val plain = lastCandidate
             if (tryMirror) {
@@ -133,7 +137,7 @@ class VisionDetector private constructor(
                 if ((flipped?.second ?: -1f) > (plain?.second ?: -1f)) { match = m2 } else { lastCandidate = plain; match = match ?: m2.takeIf { plain == null } }
             }
         }
-        cache[slotKey] = SlotCache(hash, match, lastCandidate)
+        cache[slotKey] = SlotCache(hash, match, lastCandidate, lastWasEmpty)
         return match
     }
 
