@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MLBB Draft Companion</string>
+    <string name="app_name">ML Counter</string>
     <string name="notif_channel_capture">Draft assistant</string>
     <string name="notif_channel_alert">MLBB detected</string>
     <string name="notif_capture_title">Draft assistant is running</string>

@@ -100,7 +100,7 @@ class DataUpdater(
 
     private fun open(url: String): HttpURLConnection = (URL(url).openConnection() as HttpURLConnection).apply {
         connectTimeout = 15_000; readTimeout = 30_000
-        setRequestProperty("User-Agent", "MLBBDraftCompanion/${BuildConfig.VERSION_NAME}")
+        setRequestProperty("User-Agent", "MLCounter/${BuildConfig.VERSION_NAME}")
         setRequestProperty("Accept-Encoding", "identity")
     }
 

@@ -105,7 +105,7 @@ fun HomeScreen(onOpenMastery: () -> Unit) {
     var urlDraft by remember { mutableStateOf("") }
     LaunchedEffect(s.dataManifestUrl) { if (urlDraft.isBlank()) urlDraft = s.dataManifestUrl }
 
-    Scaffold(topBar = { TopAppBar(title = { Text("MLBB Draft Companion") }) }) { pad ->
+    Scaffold(topBar = { TopAppBar(title = { Text("ML Counter · Settings") }) }) { pad ->
         Column(
             Modifier.padding(pad).fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -125,7 +125,7 @@ fun HomeScreen(onOpenMastery: () -> Unit) {
                     else OutlinedButton(enabled = running, onClick = { projectionLauncher.launch(context.getSystemService(MediaProjectionManager::class.java).createScreenCaptureIntent()) }) { Text("Screen detection on") }
                 }
                 Hint("Detection turns off by itself after the draft.")
-                OutlinedButton(onClick = onOpenMastery, modifier = Modifier.fillMaxWidth()) { Text("Mastered heroes (${ui.masteredCount})") }
+                OutlinedButton(onClick = onOpenMastery, modifier = Modifier.fillMaxWidth()) { Text("Mastered heroes (${ui.masteredCount}) →") }
             }
 
             Section("Permissions") {

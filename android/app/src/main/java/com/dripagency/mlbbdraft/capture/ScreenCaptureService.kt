@@ -321,11 +321,20 @@ class ScreenCaptureService : LifecycleService() {
             val bans = read(layout.allyBans + layout.enemyBans, tryMirror = false)
             val lane = if (settings.autoDetectLane && det.hasLaneTemplates)
                 layout.laneBadges.firstNotNullOfOrNull { det.detectLane(gray, it.toRect(content)) } else null
-            val readings = FrameReadings(allies, enemies, bans, lane)
+            val readings = dedupe(FrameReadings(allies, enemies, bans, lane))
             val diag = "${frame.width}×${frame.height} · content ${content.width()}×${content.height()} · best ${bestId ?: "–"} ${"%.2f".format(bestScore)}/${"%.2f".format(det.config.acceptScore)}"
             if (settings.calibrationDump) calibration?.maybeDump(frame, layout, content, readings, diag)
             coordinator.onSnapshot(stateMachine.onFrame(readings), diag)
         } finally { gray.release() }
+    }
+
+    /** A hero can be picked or banned only once per draft: if two slots read the same hero, keep the stronger one. */
+    private fun dedupe(r: FrameReadings): FrameReadings {
+        val all = r.allies.map { it to "a" } + r.enemies.map { it to "e" } + r.bans.map { it to "b" }
+        val best = HashMap<String, Float>()
+        all.forEach { (s, _) -> s.heroId?.let { id -> if (s.confidence > (best[id] ?: -1f)) best[id] = s.confidence } }
+        fun clean(list: List<SlotReading>) = list.map { s -> if (s.heroId != null && best[s.heroId] != s.confidence) s.copy(heroId = null) else s }
+        return r.copy(allies = clean(r.allies), enemies = clean(r.enemies), bans = clean(r.bans))
     }
 
     private data class CaptureSize(val w: Int, val h: Int, val dpi: Int)

@@ -37,12 +37,15 @@ class VisionDetector private constructor(
     data class Config(
         /** crops are normalised to this height before matching */
         val workHeight: Int = 80,
-        /** template face sizes relative to the crop height (fine pass) */
-        val fineScales: FloatArray = floatArrayOf(0.35f, 0.40f, 0.45f, 0.50f, 0.55f, 0.60f, 0.65f, 0.70f, 0.75f, 0.80f),
+        /** whole-face template sizes relative to the crop height (fine pass) */
+        val fineScales: FloatArray = FloatArray(13) { 0.35f + 0.05f * it },
+        /** the eyes-to-mouth patch (for faces cut off by the card edge) is searched only at these sizes;
+         *  smaller ones would match the mini "recommended hero" icons of an empty slot */
+        val smallPatchScales: FloatArray = FloatArray(9) { 0.55f + 0.05f * it },
         val coarseScales: FloatArray = floatArrayOf(0.40f, 0.55f, 0.70f),
-        /** coarse pass runs at this fraction of workHeight (0.6 keeps every validated hero at rank 1) */
-        val coarseFactor: Double = 0.6,
-        val shortlist: Int = 12,
+        /** coarse pass runs at this fraction of workHeight */
+        val coarseFactor: Double = 0.5,
+        val shortlist: Int = 16,
         /** shortlisted heroes beyond this rank are refined with their best coarse art only */
         val fullRefine: Int = 4,
         val acceptScore: Float = 0.74f,
@@ -54,8 +57,19 @@ class VisionDetector private constructor(
         val cacheHamming: Int = 3,
     )
 
-    /** One art of a hero (official icon, in-game portrait, skin icon …) prepared at every search scale. */
-    class ArtTemplate(val fine: List<Mat>, val coarse: List<Mat>)
+    /**
+     * One art of a hero (website icon, in-game head, skin icon, old-version icon …).  Only the coarse
+     * sizes are precomputed; fine sizes are built on demand for shortlisted heroes, which keeps
+     * ~1500 arts in a few MB instead of tens.
+     */
+    class ArtTemplate(val face: Mat, val small: Mat, val coarse: List<Mat>) {
+        private val fineCache = HashMap<Int, Mat>()
+        /** whole-face patch (inner 64 %) at [px]; negative px = eyes-to-mouth patch (inner 45 %) at |px| */
+        fun fine(px: Int, clahe: org.opencv.imgproc.CLAHE): Mat = fineCache.getOrPut(px) {
+            val src = if (px < 0) small else face; val n = kotlin.math.abs(px).toDouble()
+            val out = Mat(); Imgproc.resize(src, out, Size(n, n), 0.0, 0.0, Imgproc.INTER_AREA); clahe.apply(out, out); out
+        }
+    }
     class HeroTemplate(val heroId: String, val arts: List<ArtTemplate>)
     class LaneTemplate(val role: Role, val gray: Mat)
     data class Match(val heroId: String, val confidence: Float)
@@ -73,6 +87,9 @@ class VisionDetector private constructor(
         private set
 
     private val clahe = Imgproc.createCLAHE(2.0, Size(4.0, 4.0))
+    /** positive = whole-face size, negative = small-patch size (see ArtTemplate.fine) */
+    private val fineSizes = (config.fineScales.map { (config.workHeight * it).toInt().coerceAtLeast(12) } +
+        config.smallPatchScales.map { -(config.workHeight * it).toInt().coerceAtLeast(12) }).distinct()
     private val work = Mat()
     private val half = Mat()
     private val mirrored = Mat()
@@ -159,7 +176,7 @@ class VisionDetector private constructor(
         coarse.forEachIndexed { rank, c ->
             val t = c.t
             val arts = if (rank < config.fullRefine) t.arts else listOf(t.arts[c.artIndex])
-            val s = arts.maxOf { a -> a.fine.maxOf { score(work, it) } }
+            val s = arts.maxOf { a -> fineSizes.maxOf { px -> score(work, a.fine(px, clahe)) } }
             if (s > bestScore) { second = bestScore; bestScore = s; best = t } else if (s > second) second = s
         }
         val b = best ?: return null
@@ -244,15 +261,15 @@ class VisionDetector private constructor(
             fun prepare(bmp: Bitmap): ArtTemplate {
                 val m = Mat(); Utils.bitmapToMat(bmp, m); bmp.recycle()
                 Imgproc.cvtColor(m, m, Imgproc.COLOR_RGBA2GRAY)
-                val n = m.rows(); val c = (n * 0.18).toInt()
-                val face = m.submat(c, n - c, c, n - c)              // inner 64 %: no black corners
-                fun scaled(px: Int): Mat {
-                    val out = Mat(); Imgproc.resize(face, out, Size(px.toDouble(), px.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA); clahe.apply(out, out); return out
+                val n = m.rows(); val c = (n * 0.18).toInt(); val c2 = (n * 0.275).toInt()
+                val face = Mat(); m.submat(c, n - c, c, n - c).copyTo(face)        // inner 64 %: whole face, no black corners
+                val small = Mat(); m.submat(c2, n - c2, c2, n - c2).copyTo(small)  // inner 45 %: eyes to mouth
+                m.release()
+                val coarse = config.coarseScales.map { sc ->
+                    val px = (config.workHeight * config.coarseFactor * sc).toInt().coerceAtLeast(8)
+                    val out = Mat(); Imgproc.resize(face, out, Size(px.toDouble(), px.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA); clahe.apply(out, out); out
                 }
-                val fine = config.fineScales.map { scaled((config.workHeight * it).toInt().coerceAtLeast(12)) }
-                val coarse = config.coarseScales.map { scaled((config.workHeight * config.coarseFactor * it).toInt().coerceAtLeast(8)) }
-                face.release(); m.release()
-                return ArtTemplate(fine, coarse)
+                return ArtTemplate(face, small, coarse)
             }
             var artCount = 0
             val templates = byHero.mapNotNull { (id, files) ->

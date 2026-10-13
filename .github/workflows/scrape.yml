@@ -28,6 +28,10 @@ jobs:
         run: |
           python scraper.py --out out \
             --base-url "https://raw.githubusercontent.com/${{ github.repository }}/data"
+      - name: Recognition self-test (every hero's default art must be recognised)
+        working-directory: scraper
+        continue-on-error: true
+        run: python vision_selftest.py --json out/selftest.json
       - name: Publish to data branch
         run: |
           set -e
@@ -35,11 +39,12 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           mkdir -p /tmp/publish
           cp scraper/out/manifest.json scraper/out/matchups.json scraper/out/templates.zip /tmp/publish/
+          cp scraper/out/selftest.json /tmp/publish/ 2>/dev/null || true
           git fetch origin data || true
           git checkout -B data origin/data 2>/dev/null || git checkout --orphan data
           cp *.apk /tmp/publish/ 2>/dev/null || true      # keep published APKs
           git rm -rfq . || true
           cp /tmp/publish/* .
-          git add manifest.json matchups.json templates.zip *.apk 2>/dev/null || git add manifest.json matchups.json templates.zip
+          git add manifest.json matchups.json templates.zip selftest.json *.apk 2>/dev/null || git add manifest.json matchups.json templates.zip
           git commit -m "data: $(date -u +%F) $(python -c "import json;print(json.load(open('manifest.json'))['hero_count'])") heroes" || echo "no changes"
           git push origin data --force

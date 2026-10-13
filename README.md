@@ -1,4 +1,4 @@
-# MLBB Draft Companion
+# ML Counter (MLBB Draft Companion)
 
 A two-part Mobile Legends: Bang Bang draft assistant:
 
@@ -23,7 +23,9 @@ python scraper.py --android-dir ../android/app/src/main     # ≈5 min, ~530 pol
 Outputs in `scraper/out/`:
 
 * `matchups.json` — 133 heroes, ~1 600 directed counter edges, lane tips, item counters
-* `templates/*.png` + `index.json` — 96×96 template arts per hero: the website icon (`<id>.png`, matches ban slots) and the in-game **head** painting from Moonton's own site API (`<id>_1.png`, the exact art on draft-pick cards). The weekly job refreshes them, so new and reworked heroes are picked up automatically.
+* `templates/*.png` + `index.json` — 96×96 template arts per hero: the website icon (`<id>.png`, matches ban slots), the in-game **head** painting from Moonton's own site API (`<id>_1.png`, the exact art on draft-pick cards), the wiki's in-game icon and the icons of **old versions** of reworked heroes. Skin icons are deliberately excluded (pick cards use default art; skins only appear after lock-in, which the app handles by keeping a recognised hero while its slot stays occupied).
+* Heroes that exist in Moonton's roster but not yet on the wiki (new releases) are added automatically with their lane and card art.
+* `selftest.json` — `vision_selftest.py` synthesises a draft card from every hero's own art (zoomed, cropped at the top, mirrored, video-compressed) and checks the detector recognises it; the weekly job runs it and publishes the report.
 * `templates.zip`, `manifest.json` — what the app downloads when self-updating
 
 Sources and how they are merged:
@@ -95,7 +97,7 @@ score  = (0.40·direct + 0.60·team) × (1.03 if the lane is the hero's primary 
 Mastered heroes, lane and mode sync to a hidden app-data file in the user's Google Drive (last-write-wins). One-time setup in [Google Cloud Console](https://console.cloud.google.com/):
 1. Create a project → *APIs & Services → Library* → enable **Google Drive API**.
 2. *OAuth consent screen*: External, app name "MLBB Draft Companion", your email; add scope `.../auth/drive.appdata`; add yourself as a test user (or publish).
-3. *Credentials → Create credentials → OAuth client ID → Android*: package `com.dripagency.mlbbdraft`, SHA-1 of the signing keystore (`keytool -list -v -keystore ~/.android/debug.keystore -storepass android`).
+3. *Credentials → Create credentials → OAuth client ID → Android*: package `com.mlcounter.app`, SHA-1 of the signing keystore (`keytool -list -v -keystore ~/.android/debug.keystore -storepass android`).
 No client id goes into the app; Play Services matches package + SHA-1.
 
 ### First run on a phone
@@ -106,7 +108,7 @@ No client id goes into the app; Play Services matches package + SHA-1.
 
 ### Calibrating slot positions (do this once per device)
 Slot rectangles live in `app/src/main/assets/layouts.json` (normalised 0–1 coordinates, three aspect-ratio profiles). Turn on **Calibration dump** on the Home screen, enter a draft, then pull  
-`Android/data/com.dripagency.mlbbdraft.debug/files/calibration/frame_*.png` — the frame is annotated with the crop boxes (cyan allies, red enemies, magenta bans, green lane badges) and the hero id read in each box. Adjust the numbers until the boxes sit on the portraits; a copy at `files/layouts.json` overrides the asset without rebuilding.
+`Android/data/com.mlcounter.app/files/calibration/frame_*.png` — the frame is annotated with the crop boxes (cyan allies, red enemies, magenta bans, green lane badges) and the hero id read in each box. Adjust the numbers until the boxes sit on the portraits; a copy at `files/layouts.json` overrides the asset without rebuilding.
 
 Lane auto-detection needs five small badge crops at `assets/lanes/{exp,gold,mid,roam,jungle}.png` (≈28 px, taken from a calibration frame). Without them the app uses your default lane — which is what you want most of the time anyway.
 

@@ -15,12 +15,14 @@ import argparse, glob, json, os, re, sys
 import cv2, numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-WORK_H, FINE, COARSE, COARSE_F, SHORTLIST, ACCEPT, MARGIN, SURE = 80, tuple(0.35 + 0.05 * i for i in range(10)), (0.40, 0.55, 0.70), 0.6, 12, 0.74, 0.08, 0.80
+WORK_H, FINE, COARSE, COARSE_F, SHORTLIST, ACCEPT, MARGIN, SURE = 80, tuple(0.35 + 0.05 * i for i in range(13)), (0.40, 0.55, 0.70), 0.5, 16, 0.74, 0.08, 0.80
+INNERS = (0.64, 0.45)   # face patches: whole face, and eyes-to-mouth for faces cut off by the card edge
+SMALL_PATCH_MIN = 0.55
 clahe = cv2.createCLAHE(2.0, (4, 4))
 
 
 def load_templates(tdir):
-    """hero -> list of arts; each art prepared at every scale (mirrors VisionDetector.load)."""
+    """hero -> list of arts; each art = (fine templates for both face patches, coarse templates)."""
     index_path = os.path.join(tdir, "index.json")
     by_hero = {}
     if os.path.exists(index_path):
@@ -35,9 +37,15 @@ def load_templates(tdir):
         for f in files:
             im = cv2.imread(os.path.join(tdir, f))
             if im is None: continue
-            g = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY); n = g.shape[0]; c = int(n * 0.18); face = g[c:n - c, c:n - c]
-            def sc(px, face=face): return clahe.apply(cv2.resize(face, (px, px), interpolation=cv2.INTER_AREA))
-            arts.append(([sc(max(12, int(WORK_H * s))) for s in FINE], [sc(max(8, int(WORK_H * COARSE_F * s))) for s in COARSE]))
+            g = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY); n = g.shape[0]
+            def patch(inner):
+                c = int(n * (1 - inner) / 2); return g[c:n - c, c:n - c]
+            def sc(px, face): return clahe.apply(cv2.resize(face, (px, px), interpolation=cv2.INTER_AREA))
+            # the small eyes-to-mouth patch only at large sizes: tiny templates match the mini
+            # "recommended hero" icons shown in an empty slot
+            fine = [sc(max(12, int(WORK_H * s)), patch(inner)) for inner in INNERS for s in FINE if inner >= 0.6 or s >= SMALL_PATCH_MIN]
+            coarse = [sc(max(8, int(WORK_H * COARSE_F * s)), patch(INNERS[0])) for s in COARSE]
+            arts.append((fine, coarse))
         if arts: out.append((hid, arts))
     return out
 

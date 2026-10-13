@@ -12,7 +12,10 @@
   "file": "akai.png",
   "name": "Akai",
   "variants": [
-   "akai_1.png"
+   "akai_1.png",
+   "akai_3.png",
+   "akai_4.png",
+   "akai_5.png"
   ]
  },
  "aldous": {
@@ -28,7 +31,10 @@
   "file": "alice.png",
   "name": "Alice",
   "variants": [
-   "alice_1.png"
+   "alice_1.png",
+   "alice_3.png",
+   "alice_4.png",
+   "alice_5.png"
   ]
  },
  "alpha": {
@@ -36,7 +42,8 @@
   "file": "alpha.png",
   "name": "Alpha",
   "variants": [
-   "alpha_1.png"
+   "alpha_1.png",
+   "alpha_3.png"
   ]
  },
  "alucard": {
@@ -44,7 +51,10 @@
   "file": "alucard.png",
   "name": "Alucard",
   "variants": [
-   "alucard_1.png"
+   "alucard_1.png",
+   "alucard_3.png",
+   "alucard_4.png",
+   "alucard_5.png"
   ]
  },
  "angela": {
@@ -52,7 +62,8 @@
   "file": "angela.png",
   "name": "Angela",
   "variants": [
-   "angela_1.png"
+   "angela_1.png",
+   "angela_3.png"
   ]
  },
  "argus": {
@@ -60,7 +71,8 @@
   "file": "argus.png",
   "name": "Argus",
   "variants": [
-   "argus_1.png"
+   "argus_1.png",
+   "argus_3.png"
   ]
  },
  "arlott": {
@@ -84,7 +96,8 @@
   "file": "aulus.png",
   "name": "Aulus",
   "variants": [
-   "aulus_1.png"
+   "aulus_1.png",
+   "aulus_3.png"
   ]
  },
  "aurora": {
@@ -92,7 +105,8 @@
   "file": "aurora.png",
   "name": "Aurora",
   "variants": [
-   "aurora_1.png"
+   "aurora_1.png",
+   "aurora_3.png"
   ]
  },
  "badang": {
@@ -100,7 +114,8 @@
   "file": "badang.png",
   "name": "Badang",
   "variants": [
-   "badang_1.png"
+   "badang_1.png",
+   "badang_3.png"
   ]
  },
  "balmond": {
@@ -108,7 +123,11 @@
   "file": "balmond.png",
   "name": "Balmond",
   "variants": [
-   "balmond_1.png"
+   "balmond_1.png",
+   "balmond_3.png",
+   "balmond_4.png",
+   "balmond_5.png",
+   "balmond_6.png"
   ]
  },
  "bane": {
@@ -116,7 +135,10 @@
   "file": "bane.png",
   "name": "Bane",
   "variants": [
-   "bane_1.png"
+   "bane_1.png",
+   "bane_3.png",
+   "bane_4.png",
+   "bane_5.png"
   ]
  },
  "barats": {
@@ -148,7 +170,8 @@
   "file": "belerick.png",
   "name": "Belerick",
   "variants": [
-   "belerick_1.png"
+   "belerick_1.png",
+   "belerick_3.png"
   ]
  },
  "benedetta": {
@@ -164,7 +187,8 @@
   "file": "brody.png",
   "name": "Brody",
   "variants": [
-   "brody_1.png"
+   "brody_1.png",
+   "brody_3.png"
   ]
  },
  "bruno": {
@@ -172,7 +196,11 @@
   "file": "bruno.png",
   "name": "Bruno",
   "variants": [
-   "bruno_1.png"
+   "bruno_1.png",
+   "bruno_3.png",
+   "bruno_4.png",
+   "bruno_5.png",
+   "bruno_6.png"
   ]
  },
  "carmilla": {
@@ -212,7 +240,8 @@
   "file": "chou.png",
   "name": "Chou",
   "variants": [
-   "chou_1.png"
+   "chou_1.png",
+   "chou_3.png"
   ]
  },
  "cici": {
@@ -228,7 +257,8 @@
   "file": "claude.png",
   "name": "Claude",
   "variants": [
-   "claude_1.png"
+   "claude_1.png",
+   "claude_3.png"
   ]
  },
  "clint": {
@@ -236,7 +266,13 @@
   "file": "clint.png",
   "name": "Clint",
   "variants": [
-   "clint_1.png"
+   "clint_1.png",
+   "clint_3.png",
+   "clint_4.png",
+   "clint_5.png",
+   "clint_6.png",
+   "clint_7.png",
+   "clint_8.png"
   ]
  },
  "cyclops": {
@@ -244,7 +280,8 @@
   "file": "cyclops.png",
   "name": "Cyclops",
   "variants": [
-   "cyclops_1.png"
+   "cyclops_1.png",
+   "cyclops_3.png"
   ]
  },
  "diggie": {
@@ -255,12 +292,19 @@
    "diggie_1.png"
   ]
  },
+ "dori": {
+  "dhash": "1f3f77b63f37370f",
+  "file": "dori.png",
+  "name": "Dori",
+  "variants": []
+ },
  "dyrroth": {
   "dhash": "0f6b67765e2b371b",
   "file": "dyrroth.png",
   "name": "Dyrroth",
   "variants": [
-   "dyrroth_1.png"
+   "dyrroth_1.png",
+   "dyrroth_3.png"
   ]
  },
  "edith": {
@@ -284,7 +328,9 @@
   "file": "estes.png",
   "name": "Estes",
   "variants": [
-   "estes_1.png"
+   "estes_1.png",
+   "estes_3.png",
+   "estes_4.png"
   ]
  },
  "eudora": {
@@ -292,7 +338,13 @@
   "file": "eudora.png",
   "name": "Eudora",
   "variants": [
-   "eudora_1.png"
+   "eudora_1.png",
+   "eudora_3.png",
+   "eudora_4.png",
+   "eudora_5.png",
+   "eudora_6.png",
+   "eudora_7.png",
+   "eudora_8.png"
   ]
  },
  "fanny": {
@@ -300,7 +352,8 @@
   "file": "fanny.png",
   "name": "Fanny",
   "variants": [
-   "fanny_1.png"
+   "fanny_1.png",
+   "fanny_3.png"
   ]
  },
  "faramis": {
@@ -308,7 +361,8 @@
   "file": "faramis.png",
   "name": "Faramis",
   "variants": [
-   "faramis_1.png"
+   "faramis_1.png",
+   "faramis_3.png"
   ]
  },
  "floryn": {
@@ -324,7 +378,10 @@
   "file": "franco.png",
   "name": "Franco",
   "variants": [
-   "franco_1.png"
+   "franco_1.png",
+   "franco_3.png",
+   "franco_4.png",
+   "franco_5.png"
   ]
  },
  "fredrinn": {
@@ -340,7 +397,9 @@
   "file": "freya.png",
   "name": "Freya",
   "variants": [
-   "freya_1.png"
+   "freya_1.png",
+   "freya_3.png",
+   "freya_4.png"
   ]
  },
  "gatotkaca": {
@@ -356,7 +415,9 @@
   "file": "gloo.png",
   "name": "Gloo",
   "variants": [
-   "gloo_1.png"
+   "gloo_1.png",
+   "gloo_3.png",
+   "gloo_4.png"
   ]
  },
  "gord": {
@@ -364,7 +425,8 @@
   "file": "gord.png",
   "name": "Gord",
   "variants": [
-   "gord_1.png"
+   "gord_1.png",
+   "gord_3.png"
   ]
  },
  "granger": {
@@ -372,7 +434,8 @@
   "file": "granger.png",
   "name": "Granger",
   "variants": [
-   "granger_1.png"
+   "granger_1.png",
+   "granger_3.png"
   ]
  },
  "grock": {
@@ -380,7 +443,8 @@
   "file": "grock.png",
   "name": "Grock",
   "variants": [
-   "grock_1.png"
+   "grock_1.png",
+   "grock_3.png"
   ]
  },
  "guinevere": {
@@ -388,7 +452,8 @@
   "file": "guinevere.png",
   "name": "Guinevere",
   "variants": [
-   "guinevere_1.png"
+   "guinevere_1.png",
+   "guinevere_3.png"
   ]
  },
  "gusion": {
@@ -396,7 +461,8 @@
   "file": "gusion.png",
   "name": "Gusion",
   "variants": [
-   "gusion_1.png"
+   "gusion_1.png",
+   "gusion_3.png"
   ]
  },
  "hanabi": {
@@ -404,7 +470,9 @@
   "file": "hanabi.png",
   "name": "Hanabi",
   "variants": [
-   "hanabi_1.png"
+   "hanabi_1.png",
+   "hanabi_3.png",
+   "hanabi_4.png"
   ]
  },
  "hanzo": {
@@ -412,7 +480,8 @@
   "file": "hanzo.png",
   "name": "Hanzo",
   "variants": [
-   "hanzo_1.png"
+   "hanzo_1.png",
+   "hanzo_3.png"
   ]
  },
  "harith": {
@@ -436,7 +505,8 @@
   "file": "hayabusa.png",
   "name": "Hayabusa",
   "variants": [
-   "hayabusa_1.png"
+   "hayabusa_1.png",
+   "hayabusa_3.png"
   ]
  },
  "helcurt": {
@@ -444,7 +514,8 @@
   "file": "helcurt.png",
   "name": "Helcurt",
   "variants": [
-   "helcurt_1.png"
+   "helcurt_1.png",
+   "helcurt_3.png"
   ]
  },
  "hilda": {
@@ -476,7 +547,8 @@
   "file": "irithel.png",
   "name": "Irithel",
   "variants": [
-   "irithel_1.png"
+   "irithel_1.png",
+   "irithel_3.png"
   ]
  },
  "ixia": {
@@ -500,7 +572,9 @@
   "file": "johnson.png",
   "name": "Johnson",
   "variants": [
-   "johnson_1.png"
+   "johnson_1.png",
+   "johnson_3.png",
+   "johnson_4.png"
   ]
  },
  "joy": {
@@ -524,7 +598,8 @@
   "file": "kadita.png",
   "name": "Kadita",
   "variants": [
-   "kadita_1.png"
+   "kadita_1.png",
+   "kadita_3.png"
   ]
  },
  "kagura": {
@@ -532,7 +607,8 @@
   "file": "kagura.png",
   "name": "Kagura",
   "variants": [
-   "kagura_1.png"
+   "kagura_1.png",
+   "kagura_3.png"
   ]
  },
  "kaja": {
@@ -540,7 +616,8 @@
   "file": "kaja.png",
   "name": "Kaja",
   "variants": [
-   "kaja_1.png"
+   "kaja_1.png",
+   "kaja_3.png"
   ]
  },
  "kalea": {
@@ -556,7 +633,10 @@
   "file": "karina.png",
   "name": "Karina",
   "variants": [
-   "karina_1.png"
+   "karina_1.png",
+   "karina_3.png",
+   "karina_4.png",
+   "karina_5.png"
   ]
  },
  "karrie": {
@@ -588,7 +668,8 @@
   "file": "kimmy.png",
   "name": "Kimmy",
   "variants": [
-   "kimmy_1.png"
+   "kimmy_1.png",
+   "kimmy_3.png"
   ]
  },
  "lancelot": {
@@ -596,7 +677,8 @@
   "file": "lancelot.png",
   "name": "Lancelot",
   "variants": [
-   "lancelot_1.png"
+   "lancelot_1.png",
+   "lancelot_3.png"
   ]
  },
  "lapu_lapu": {
@@ -604,7 +686,8 @@
   "file": "lapu_lapu.png",
   "name": "Lapu-Lapu",
   "variants": [
-   "lapu_lapu_1.png"
+   "lapu_lapu_1.png",
+   "lapu_lapu_3.png"
   ]
  },
  "layla": {
@@ -612,7 +695,13 @@
   "file": "layla.png",
   "name": "Layla",
   "variants": [
-   "layla_1.png"
+   "layla_1.png",
+   "layla_3.png",
+   "layla_4.png",
+   "layla_5.png",
+   "layla_6.png",
+   "layla_7.png",
+   "layla_8.png"
   ]
  },
  "leomord": {
@@ -620,7 +709,8 @@
   "file": "leomord.png",
   "name": "Leomord",
   "variants": [
-   "leomord_1.png"
+   "leomord_1.png",
+   "leomord_3.png"
   ]
  },
  "lesley": {
@@ -628,7 +718,8 @@
   "file": "lesley.png",
   "name": "Lesley",
   "variants": [
-   "lesley_1.png"
+   "lesley_1.png",
+   "lesley_3.png"
   ]
  },
  "ling": {
@@ -636,7 +727,8 @@
   "file": "ling.png",
   "name": "Ling",
   "variants": [
-   "ling_1.png"
+   "ling_1.png",
+   "ling_3.png"
   ]
  },
  "lolita": {
@@ -644,7 +736,8 @@
   "file": "lolita.png",
   "name": "Lolita",
   "variants": [
-   "lolita_1.png"
+   "lolita_1.png",
+   "lolita_3.png"
   ]
  },
  "lukas": {
@@ -652,7 +745,8 @@
   "file": "lukas.png",
   "name": "Lukas",
   "variants": [
-   "lukas_1.png"
+   "lukas_1.png",
+   "lukas_3.png"
   ]
  },
  "lunox": {
@@ -668,7 +762,8 @@
   "file": "luo_yi.png",
   "name": "Luo Yi",
   "variants": [
-   "luo_yi_1.png"
+   "luo_yi_1.png",
+   "luo_yi_3.png"
   ]
  },
  "lylia": {
@@ -700,7 +795,8 @@
   "file": "masha.png",
   "name": "Masha",
   "variants": [
-   "masha_1.png"
+   "masha_1.png",
+   "masha_3.png"
   ]
  },
  "mathilda": {
@@ -724,7 +820,9 @@
   "file": "minotaur.png",
   "name": "Minotaur",
   "variants": [
-   "minotaur_1.png"
+   "minotaur_1.png",
+   "minotaur_3.png",
+   "minotaur_4.png"
   ]
  },
  "minsitthar": {
@@ -732,7 +830,8 @@
   "file": "minsitthar.png",
   "name": "Minsitthar",
   "variants": [
-   "minsitthar_1.png"
+   "minsitthar_1.png",
+   "minsitthar_3.png"
   ]
  },
  "miya": {
@@ -740,7 +839,12 @@
   "file": "miya.png",
   "name": "Miya",
   "variants": [
-   "miya_1.png"
+   "miya_1.png",
+   "miya_3.png",
+   "miya_4.png",
+   "miya_5.png",
+   "miya_6.png",
+   "miya_7.png"
   ]
  },
  "moskov": {
@@ -748,7 +852,8 @@
   "file": "moskov.png",
   "name": "Moskov",
   "variants": [
-   "moskov_1.png"
+   "moskov_1.png",
+   "moskov_3.png"
   ]
  },
  "nana": {
@@ -756,7 +861,8 @@
   "file": "nana.png",
   "name": "Nana",
   "variants": [
-   "nana_1.png"
+   "nana_1.png",
+   "nana_3.png"
   ]
  },
  "natalia": {
@@ -804,7 +910,8 @@
   "file": "odette.png",
   "name": "Odette",
   "variants": [
-   "odette_1.png"
+   "odette_1.png",
+   "odette_3.png"
   ]
  },
  "paquito": {
@@ -812,7 +919,8 @@
   "file": "paquito.png",
   "name": "Paquito",
   "variants": [
-   "paquito_1.png"
+   "paquito_1.png",
+   "paquito_3.png"
   ]
  },
  "pharsa": {
@@ -820,7 +928,8 @@
   "file": "pharsa.png",
   "name": "Pharsa",
   "variants": [
-   "pharsa_1.png"
+   "pharsa_1.png",
+   "pharsa_3.png"
   ]
  },
  "phoveus": {
@@ -828,7 +937,8 @@
   "file": "phoveus.png",
   "name": "Phoveus",
   "variants": [
-   "phoveus_1.png"
+   "phoveus_1.png",
+   "phoveus_3.png"
   ]
  },
  "popol_and_kupa": {
@@ -836,7 +946,8 @@
   "file": "popol_and_kupa.png",
   "name": "Popol and Kupa",
   "variants": [
-   "popol_and_kupa_1.png"
+   "popol_and_kupa_1.png",
+   "popol_and_kupa_3.png"
   ]
  },
  "rafaela": {
@@ -844,7 +955,10 @@
   "file": "rafaela.png",
   "name": "Rafaela",
   "variants": [
-   "rafaela_1.png"
+   "rafaela_1.png",
+   "rafaela_3.png",
+   "rafaela_4.png",
+   "rafaela_5.png"
   ]
  },
  "roger": {
@@ -852,7 +966,8 @@
   "file": "roger.png",
   "name": "Roger",
   "variants": [
-   "roger_1.png"
+   "roger_1.png",
+   "roger_3.png"
   ]
  },
  "ruby": {
@@ -860,7 +975,8 @@
   "file": "ruby.png",
   "name": "Ruby",
   "variants": [
-   "ruby_1.png"
+   "ruby_1.png",
+   "ruby_3.png"
   ]
  },
  "saber": {
@@ -868,7 +984,10 @@
   "file": "saber.png",
   "name": "Saber",
   "variants": [
-   "saber_1.png"
+   "saber_1.png",
+   "saber_3.png",
+   "saber_4.png",
+   "saber_5.png"
   ]
  },
  "selena": {
@@ -900,7 +1019,9 @@
   "file": "sun.png",
   "name": "Sun",
   "variants": [
-   "sun_1.png"
+   "sun_1.png",
+   "sun_3.png",
+   "sun_4.png"
   ]
  },
  "suyou": {
@@ -908,7 +1029,8 @@
   "file": "suyou.png",
   "name": "Suyou",
   "variants": [
-   "suyou_1.png"
+   "suyou_1.png",
+   "suyou_3.png"
   ]
  },
  "terizla": {
@@ -924,7 +1046,8 @@
   "file": "thamuz.png",
   "name": "Thamuz",
   "variants": [
-   "thamuz_1.png"
+   "thamuz_1.png",
+   "thamuz_3.png"
   ]
  },
  "tigreal": {
@@ -932,7 +1055,10 @@
   "file": "tigreal.png",
   "name": "Tigreal",
   "variants": [
-   "tigreal_1.png"
+   "tigreal_1.png",
+   "tigreal_3.png",
+   "tigreal_4.png",
+   "tigreal_5.png"
   ]
  },
  "uranus": {
@@ -964,7 +1090,8 @@
   "file": "valir.png",
   "name": "Valir",
   "variants": [
-   "valir_1.png"
+   "valir_1.png",
+   "valir_3.png"
   ]
  },
  "vexana": {
@@ -972,7 +1099,8 @@
   "file": "vexana.png",
   "name": "Vexana",
   "variants": [
-   "vexana_1.png"
+   "vexana_1.png",
+   "vexana_3.png"
   ]
  },
  "wanwan": {
@@ -988,7 +1116,8 @@
   "file": "x_borg.png",
   "name": "X.Borg",
   "variants": [
-   "x_borg_1.png"
+   "x_borg_1.png",
+   "x_borg_3.png"
   ]
  },
  "xavier": {
@@ -1004,7 +1133,8 @@
   "file": "yi_sun_shin.png",
   "name": "Yi Sun-shin",
   "variants": [
-   "yi_sun_shin_1.png"
+   "yi_sun_shin_1.png",
+   "yi_sun_shin_3.png"
   ]
  },
  "yin": {
@@ -1020,7 +1150,8 @@
   "file": "yu_zhong.png",
   "name": "Yu Zhong",
   "variants": [
-   "yu_zhong_1.png"
+   "yu_zhong_1.png",
+   "yu_zhong_3.png"
   ]
  },
  "yve": {
@@ -1028,7 +1159,8 @@
   "file": "yve.png",
   "name": "Yve",
   "variants": [
-   "yve_1.png"
+   "yve_1.png",
+   "yve_3.png"
   ]
  },
  "zetian": {
@@ -1060,7 +1192,10 @@
   "file": "zilong.png",
   "name": "Zilong",
   "variants": [
-   "zilong_1.png"
+   "zilong_1.png",
+   "zilong_3.png",
+   "zilong_4.png",
+   "zilong_5.png"
   ]
  }
 }

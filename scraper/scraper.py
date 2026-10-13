@@ -79,6 +79,7 @@ USER_AGENTS = [
 ]
 
 FANDOM_API = "https://mobile-legends.fandom.com/api.php"
+FAST_HOSTS = {"static.wikia.nocookie.net", "akmweb.youngjoygame.com"}
 MLBBHUB = "https://mlbbhub.com"
 MLBBIO = "https://mlbb.io"
 MLCOUNTER = "https://mlcounter.com"
@@ -246,7 +247,8 @@ class PoliteClient:
         return self._robots[base].can_fetch("*", url)
 
     async def _throttle(self, host: str):
-        wait = random.uniform(self.min_delay, self.max_delay) - (time.monotonic() - self._last_hit.get(host, 0.0))
+        lo, hi = (0.15, 0.4) if host in FAST_HOSTS else (self.min_delay, self.max_delay)
+        wait = random.uniform(lo, hi) - (time.monotonic() - self._last_hit.get(host, 0.0))
         if wait > 0:
             await asyncio.sleep(wait)
         self._last_hit[host] = time.monotonic()
@@ -390,22 +392,25 @@ class FandomSource:
         log.info("fandom: %d heroes", len(heroes))
         return heroes
 
-    async def arts(self, hero: Hero) -> list[str]:
-        """Extra template art from the wiki: the in-game circular icon (differs from the website icon after reworks)."""
+    async def arts(self, hero: Hero, max_skins: int = 0) -> list[str]:
+        """Every circular icon the wiki holds for this hero: base icon, icons of OLD versions (reworks),
+        (skins are deliberately excluded: pick-phase cards use default art and skin icons caused confusions)."""
         if not hero.wiki_code:
             return []
-        titles = [f"File:Hero{hero.wiki_code}1-icon.png"]
-        url = f"{FANDOM_API}?action=query&prop=imageinfo&iiprop=url&format=json&titles=" + "|".join(titles).replace(" ", "_")
-        raw = await self.client.get(url)
+        code = hero.wiki_code
+        raw = await self.client.get(f"{FANDOM_API}?action=query&list=allimages&aiprefix=Hero{code}&ailimit=200&format=json")
         if not raw:
             return []
-        pages = json.loads(raw).get("query", {}).get("pages", {})
-        found = {}
-        for p in pages.values():
-            info = p.get("imageinfo")
-            if info:
-                found[p["title"].replace(" ", "_")] = info[0]["url"]
-        return [found[t.replace(" ", "_")] for t in titles if t.replace(" ", "_") in found]
+        names = []
+        for im in json.loads(raw).get("query", {}).get("allimages", []):
+            n = im["name"]
+            m = re.match(rf"Hero{code}(\d)(?:-color\d+)?-icon(?:_\(.*\))?\.png$", n)  # Hero951-icon, Hero952-icon, Hero951-icon_(2020-2024)
+            if m:
+                names.append((0 if m.group(1) == "1" else 1, n, im["url"]))
+        names.sort(key=lambda x: (x[0], x[1]))          # base + its old versions first, then skins
+        base = [u for pri, n, u in names if pri == 0]
+        skins = [u for pri, n, u in names if pri == 1][:max_skins]
+        return base + skins
 
     @staticmethod
     def _default_lane(classes: list[str]) -> str:
@@ -418,6 +423,9 @@ class FandomSource:
 # in-game "head" art (the exact painting the draft-pick cards show) and the circular icon.
 # --------------------------------------------------------------------------- #
 GMS_HERO_LIST = "https://api.gms.moontontech.com/api/gms/source/2669606/2756564"
+GMS_HERO_BASE = "https://api.gms.moontontech.com/api/gms/source/2669606/2756563"
+GMS_LANES = {"exp lane": "EXP", "gold lane": "GOLD", "mid lane": "MID", "roaming": "ROAM", "jungling": "JUNGLE"}
+GMS_PLACEHOLDER = re.compile(r"reserved|^test |^super |placeholder", re.I)
 
 
 class GmsSource:
@@ -442,6 +450,27 @@ class GmsSource:
             out[slugify(name)] = {"head": d.get("head", ""), "head_big": d.get("head_big", ""),
                                   "icon": d.get("hero", {}).get("data", {}).get("head", "")}
         log.info("gms: %d heroes with head art", len(out))
+        return out
+
+    async def roster(self) -> dict[str, Hero]:
+        """Heroes as Moonton lists them (incl. ones released after the wiki table was updated)."""
+        body = json.dumps({"pageSize": 200, "pageIndex": 1, "sorts": [], "filters": []})
+        raw = await self.client.post(GMS_HERO_BASE, body)
+        if not raw:
+            return {}
+        out = {}
+        for rec in json.loads(raw).get("data", {}).get("records", []):
+            d = rec.get("data", {})
+            name = clean_text(d.get("name", ""))
+            if not name or GMS_PLACEHOLDER.search(name):
+                continue
+            lanes = [GMS_LANES[l.lower()] for l in d.get("roadsortlabel", []) if l and l.lower() in GMS_LANES]
+            classes = [c for c in d.get("sortlabel", []) if c in HERO_CLASSES]
+            hid = slugify(name)
+            out[hid] = Hero(hero_id=hid, name=name, hero_class=classes[0] if classes else "",
+                            specialties=[x for x in d.get("speciality", []) if x],
+                            primary_role=lanes[0] if lanes else FandomSource._default_lane(classes),
+                            secondary_roles=lanes[1:], portrait_url=d.get("head", ""), sources=[self.name])
         return out
 
 
@@ -827,7 +856,7 @@ def dhash(im, hash_size: int = 8) -> str:
     return f"{bits:016x}"
 
 
-async def download_portraits(client: PoliteClient, heroes: dict[str, Hero], out_dir: Path, size: int, max_variants: int = 5):
+async def download_portraits(client: PoliteClient, heroes: dict[str, Hero], out_dir: Path, size: int, max_variants: int = 16):
     if Image is None:
         log.warning("Pillow missing; skipping portraits")
         return
@@ -909,7 +938,13 @@ async def run(args) -> int:
             heroes = dict(list(heroes.items())[: args.limit])
 
         fandom_src = FandomSource(client)
-        gms = await GmsSource(client).heads()
+        gms_src = GmsSource(client)
+        gms = await gms_src.heads()
+        # New heroes appear on Moonton's site before the wiki table: add any that are missing.
+        for hid, h in (await gms_src.roster()).items():
+            if hid not in heroes and h.portrait_url:
+                heroes[hid] = h
+                log.info("gms: new hero added from official roster: %s (%s)", h.name, h.primary_role)
 
         async def gather_arts(h: Hero):
             g = gms.get(h.hero_id, {})
