@@ -38,9 +38,12 @@ def synth_card(art_bgr, zoom, top_cut, mirror, jpeg_q, blur):
     return cv2.imdecode(enc, cv2.IMREAD_GRAYSCALE)
 
 
-CASES = [  # (zoom, top_cut, mirror, jpeg_q, blur)
-    (1.0, 0.0, False, 85, False), (1.25, 0.15, False, 75, True), (1.25, 0.15, True, 75, True),
-    (1.4, 0.25, False, 70, True), (1.4, 0.25, True, 70, True), (0.9, 0.0, True, 80, False),
+# (zoom, top_cut, mirror, jpeg_q, blur, realistic)
+# "realistic" = how the game actually frames cards (measured on two recorded drafts: zoom ≈1.0–1.3,
+# top cut ≤15 %, sometimes mirrored).  The 1.4×/25 % cases are deliberate stress tests.
+CASES = [
+    (1.0, 0.0, False, 85, False, True), (1.25, 0.15, False, 75, True, True), (1.25, 0.15, True, 75, True, True),
+    (0.9, 0.0, True, 80, False, True), (1.4, 0.25, False, 70, True, False), (1.4, 0.25, True, 70, True, False),
 ]
 
 
@@ -58,10 +61,10 @@ def main():
         per = []
         for art_name, art in arts.items():
             if art is None: continue
-            for (zoom, cut, mir, q, bl) in CASES:
+            for (zoom, cut, mir, q, bl, real) in CASES:
                 card = synth_card(art, zoom, cut, mir, q, bl)
                 hero, top3 = L.identify(card, templates, try_mirror=True)
-                per.append({"art": art_name, "case": f"z{zoom}c{cut}m{int(mir)}", "ok": hero == hid,
+                per.append({"art": art_name, "case": f"z{zoom}c{cut}m{int(mir)}", "realistic": real, "ok": hero == hid,
                             "top": top3[0][1] if top3 else None, "score": round(top3[0][0], 2) if top3 else None,
                             "second": top3[1][1] if top3 and len(top3) > 1 else None, "margin": round(top3[0][0] - top3[1][0], 2) if top3 and len(top3) > 1 else None})
         passed = sum(p["ok"] for p in per); results[hid] = {"passed": passed, "total": len(per), "cases": per}
@@ -69,10 +72,13 @@ def main():
             bad = [p for p in per if not p["ok"]]
             print(f"{hid:16s} {passed}/{len(per)}  " + "; ".join(f"{p['art']} {p['case']}: top={p['top']} {p['score']} m{p['margin']}" for p in bad[:4]))
     total = sum(r["total"] for r in results.values()); ok = sum(r["passed"] for r in results.values())
-    fails = [h for h, r in results.items() if r["passed"] < r["total"]]
-    print(f"\nSELFTEST: {ok}/{total} synthetic cards recognised · {len(results) - len(fails)}/{len(results)} heroes fully pass · failing: {fails}")
+    real_fail = [h for h, r in results.items() if any(not c["ok"] and c["realistic"] for c in r["cases"])]
+    stress_fail = [h for h, r in results.items() if any(not c["ok"] and not c["realistic"] for c in r["cases"])]
+    print(f"\nSELFTEST: {ok}/{total} synthetic cards recognised")
+    print(f"  realistic framing: {len(results) - len(real_fail)}/{len(results)} heroes pass · failing: {real_fail}")
+    print(f"  stress (1.4x zoom, 25% cut): {len(results) - len(stress_fail)}/{len(results)} heroes pass")
     if a.json:
-        json.dump({"ok": ok, "total": total, "failing": fails, "results": results}, open(a.json, "w"), indent=1)
+        json.dump({"ok": ok, "total": total, "realistic_failing": real_fail, "stress_failing": stress_fail, "results": results}, open(a.json, "w"), indent=1)
 
 
 if __name__ == "__main__":
