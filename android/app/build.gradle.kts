@@ -12,8 +12,8 @@ android {
         applicationId = "com.mlcounter.app"
         minSdk = 29          // MediaProjection foreground-service type + ImageReader HARDWARE path
         targetSdk = 35
-        versionCode = 13
-        versionName = "1.8.0"
+        versionCode = 14
+        versionName = "1.8.1"
 
         // Where the app polls for new hero/counter data.  Point this at wherever the
         // scraper's out/ folder is published (GitHub raw URL of the `data` branch works).

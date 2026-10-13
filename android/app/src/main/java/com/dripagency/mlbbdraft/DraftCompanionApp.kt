@@ -29,7 +29,11 @@ class DraftCompanionApp : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         if (!OpenCVLoader.initLocal()) Log.e("DraftCompanionApp", "OpenCV failed to initialise")
-        appScope.launch { runCatching { graph.seeder.seedIfNeeded() }.onFailure { Log.e("DraftCompanionApp", "seed failed", it) } }
+        appScope.launch {
+            runCatching { graph.seeder.seedIfNeeded() }
+                .onSuccess { seeded -> if (seeded) graph.repository.dataChanged.tryEmit(Unit) }
+                .onFailure { Log.e("DraftCompanionApp", "seed failed", it) }
+        }
         DataUpdateWorker.schedulePeriodic(this)
         // Also check on every launch when the last check is older than a day (covers phones that
         // paused background work while the app sat unused for months).

@@ -116,7 +116,10 @@ fun HeroDetailScreen(vm: HeroesViewModel, heroId: String, onBack: () -> Unit, on
             )
         },
     ) { pad ->
-        if (hero == null || profile == null) { Text("Loading…", Modifier.padding(pad).padding(16.dp)); return@Scaffold }
+        if (hero == null || profile == null) {
+            Text(if (index == null) "Loading hero data…" else "No data for this hero yet. Check for updates in Settings.", Modifier.padding(pad).padding(16.dp))
+            return@Scaffold
+        }
         Column(Modifier.padding(pad).fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 HeroAvatar(hero.id, hero.name, size = 72.dp)

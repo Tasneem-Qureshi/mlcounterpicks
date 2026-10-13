@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -37,7 +39,11 @@ class HeroesViewModel(private val graph: AppGraph) : ViewModel() {
     private val index = MutableStateFlow<MatchupIndex?>(null)
 
     init {
-        viewModelScope.launch { index.value = graph.repository.buildIndex() }
+        // Rebuild the matchup index whenever the hero table changes: first seed on a fresh install,
+        // the weekly data update, or a re-import.  (Building once at start raced the initial seed.)
+        viewModelScope.launch {
+            graph.repository.heroes.map { it.size }.distinctUntilChanged().collect { index.value = graph.repository.buildIndex() }
+        }
         viewModelScope.launch { graph.repository.dataChanged.collect { index.value = graph.repository.buildIndex() } }
     }
 
