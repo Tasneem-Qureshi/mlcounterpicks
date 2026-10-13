@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "data_version": 1791806334,
-  "generated_at": "2026-10-12T11:58:54+00:00",
-  "hero_count": 133,
+  "data_version": 1791915723,
+  "generated_at": "2026-10-13T18:22:03+00:00",
+  "hero_count": 134,
   "matchups": {
     "url": "https://raw.githubusercontent.com/Tasneem-Qureshi/mlcounterpicks/data/matchups.json",
-    "sha256": "86b50c3c46df8b3baca901ca2beac59c8608e3f9857754c45dca2f1bcf953c6f",
-    "bytes": 1198897
+    "sha256": "5e01272a87a9406adb14fa4b1361f6b5a3e9bb9708da3418deb0899e9bd03bb9",
+    "bytes": 1222954
   },
   "templates": {
     "url": "https://raw.githubusercontent.com/Tasneem-Qureshi/mlcounterpicks/data/templates.zip",
-    "sha256": "2425035795b0df5868f07db19a2757cd6467a769dd516fe063a7e83d4a6d3db0",
-    "bytes": 4831545
+    "sha256": "331acbffd58f9012aa4b6e73852da6199f2a0513b7cfc28310a406349af329d4",
+    "bytes": 7099071
   }
 }
