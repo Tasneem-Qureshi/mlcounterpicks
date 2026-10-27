@@ -1,58 +1,106 @@
-# Re-scrapes hero / counter data weekly and publishes it to the `data` branch.
+# Re-scrapes hero / counter data and publishes it to the `data` branch twice a week.
 # The Android app polls  https://raw.githubusercontent.com/<owner>/<repo>/data/manifest.json
-# (set DATA_MANIFEST_URL in android/app/build.gradle.kts) and self-updates when data_version grows.
+# and self-updates when data_version grows.  Only GitHub-owned actions are used on purpose:
+# a third-party action whose repo got blocked killed every run between Oct 19 and Oct 26, 2026.
 name: scrape-and-publish
 
 on:
   schedule:
-    - cron: "17 3 * * 1"   # Mondays 03:17 UTC
+    - cron: "17 3 * * 1"   # Mondays 03:17 UTC   (main run)
+    - cron: "17 3 * * 4"   # Thursdays 03:17 UTC (backup: covers a failed Monday within 3 days)
   workflow_dispatch:
+    inputs:
+      test_alert:
+        description: "Fail on purpose to test the failure alert"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
+  issues: write
+
+concurrency:
+  group: scrape-and-publish
+  cancel-in-progress: false
 
 jobs:
   scrape:
     runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      DATA_URL: https://raw.githubusercontent.com/${{ github.repository }}/data
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      # GitHub disables cron workflows after 60 days without commits on the default branch.
-      # Push an empty commit when main has been quiet for 45 days (no third-party action needed).
+      # GitHub disables scheduled workflows after 60 days without repository activity.
+      # The weekly data push already counts as activity; this empty commit on main is a second safety net.
       - name: Keep the schedule alive
         run: |
           last=$(git log -1 --format=%ct origin/main)
           if [ $(( ($(date +%s) - last) / 86400 )) -ge 45 ]; then
             git config user.name "mlbb-scraper-bot"; git config user.email "bot@users.noreply.github.com"
-            git commit --allow-empty -m "chore: keep weekly data refresh scheduled"
+            git commit --allow-empty -m "chore: keep data refresh scheduled"
             git push origin HEAD:main
           fi
       - uses: actions/setup-python@v6
         with: { python-version: "3.12" }
       - run: pip install -r scraper/requirements.txt
-      - name: Scrape
+      - name: Scrape (retries once if a source is flaky)
         working-directory: scraper
         run: |
-          python scraper.py --out out \
-            --base-url "https://raw.githubusercontent.com/${{ github.repository }}/data"
-      - name: Recognition self-test (every hero's default art must be recognised)
+          python scraper.py --out out --base-url "$DATA_URL" || { echo "retrying in 2 min"; sleep 120; python scraper.py --out out --base-url "$DATA_URL"; }
+      - name: Recognition self-test
         working-directory: scraper
         continue-on-error: true
         run: python vision_selftest.py --json out/selftest.json
+      - name: Guard against publishing broken data
+        working-directory: scraper
+        run: python publish_guard.py out "$DATA_URL"
+      - name: Test alert (manual runs only)
+        if: ${{ inputs.test_alert }}
+        run: echo "Failing on purpose to test the alert"; exit 1
       - name: Publish to data branch
         run: |
           set -e
           git config user.name "mlbb-scraper-bot"
           git config user.email "bot@users.noreply.github.com"
-          mkdir -p /tmp/publish
+          rm -rf /tmp/publish && mkdir -p /tmp/publish
           cp scraper/out/manifest.json scraper/out/matchups.json scraper/out/templates.zip /tmp/publish/
           cp scraper/out/selftest.json /tmp/publish/ 2>/dev/null || true
           git fetch origin data || true
           git checkout -B data origin/data 2>/dev/null || git checkout --orphan data
-          cp *.apk /tmp/publish/ 2>/dev/null || true      # keep published APKs
+          # keep everything that is not regenerated here (published APKs, test frames, …)
+          cp *.apk /tmp/publish/ 2>/dev/null || true
+          [ -d testdata ] && cp -r testdata /tmp/publish/ || true
           git rm -rfq . || true
-          cp /tmp/publish/* .
-          git add manifest.json matchups.json templates.zip selftest.json *.apk 2>/dev/null || git add manifest.json matchups.json templates.zip
+          cp -r /tmp/publish/. .
+          git add -A
           git commit -m "data: $(date -u +%F) $(python -c "import json;print(json.load(open('manifest.json'))['hero_count'])") heroes" || echo "no changes"
           git push origin data --force
+      # A failed run opens (or comments on) one issue; GitHub notifies the repo owner by email and in the app.
+      - name: Alert on failure
+        if: ${{ failure() }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          api=https://api.github.com/repos/${{ github.repository }}
+          num=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "$api/issues?state=open&labels=data-refresh-failed" | python -c "import sys,json; d=json.load(sys.stdin); print(d[0]['number'] if d else '')")
+          body="The data refresh failed on $(date -u +'%F %H:%M UTC'). Phones keep the last good dataset until a run succeeds. Log: $RUN_URL"
+          if [ -n "$num" ]; then
+            curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" "$api/issues/$num/comments" -d "$(python -c "import json,sys; print(json.dumps({'body': sys.argv[1]}))" "$body")" > /dev/null
+          else
+            curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" "$api/issues" -d "$(python -c "import json,sys; print(json.dumps({'title': 'Weekly hero data refresh failed', 'body': sys.argv[1], 'labels': ['data-refresh-failed']}))" "$body")" > /dev/null
+          fi
+      # Close the alert automatically once a run succeeds again.
+      - name: Close alert on success
+        if: ${{ success() }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          api=https://api.github.com/repos/${{ github.repository }}
+          for n in $(curl -s -H "Authorization: Bearer $GH_TOKEN" "$api/issues?state=open&labels=data-refresh-failed" | python -c "import sys,json; print(' '.join(str(i['number']) for i in json.load(sys.stdin)))"); do
+            curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" "$api/issues/$n/comments" -d '{"body":"Fixed: the latest run published fresh data."}' > /dev/null
+            curl -s -X PATCH -H "Authorization: Bearer $GH_TOKEN" "$api/issues/$n" -d '{"state":"closed"}' > /dev/null
+          done
