@@ -57,6 +57,10 @@ jobs:
       - name: Guard against publishing broken data
         working-directory: scraper
         run: python publish_guard.py out "$DATA_URL"
+      - name: Summarise changes (before publishing, so it can compare with the live data)
+        working-directory: scraper
+        continue-on-error: true
+        run: python run_summary.py out "$DATA_URL" > out/summary.md && cat out/summary.md
       - name: Test alert (manual runs only)
         if: ${{ inputs.test_alert }}
         run: echo "Failing on purpose to test the alert"; exit 1
@@ -93,6 +97,26 @@ jobs:
           else
             curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" "$api/issues" -d "$(python -c "import json,sys; print(json.dumps({'title': 'Weekly hero data refresh failed', 'body': sys.argv[1], 'labels': ['data-refresh-failed']}))" "$body")" > /dev/null
           fi
+      # Every finished run (success or failure) posts a report to one "refresh log" issue.
+      # GitHub emails the repo owner for each new comment, so every run arrives as an email.
+      - name: Email run report
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          STATUS: ${{ job.status }}
+          TRIGGER: ${{ github.event_name }}
+        run: |
+          api=https://api.github.com/repos/${{ github.repository }}
+          python scraper/run_report.py > /tmp/body.json
+          num=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "$api/issues?state=open&labels=data-refresh-log" | python -c "import sys,json; d=json.load(sys.stdin); print(d[0]['number'] if d else '')")
+          if [ -z "$num" ]; then
+            num=$(curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" "$api/issues" \
+              -d '{"title":"Hero data refresh log","body":"Every scheduled or manual refresh posts its report here as a comment, so each run reaches you by email. Keep this issue open.","labels":["data-refresh-log"]}' \
+              | python -c "import sys,json; print(json.load(sys.stdin)['number'])")
+          fi
+          curl -s -X POST -H "Authorization: Bearer $GH_TOKEN" "$api/issues/$num/comments" -d @/tmp/body.json > /dev/null
+          echo "report posted to issue #$num"
       # Close the alert automatically once a run succeeds again.
       - name: Close alert on success
         if: ${{ success() }}
