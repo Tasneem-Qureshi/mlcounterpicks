@@ -16,4 +16,7 @@ except OSError:
     summary = ""
 body = head + (f"\n\n{summary}" if summary and ok else "")
 body += f"\n\nTrigger: {os.environ.get('TRIGGER', '?')} · [run log]({os.environ.get('RUN_URL', '')})"
+# @mention the owner: mentions always notify (email) even when the owner is not watching the repo
+if os.environ.get("OWNER"):
+    body = f"@{os.environ['OWNER']} " + body
 print(json.dumps({"body": body}))
