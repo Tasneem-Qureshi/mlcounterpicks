@@ -64,24 +64,27 @@ jobs:
       - name: Test alert (manual runs only)
         if: ${{ inputs.test_alert }}
         run: echo "Failing on purpose to test the alert"; exit 1
+      # Publishes from a separate worktree so the main checkout (scripts, summary) stays intact for the
+      # report step, and only the listed files can ever land on the data branch.  The branch is kept as
+      # ONE snapshot commit (force-pushed) so it never accumulates years of 7 MB template archives.
       - name: Publish to data branch
         run: |
           set -e
-          git config user.name "mlbb-scraper-bot"
-          git config user.email "bot@users.noreply.github.com"
-          rm -rf /tmp/publish && mkdir -p /tmp/publish
-          cp scraper/out/manifest.json scraper/out/matchups.json scraper/out/templates.zip /tmp/publish/
-          cp scraper/out/selftest.json /tmp/publish/ 2>/dev/null || true
-          git fetch origin data || true
-          git checkout -B data origin/data 2>/dev/null || git checkout --orphan data
-          # keep everything that is not regenerated here (published APKs, test frames, …)
-          cp *.apk /tmp/publish/ 2>/dev/null || true
-          [ -d testdata ] && cp -r testdata /tmp/publish/ || true
-          git rm -rfq . || true
-          cp -r /tmp/publish/. .
+          git config --global user.name "mlbb-scraper-bot"
+          git config --global user.email "bot@users.noreply.github.com"
+          rm -rf /tmp/data
+          if git fetch origin data; then git worktree add --detach /tmp/data origin/data; else git worktree add --detach /tmp/data HEAD; fi
+          cd /tmp/data
+          git checkout -q --orphan publish
+          git rm -rfq --cached . > /dev/null 2>&1 || true
+          # keep published APKs and test frames from the previous snapshot; drop everything else
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name '*.apk' ! -name testdata -exec rm -rf {} +
+          cp "$GITHUB_WORKSPACE"/scraper/out/manifest.json "$GITHUB_WORKSPACE"/scraper/out/matchups.json "$GITHUB_WORKSPACE"/scraper/out/templates.zip .
+          cp "$GITHUB_WORKSPACE"/scraper/out/selftest.json . 2>/dev/null || true
           git add -A
-          git commit -m "data: $(date -u +%F) $(python -c "import json;print(json.load(open('manifest.json'))['hero_count'])") heroes" || echo "no changes"
-          git push origin data --force
+          git commit -q -m "data: $(date -u +%F) $(python -c "import json;print(json.load(open('manifest.json'))['hero_count'])") heroes"
+          git push -f origin publish:data
+          echo "published files:"; git ls-files | sed 's|/.*||' | sort | uniq -c
       # A failed run opens (or comments on) one issue; GitHub notifies the repo owner by email and in the app.
       - name: Alert on failure
         if: ${{ failure() }}
