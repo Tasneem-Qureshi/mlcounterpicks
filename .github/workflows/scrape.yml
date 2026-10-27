@@ -16,10 +16,18 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
-      # GitHub disables cron workflows after 60 days without commits; this keeps the schedule alive.
-      - uses: gautamkrishnar/keepalive-workflow@v2
         with:
-          time_elapsed: 45
+          fetch-depth: 0
+      # GitHub disables cron workflows after 60 days without commits on the default branch.
+      # Push an empty commit when main has been quiet for 45 days (no third-party action needed).
+      - name: Keep the schedule alive
+        run: |
+          last=$(git log -1 --format=%ct origin/main)
+          if [ $(( ($(date +%s) - last) / 86400 )) -ge 45 ]; then
+            git config user.name "mlbb-scraper-bot"; git config user.email "bot@users.noreply.github.com"
+            git commit --allow-empty -m "chore: keep weekly data refresh scheduled"
+            git push origin HEAD:main
+          fi
       - uses: actions/setup-python@v6
         with: { python-version: "3.12" }
       - run: pip install -r scraper/requirements.txt
