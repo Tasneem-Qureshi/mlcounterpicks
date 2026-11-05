@@ -15,8 +15,8 @@ What the detector reads from each (verified with `scraper/vision_lab.py`):
 
 ## Second video (different player, Indonesian UI, 854×394, facecam overlay)
 YouTube `x8A6K9Sx-i8`, draft 0:25–2:30. Detected at full lock (130s): allies Yin, Valir, Alpha, Granger,
-Minotaur · enemies Eudora, Miya, Suyou, Saber→Gatotkaca (late swap) · bans Helcurt ×2, Layla, Fredrinn, Aamon, Nana.
-One enemy card (blonde hero, Player 3) is not recognised at this low resolution.
+Minotaur · enemies Eudora, Miya, Nolan, Suyou, Saber→Gatotkaca (late swap) · bans Helcurt ×2, Layla, Fredrinn, Aamon, Nana, Paquito.
+(Nolan, Player 3, was unrecognised until v1.8.2 fixed the pre-filter.)
 
 | File | Draft moment |
 |---|---|
