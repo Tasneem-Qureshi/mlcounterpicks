@@ -46,6 +46,8 @@ class VisionDetector private constructor(
         /** coarse pass runs at this fraction of workHeight */
         val coarseFactor: Double = 0.5,
         val shortlist: Int = 16,
+        /** extra candidates refined when the first tier yields no accepted match (staged deepening) */
+        val deepen: Int = 24,
         /** shortlisted heroes beyond this rank are refined with their best coarse art only */
         val fullRefine: Int = 4,
         val acceptScore: Float = 0.74f,
@@ -164,25 +166,31 @@ class VisionDetector private constructor(
         clahe.apply(work, work)
         Imgproc.resize(work, half, Size(work.cols() * config.coarseFactor, work.rows() * config.coarseFactor), 0.0, 0.0, Imgproc.INTER_AREA)
 
-        // coarse pass: every art of every hero at reduced resolution → shortlist + best art per hero
+        // coarse pass: every art of every hero at reduced resolution (both face patches) → ranking + best art per hero
         class Coarse(val t: HeroTemplate, val score: Float, val artIndex: Int)
-        val coarse = templates.map { t ->
+        val order = templates.map { t ->
             var bs = -1f; var bi = 0
             t.arts.forEachIndexed { i, a -> val s = a.coarse.maxOf { score(half, it) }; if (s > bs) { bs = s; bi = i } }
             Coarse(t, bs, bi)
-        }.sortedByDescending { it.score }.take(config.shortlist)
+        }.sortedByDescending { it.score }
 
         var best: HeroTemplate? = null; var bestScore = -1f; var second = -1f
-        coarse.forEachIndexed { rank, c ->
-            val t = c.t
-            val arts = if (rank < config.fullRefine) t.arts else listOf(t.arts[c.artIndex])
-            val s = arts.maxOf { a -> fineSizes.maxOf { px -> score(work, a.fine(px, clahe)) } }
-            if (s > bestScore) { second = bestScore; bestScore = s; best = t } else if (s > second) second = s
+        fun refine(from: Int, to: Int) {
+            for (rank in from until minOf(to, order.size)) {
+                val c = order[rank]; val t = c.t
+                val arts = if (rank < config.fullRefine) t.arts else listOf(t.arts[c.artIndex])
+                val s = arts.maxOf { a -> fineSizes.maxOf { px -> score(work, a.fine(px, clahe)) } }
+                if (s > bestScore) { second = bestScore; bestScore = s; best = t } else if (s > second) second = s
+            }
         }
+        fun accepted() = best != null && bestScore >= config.acceptScore && (bestScore >= config.sureScore || bestScore - second >= config.acceptMargin)
+        // staged deepening: the first tier covers almost every card; the second tier catches heroes the
+        // pre-filter ranks low (worth the cost only when nothing was accepted, and results are cached per slot)
+        refine(0, config.shortlist)
+        if (!accepted()) refine(config.shortlist, config.shortlist + config.deepen)
         val b = best ?: return null
         lastCandidate = b.heroId to bestScore
-        val sure = bestScore >= config.sureScore
-        if (bestScore < config.acceptScore || (!sure && bestScore - second < config.acceptMargin)) return null
+        if (!accepted()) return null
         return Match(b.heroId, bestScore)
     }
 
@@ -265,9 +273,13 @@ class VisionDetector private constructor(
                 val face = Mat(); m.submat(c, n - c, c, n - c).copyTo(face)        // inner 64 %: whole face, no black corners
                 val small = Mat(); m.submat(c2, n - c2, c2, n - c2).copyTo(small)  // inner 45 %: eyes to mouth
                 m.release()
-                val coarse = config.coarseScales.map { sc ->
-                    val px = (config.workHeight * config.coarseFactor * sc).toInt().coerceAtLeast(8)
-                    val out = Mat(); Imgproc.resize(face, out, Size(px.toDouble(), px.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA); clahe.apply(out, out); out
+                // pre-filter templates from BOTH patches: with the whole face alone, heroes whose face sits
+                // off-centre (Barats, Lukas, Novaria …) ranked ~40th on zoomed cards and were never refined
+                val coarse = listOf(face, small).flatMap { src ->
+                    config.coarseScales.map { sc ->
+                        val px = (config.workHeight * config.coarseFactor * sc).toInt().coerceAtLeast(8)
+                        val out = Mat(); Imgproc.resize(src, out, Size(px.toDouble(), px.toDouble()), 0.0, 0.0, Imgproc.INTER_AREA); clahe.apply(out, out); out
+                    }
                 }
                 return ArtTemplate(face, small, coarse)
             }

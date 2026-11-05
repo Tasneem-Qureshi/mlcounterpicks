@@ -18,6 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 WORK_H, FINE, COARSE, COARSE_F, SHORTLIST, ACCEPT, MARGIN, SURE = 80, tuple(0.35 + 0.05 * i for i in range(13)), (0.40, 0.55, 0.70), 0.5, 16, 0.74, 0.08, 0.80
 INNERS = (0.64, 0.45)   # face patches: whole face, and eyes-to-mouth for faces cut off by the card edge
 SMALL_PATCH_MIN = 0.55
+DEEPEN = 24             # extra candidates refined when the first tier yields no accepted match
 clahe = cv2.createCLAHE(2.0, (4, 4))
 
 
@@ -44,7 +45,9 @@ def load_templates(tdir):
             # the small eyes-to-mouth patch only at large sizes: tiny templates match the mini
             # "recommended hero" icons shown in an empty slot
             fine = [sc(max(12, int(WORK_H * s)), patch(inner)) for inner in INNERS for s in FINE if inner >= 0.6 or s >= SMALL_PATCH_MIN]
-            coarse = [sc(max(8, int(WORK_H * COARSE_F * s)), patch(INNERS[0])) for s in COARSE]
+            # pre-filter uses BOTH patches: the whole-face one alone ranked some heroes (Barats, Lukas,
+            # Novaria …) as low as 40th on zoomed/cropped cards and they never reached the fine pass
+            coarse = [sc(max(8, int(WORK_H * COARSE_F * s)), patch(inner)) for inner in INNERS for s in COARSE]
             arts.append((fine, coarse))
         if arts: out.append((hid, arts))
     return out
@@ -65,10 +68,15 @@ def identify(crop, templates, try_mirror=False):
     s = WORK_H / crop.shape[0]
     work = clahe.apply(cv2.resize(crop, (int(crop.shape[1] * s), WORK_H), interpolation=cv2.INTER_AREA if s < 1 else cv2.INTER_LINEAR))
     half = cv2.resize(work, (int(work.shape[1] * COARSE_F), int(work.shape[0] * COARSE_F)), interpolation=cv2.INTER_AREA)
-    coarse = sorted(templates, key=lambda t: -max(score(half, c) for a in t[1] for c in a[1]))[:SHORTLIST]
-    ranked = sorted(((max(score(work, f) for a in t[1] for f in a[0]), t[0]) for t in coarse), reverse=True)
-    best, second = ranked[0], ranked[1]
-    ok = best[0] >= ACCEPT and (best[0] >= SURE or best[0] - second[0] >= MARGIN)
+    order = sorted(templates, key=lambda t: -max(score(half, c) for a in t[1] for c in a[1]))
+    ranked = []
+    # staged deepening: refine the top SHORTLIST; if nothing is accepted, refine the next tier too
+    for lo, hi in ((0, SHORTLIST), (SHORTLIST, SHORTLIST + DEEPEN)):
+        ranked += [(max(score(work, f) for a in t[1] for f in a[0]), t[0]) for t in order[lo:hi]]
+        ranked.sort(reverse=True)
+        best, second = ranked[0], ranked[1]
+        ok = best[0] >= ACCEPT and (best[0] >= SURE or best[0] - second[0] >= MARGIN)
+        if ok: break
     return (best[1] if ok else None), ranked[:3]
 
 
