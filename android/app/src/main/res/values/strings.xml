@@ -14,4 +14,6 @@
     <string name="notif_overlay_only_text">Overlay only. Tap to show the card; use “Screen detection” to read picks automatically.</string>
     <string name="notif_alert_title">Mobile Legends is open</string>
     <string name="notif_alert_text">Tap to show the draft overlay.</string>
+    <string name="tile_open">Open</string>
+    <string name="tile_running">Running</string>
 </resources>

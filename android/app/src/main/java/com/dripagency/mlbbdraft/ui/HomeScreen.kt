@@ -57,6 +57,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.dripagency.mlbbdraft.DraftCompanionApp
 import com.dripagency.mlbbdraft.capture.ForegroundAppWatcher
+import com.dripagency.mlbbdraft.QuickTileService
 import com.dripagency.mlbbdraft.capture.ScreenCaptureService
 import com.dripagency.mlbbdraft.capture.ScreenCaptureService.Mode
 import com.dripagency.mlbbdraft.data.model.Role
@@ -126,6 +127,14 @@ fun HomeScreen(onOpenMastery: () -> Unit) {
                 }
                 Hint("Detection turns off by itself after the draft.")
                 OutlinedButton(onClick = onOpenMastery, modifier = Modifier.fillMaxWidth()) { Text("Mastered heroes (${ui.masteredCount}) →") }
+                if (Build.VERSION.SDK_INT >= 33) {
+                    var tileMsg by remember { mutableStateOf<String?>(null) }
+                    OutlinedButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = { QuickTileService.requestAdd(context) { ok -> tileMsg = if (ok) "Tile added" else "Not added" } },
+                    ) { Text("Add Quick Settings tile") }
+                    tileMsg?.let { Hint(it) }
+                }
             }
 
             Section("Permissions") {
@@ -193,7 +202,7 @@ private fun Status(message: String, at: Long, error: Boolean) = Text(
 
 @Composable
 fun Section(title: String, content: @Composable () -> Unit) {
-    Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+    Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer)) {
         Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             content()

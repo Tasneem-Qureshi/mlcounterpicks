@@ -60,6 +60,19 @@
                 android:value="Floating draft-assistant overlay shown while the game is in the foreground" />
         </service>
 
+        <!-- Quick Settings tile: opens the app from the notification shade -->
+        <service
+            android:name=".QuickTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_overlay"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE" android:value="false" />
+        </service>
+
         <!-- WorkManager: on-demand initialisation is configured in DraftCompanionApp -->
         <provider
             android:name="androidx.startup.InitializationProvider"

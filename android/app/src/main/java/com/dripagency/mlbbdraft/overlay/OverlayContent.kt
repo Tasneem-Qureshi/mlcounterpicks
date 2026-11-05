@@ -69,7 +69,7 @@ import com.dripagency.mlbbdraft.ui.HeroAvatar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 
-private val CardBg = Color(0xEE0E131C)
+private val CardBg = Color(0xF2000000)
 private val Accent = Color(0xFF59C3FF)
 private val Gold = Color(0xFFFFC95C)
 private val Warn = Color(0xFFFF8A65)
