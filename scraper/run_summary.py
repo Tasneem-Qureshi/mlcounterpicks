@@ -39,6 +39,28 @@ def main(out_dir, base_url):
                      + (f" (needs picker: {', '.join(real)})" if real else ""))
     except Exception:
         lines.append("**Recognition self-test:** not run")
+    try:
+        rs = json.load(open(f"{out_dir}/ressweep.json"))
+        fail = rs["synthetic_failing_by_card_h"]
+        heights = sorted((int(h) for h in fail), reverse=True)
+        clean = [h for h in heights if not fail[str(h)]]
+        floor = min(clean) if clean else None
+        label = lambda h: f"{h} px cards ≈ {int(h / 0.136)} px screen height"
+        if floor is not None:
+            lines.append(f"**Low-resolution check:** every hero recognised down to {label(floor)}"
+                         + (" (covers Samsung HD+ / 50 % resolution)" if floor <= 56 else " (⚠ does NOT cover HD+ 50 % resolution)"))
+        else:
+            lines.append("**Low-resolution check:** ⚠ heroes failing at every tested size")
+        worst = [(h, fail[str(h)]) for h in heights if fail[str(h)]]
+        if worst:
+            h, names = worst[0]
+            lines.append(f"**First to drop out** (at {h} px): {', '.join(names[:10])}{' …' if len(names) > 10 else ''}")
+        real = rs.get("real") or {}
+        if real:
+            lost = sorted({f"{f}@{h}:{x}" for f, r in real.items() for h, sw in r["sweep"].items() for x in sw["lost"] if int(h) >= 394})
+            lines.append("**Real frames downscaled to 394 px:** " + ("all detections kept" if not lost else f"lost {len(lost)} ({', '.join(lost[:6])})"))
+    except Exception:
+        lines.append("**Low-resolution check:** not run")
     print("\n".join("- " + l for l in lines))
 
 

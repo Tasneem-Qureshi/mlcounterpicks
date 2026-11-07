@@ -26,7 +26,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 120
     env:
       DATA_URL: https://raw.githubusercontent.com/${{ github.repository }}/data
     steps:
@@ -54,6 +54,12 @@ jobs:
         working-directory: scraper
         continue-on-error: true
         run: python vision_selftest.py --json out/selftest.json
+      # Low-resolution sweep: every hero's card at the pixel sizes a Samsung HD+ ("50 %") screen and
+      # smaller would give. Runs every refresh, so a new hero's images are checked the week they land.
+      - name: Low-resolution recognition sweep
+        working-directory: scraper
+        continue-on-error: true
+        run: python vision_ressweep.py --ci --json out/ressweep.json
       - name: Guard against publishing broken data
         working-directory: scraper
         run: python publish_guard.py out "$DATA_URL"
@@ -80,7 +86,7 @@ jobs:
           # keep published APKs and test frames from the previous snapshot; drop everything else
           find . -mindepth 1 -maxdepth 1 ! -name .git ! -name '*.apk' ! -name testdata -exec rm -rf {} +
           cp "$GITHUB_WORKSPACE"/scraper/out/manifest.json "$GITHUB_WORKSPACE"/scraper/out/matchups.json "$GITHUB_WORKSPACE"/scraper/out/templates.zip .
-          cp "$GITHUB_WORKSPACE"/scraper/out/selftest.json . 2>/dev/null || true
+          cp "$GITHUB_WORKSPACE"/scraper/out/selftest.json "$GITHUB_WORKSPACE"/scraper/out/ressweep.json . 2>/dev/null || true
           git add -A
           git commit -q -m "data: $(date -u +%F) $(python -c "import json;print(json.load(open('manifest.json'))['hero_count'])") heroes"
           git push -f origin publish:data
