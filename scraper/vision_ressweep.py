@@ -12,10 +12,10 @@ survives at the card's native pixel height. This sweeps card heights 80 → 24 p
 """
 import argparse, glob, json, os, sys
 import cv2, numpy as np
-sys.argv_backup = sys.argv; sys.argv = [sys.argv[0]]
+_argv = sys.argv; sys.argv = [sys.argv[0]]   # silence the imported modules' own argparse
 import vision_lab as L
 import vision_selftest as S
-sys.argv = sys.argv_backup
+sys.argv = _argv
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 CARD_H = (80, 64, 56, 48, 40, 32)
@@ -35,8 +35,9 @@ def shrink(card, h):
 
 
 _G = {}
-def _init(tdir):
-    cv2.setNumThreads(1)
+def _init(tdir, card_h):
+    global CARD_H
+    cv2.setNumThreads(1); CARD_H = card_h       # spawned workers re-import this module: pass the chosen sizes in
     _G["templates"] = L.load_templates(tdir); _G["tdir"] = tdir
 
 
@@ -59,7 +60,7 @@ def _one_hero(item):
 def synthetic(index, tdir, only=None, workers=None):
     import multiprocessing as mp
     items = [(h, e) for h, e in sorted(index.items()) if not only or h == only]
-    with mp.get_context("spawn").Pool(workers or max(1, os.cpu_count() - 1), initializer=_init, initargs=(tdir,)) as pool:
+    with mp.get_context("spawn").Pool(workers or max(1, os.cpu_count() - 1), initializer=_init, initargs=(tdir, CARD_H)) as pool:
         done = 0; out = {}
         for hid, per_h in pool.imap_unordered(_one_hero, items):
             out[hid] = per_h; done += 1

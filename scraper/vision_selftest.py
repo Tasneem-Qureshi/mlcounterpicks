@@ -11,9 +11,9 @@ Exit code 0 even on failures (the weekly job reports them; detection falls back 
 """
 import argparse, json, os, sys
 import cv2, numpy as np
-sys.argv_backup = sys.argv; sys.argv = [sys.argv[0]]
+_argv = sys.argv; sys.argv = [sys.argv[0]]   # silence the imported modules' own argparse
 import vision_lab as L
-sys.argv = sys.argv_backup
+sys.argv = _argv
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
