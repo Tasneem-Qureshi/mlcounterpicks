@@ -54,7 +54,7 @@ def main(out_dir, base_url):
         worst = [(h, fail[str(h)]) for h in heights if fail[str(h)]]
         if worst:
             h, names = worst[0]
-            lines.append(f"**First to drop out** (at {h} px): {', '.join(names[:10])}{' …' if len(names) > 10 else ''}")
+            lines.append(f"**Least margin** (still fine on phones; first to miss at {h} px, below any phone): {', '.join(names[:10])}{' …' if len(names) > 10 else ''}")
         real = rs.get("real") or {}
         if real:
             lost = sorted({f"{f}@{h}:{x}" for f, r in real.items() for h, sw in r["sweep"].items() for x in sw["lost"] if int(h) >= 394})
