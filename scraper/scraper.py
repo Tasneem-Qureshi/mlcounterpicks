@@ -778,6 +778,51 @@ def apply_overrides(heroes: dict[str, Hero], overrides: dict):
             hero.sources.append("overrides")
 
 
+# How much one source's claim is worth when sources disagree.  mlbbhub / mlbb.io publish ranked
+# win-rate deltas; mlcounter is community voting and has listed the same pair both ways (e.g.
+# "Dyrroth is weak against Esmeralda" AND "Esmeralda is weak against Dyrroth").
+SOURCE_WEIGHT = {"overrides": 10.0, "mlbbhub": 1.0, "mlbbio": 1.0, "mlcounter": 0.5}
+CONF_WEIGHT = {"curated": 10.0, "ranked": 1.0, "kit": 0.6, "community": 0.5, "derived": 0.0}
+
+
+def _evidence(e: Edge) -> float:
+    w = sum(SOURCE_WEIGHT.get(s, 0.5) for s in e.sources) or CONF_WEIGHT.get(e.confidence, 0.5)
+    return w * e.edge_score
+
+
+def resolve_conflicts(heroes: dict[str, Hero], min_ratio: float = 1.5) -> dict:
+    """A pair must point one way.  For every X/Y claimed in both directions, weigh the evidence
+    ("Y counters X" = X.counters[Y] + Y.strong_against[X]) and keep only the better-supported side;
+    when the two sides are within `min_ratio` of each other the matchup is even → drop both.
+    Runs after overrides (curated edges carry weight 10 and always win) and before symmetrise()."""
+    def ev(x: str, y: str) -> float:          # evidence that y beats x
+        hx, hy = heroes[x], heroes[y]
+        return sum(_evidence(e) for e in hx.counters if e.hero_id == y) + \
+               sum(_evidence(e) for e in hy.strong_against if e.hero_id == x)
+    def drop(x: str, y: str):                 # remove the claim "y beats x"
+        heroes[x].counters[:] = [e for e in heroes[x].counters if e.hero_id != y]
+        heroes[y].strong_against[:] = [e for e in heroes[y].strong_against if e.hero_id != x]
+    claims = {(x, e.hero_id) for x, h in heroes.items() for e in h.counters if e.hero_id in heroes}
+    claims |= {(e.hero_id, y) for y, h in heroes.items() for e in h.strong_against if e.hero_id in heroes}
+    stats = {"conflicts": 0, "resolved": [], "even": []}
+    for x, y in sorted(claims):
+        if x >= y or (y, x) not in claims:
+            continue
+        a, b = ev(x, y), ev(y, x)             # a: y beats x · b: x beats y
+        if a == 0 or b == 0:
+            continue
+        stats["conflicts"] += 1
+        if max(a, b) / min(a, b) >= min_ratio:
+            if a > b:
+                drop(y, x); stats["resolved"].append(f"{heroes[y].name} > {heroes[x].name}")
+            else:
+                drop(x, y); stats["resolved"].append(f"{heroes[x].name} > {heroes[y].name}")
+        else:
+            drop(x, y); drop(y, x); stats["even"].append(f"{heroes[x].name} / {heroes[y].name}")
+    log.info("counter conflicts: %d (%d resolved by evidence, %d even → dropped)", stats["conflicts"], len(stats["resolved"]), len(stats["even"]))
+    return stats
+
+
 def symmetrise(heroes: dict[str, Hero]):
     for b in heroes.values():
         for e in b.counters:
@@ -822,6 +867,9 @@ def validate(doc: dict):
     assert doc["schema_version"] == SCHEMA_VERSION
     ids = {h["hero_id"] for h in doc["heroes"]}
     assert len(ids) == len(doc["heroes"]), "duplicate hero_id"
+    pairs = {(h["hero_id"], e["hero_id"]) for h in doc["heroes"] for e in h["counters"]}
+    both = sorted((x, y) for x, y in pairs if (y, x) in pairs and x < y)
+    assert not both, f"counter data points both ways for {both[:5]}"
     for h in doc["heroes"]:
         assert re.fullmatch(r"[a-z0-9_]+", h["hero_id"]), h["hero_id"]
         assert h["primary_role"] in ROLES, (h["hero_id"], h["primary_role"])
@@ -989,8 +1037,10 @@ async def run(args) -> int:
         if ov.exists():
             apply_overrides(heroes, json.loads(ov.read_text()))
 
+        quality = resolve_conflicts(heroes)
         symmetrise(heroes)
         finalize(heroes, args.max_edges)
+        (out_dir / "quality.json").write_text(json.dumps(quality, indent=1, ensure_ascii=False))
 
         tdir = out_dir / "templates"
         if not args.no_portraits:

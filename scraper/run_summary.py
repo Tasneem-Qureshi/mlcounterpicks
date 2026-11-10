@@ -33,6 +33,13 @@ def main(out_dir, base_url):
     lines.append(f"**Counter edges:** {sum(len(h['counters']) for h in new['heroes'])} · "
                  f"**heroes with tips:** {sum(1 for h in new['heroes'] if h['lane_tips'])}/{len(nh)}")
     try:
+        q = json.load(open(f"{out_dir}/quality.json"))
+        lines.append(f"**Counter conflicts between sources:** {q['conflicts']} · kept the better-supported side for {len(q['resolved'])}"
+                     + (f", dropped {len(q['even'])} even matchups ({', '.join(q['even'][:4])}{' …' if len(q['even']) > 4 else ''})" if q["even"] else "")
+                     + " · no pair points both ways")
+    except Exception:
+        lines.append("**Counter conflicts:** check not run")
+    try:
         st = json.load(open(f"{out_dir}/selftest.json"))
         real = st.get("realistic_failing", [])
         lines.append(f"**Recognition self-test:** {len(nh) - len(real)}/{len(nh)} heroes pass realistic framing"

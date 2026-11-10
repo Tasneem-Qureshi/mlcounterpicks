@@ -86,7 +86,7 @@ jobs:
           # keep published APKs and test frames from the previous snapshot; drop everything else
           find . -mindepth 1 -maxdepth 1 ! -name .git ! -name '*.apk' ! -name testdata -exec rm -rf {} +
           cp "$GITHUB_WORKSPACE"/scraper/out/manifest.json "$GITHUB_WORKSPACE"/scraper/out/matchups.json "$GITHUB_WORKSPACE"/scraper/out/templates.zip .
-          cp "$GITHUB_WORKSPACE"/scraper/out/selftest.json "$GITHUB_WORKSPACE"/scraper/out/ressweep.json . 2>/dev/null || true
+          cp "$GITHUB_WORKSPACE"/scraper/out/selftest.json "$GITHUB_WORKSPACE"/scraper/out/ressweep.json "$GITHUB_WORKSPACE"/scraper/out/quality.json . 2>/dev/null || true
           git add -A
           git commit -q -m "data: $(date -u +%F) $(python -c "import json;print(json.load(open('manifest.json'))['hero_count'])") heroes"
           git push -f origin publish:data
