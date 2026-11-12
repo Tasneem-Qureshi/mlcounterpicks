@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "data_version": 1794481719,
+  "generated_at": "2026-11-12T11:08:39+00:00",
+  "hero_count": 134,
+  "matchups": {
+    "url": "https://raw.githubusercontent.com/Tasneem-Qureshi/mlcounterpicks/data/matchups.json",
+    "sha256": "72757a3d923dc8e10366da43a4c421d402c26eafe3dad21c75becd7ec295a298",
+    "bytes": 1222497
+  },
+  "templates": {
+    "url": "https://raw.githubusercontent.com/Tasneem-Qureshi/mlcounterpicks/data/templates.zip",
+    "sha256": "93b55f237dd77cb17fe42063dffbfd8208703a656b4e40108fd38fcf4ae829af",
+    "bytes": 7120575
+  }
+}

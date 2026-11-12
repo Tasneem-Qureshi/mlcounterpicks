@@ -1,0 +1,406 @@
+{
+ "synthetic_failing_by_card_h": {
+  "80": [],
+  "64": [],
+  "56": [],
+  "48": [
+   "novaria"
+  ],
+  "40": [
+   "nolan",
+   "novaria"
+  ]
+ },
+ "real": {
+  "draft_video1_028s.jpg": {
+   "base": {
+    "ally_slots/1": "vexana",
+    "ally_bans/0": "harley",
+    "ally_bans/1": "estes",
+    "enemy_bans/0": "sun",
+    "enemy_bans/1": "atlas"
+   },
+   "sweep": {
+    "480": {
+     "kept": 5,
+     "of": 5,
+     "lost": [],
+     "new": []
+    },
+    "394": {
+     "kept": 5,
+     "of": 5,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 5,
+     "of": 5,
+     "lost": [],
+     "new": []
+    }
+   }
+  },
+  "draft_video1_045s.jpg": {
+   "base": {
+    "ally_slots/1": "vexana",
+    "ally_slots/2": "johnson",
+    "ally_bans/0": "harley",
+    "ally_bans/1": "estes",
+    "ally_bans/2": "clint",
+    "ally_bans/3": "ixia",
+    "enemy_bans/0": "sun",
+    "enemy_bans/1": "atlas",
+    "enemy_bans/2": "clint",
+    "enemy_bans/3": "kadita"
+   },
+   "sweep": {
+    "480": {
+     "kept": 10,
+     "of": 10,
+     "lost": [],
+     "new": []
+    },
+    "394": {
+     "kept": 10,
+     "of": 10,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 8,
+     "of": 10,
+     "lost": [
+      "ally_slots/2=johnson",
+      "enemy_bans/3=kadita"
+     ],
+     "new": []
+    }
+   }
+  },
+  "draft_video1_062s.jpg": {
+   "base": {
+    "ally_slots/0": "hanabi",
+    "ally_slots/1": "vexana",
+    "ally_slots/4": "gusion",
+    "enemy_slots/0": "saber",
+    "ally_bans/0": "harley",
+    "ally_bans/1": "estes",
+    "ally_bans/2": "clint",
+    "ally_bans/3": "ixia",
+    "enemy_bans/0": "sun",
+    "enemy_bans/1": "atlas",
+    "enemy_bans/2": "clint"
+   },
+   "sweep": {}
+  },
+  "draft_video1_080s.jpg": {
+   "base": {
+    "ally_slots/0": "hanabi",
+    "ally_slots/1": "vexana",
+    "ally_slots/2": "johnson",
+    "ally_slots/4": "gusion",
+    "enemy_slots/0": "saber",
+    "enemy_slots/1": "pharsa",
+    "ally_bans/0": "harley",
+    "ally_bans/1": "estes",
+    "ally_bans/2": "clint",
+    "ally_bans/3": "ixia",
+    "enemy_bans/0": "sun",
+    "enemy_bans/1": "atlas",
+    "enemy_bans/2": "clint"
+   },
+   "sweep": {}
+  },
+  "draft_video1_095s.jpg": {
+   "base": {
+    "ally_slots/0": "hanabi",
+    "ally_slots/1": "vexana",
+    "ally_slots/2": "johnson",
+    "ally_slots/4": "gusion",
+    "enemy_slots/0": "saber",
+    "enemy_slots/1": "pharsa",
+    "enemy_slots/2": "esmeralda",
+    "enemy_slots/3": "franco",
+    "ally_bans/0": "harley",
+    "ally_bans/1": "estes",
+    "ally_bans/2": "clint",
+    "ally_bans/3": "ixia",
+    "enemy_bans/0": "sun",
+    "enemy_bans/1": "atlas",
+    "enemy_bans/2": "clint"
+   },
+   "sweep": {}
+  },
+  "draft_video1_110s.jpg": {
+   "base": {
+    "ally_slots/0": "hanabi",
+    "ally_slots/1": "vexana",
+    "ally_slots/2": "johnson",
+    "ally_slots/4": "gusion",
+    "enemy_slots/0": "saber",
+    "enemy_slots/1": "pharsa",
+    "enemy_slots/2": "esmeralda",
+    "enemy_slots/3": "franco",
+    "enemy_slots/4": "karrie",
+    "ally_bans/0": "harley",
+    "ally_bans/1": "estes",
+    "ally_bans/2": "clint",
+    "ally_bans/3": "ixia",
+    "enemy_bans/0": "sun",
+    "enemy_bans/1": "atlas",
+    "enemy_bans/2": "clint"
+   },
+   "sweep": {}
+  },
+  "draft_video1_121s.jpg": {
+   "base": {
+    "enemy_slots/1": "zetian",
+    "enemy_slots/4": "layla",
+    "ally_bans/0": "harley",
+    "ally_bans/1": "estes",
+    "ally_bans/2": "clint",
+    "ally_bans/3": "ixia",
+    "enemy_bans/0": "sun",
+    "enemy_bans/1": "atlas"
+   },
+   "sweep": {}
+  },
+  "draft_video2_040s.jpg": {
+   "base": {
+    "ally_bans/0": "helcurt",
+    "ally_bans/3": "layla",
+    "enemy_bans/0": "helcurt",
+    "enemy_bans/1": "aamon"
+   },
+   "sweep": {
+    "394": {
+     "kept": 4,
+     "of": 4,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 2,
+     "of": 4,
+     "lost": [
+      "ally_bans/0=helcurt",
+      "ally_bans/3=layla"
+     ],
+     "new": []
+    }
+   }
+  },
+  "draft_video2_070s.jpg": {
+   "base": {
+    "ally_slots/0": "yin",
+    "ally_slots/2": "alpha",
+    "ally_bans/0": "helcurt",
+    "ally_bans/2": "fredrinn",
+    "ally_bans/3": "layla",
+    "enemy_bans/0": "helcurt",
+    "enemy_bans/1": "aamon",
+    "enemy_bans/2": "nana",
+    "enemy_bans/3": "paquito"
+   },
+   "sweep": {
+    "394": {
+     "kept": 9,
+     "of": 9,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 6,
+     "of": 9,
+     "lost": [
+      "ally_bans/0=helcurt",
+      "ally_bans/2=fredrinn",
+      "ally_bans/3=layla"
+     ],
+     "new": []
+    }
+   }
+  },
+  "draft_video2_100s.jpg": {
+   "base": {
+    "ally_slots/0": "yin",
+    "ally_slots/1": "valir",
+    "ally_slots/2": "alpha",
+    "ally_slots/4": "minotaur",
+    "enemy_slots/0": "eudora",
+    "enemy_slots/1": "miya",
+    "ally_bans/0": "helcurt",
+    "ally_bans/2": "fredrinn",
+    "ally_bans/3": "layla",
+    "enemy_bans/0": "helcurt",
+    "enemy_bans/1": "aamon",
+    "enemy_bans/2": "nana",
+    "enemy_bans/3": "paquito"
+   },
+   "sweep": {
+    "394": {
+     "kept": 13,
+     "of": 13,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 8,
+     "of": 13,
+     "lost": [
+      "ally_bans/0=helcurt",
+      "ally_bans/2=fredrinn",
+      "ally_bans/3=layla",
+      "enemy_bans/1=aamon",
+      "enemy_bans/3=paquito"
+     ],
+     "new": []
+    }
+   }
+  },
+  "draft_video2_115s.jpg": {
+   "base": {
+    "ally_slots/0": "yin",
+    "ally_slots/1": "valir",
+    "ally_slots/2": "alpha",
+    "ally_slots/4": "akai",
+    "enemy_slots/0": "eudora",
+    "enemy_slots/1": "miya",
+    "enemy_slots/2": "nolan",
+    "enemy_slots/3": "suyou",
+    "ally_bans/0": "helcurt",
+    "ally_bans/2": "fredrinn",
+    "ally_bans/3": "layla",
+    "enemy_bans/0": "helcurt",
+    "enemy_bans/1": "aamon",
+    "enemy_bans/2": "nana",
+    "enemy_bans/3": "paquito"
+   },
+   "sweep": {
+    "394": {
+     "kept": 15,
+     "of": 15,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 12,
+     "of": 15,
+     "lost": [
+      "ally_bans/0=helcurt",
+      "ally_bans/2=fredrinn",
+      "ally_bans/3=layla"
+     ],
+     "new": []
+    }
+   }
+  },
+  "draft_video2_130s.jpg": {
+   "base": {
+    "ally_slots/0": "yin",
+    "ally_slots/1": "valir",
+    "ally_slots/2": "alpha",
+    "ally_slots/4": "minotaur",
+    "enemy_slots/0": "eudora",
+    "enemy_slots/1": "miya",
+    "enemy_slots/2": "nolan",
+    "enemy_slots/3": "suyou",
+    "enemy_slots/4": "saber",
+    "ally_bans/0": "helcurt",
+    "ally_bans/2": "fredrinn",
+    "ally_bans/3": "layla",
+    "enemy_bans/0": "helcurt",
+    "enemy_bans/1": "aamon",
+    "enemy_bans/2": "nana",
+    "enemy_bans/3": "paquito"
+   },
+   "sweep": {
+    "394": {
+     "kept": 16,
+     "of": 16,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 12,
+     "of": 16,
+     "lost": [
+      "ally_bans/0=helcurt",
+      "ally_bans/2=fredrinn",
+      "ally_bans/3=layla",
+      "enemy_bans/1=aamon"
+     ],
+     "new": []
+    }
+   }
+  },
+  "draft_video2_150s.jpg": {
+   "base": {
+    "ally_slots/0": "yin",
+    "enemy_slots/1": "miya",
+    "enemy_slots/3": "suyou",
+    "enemy_slots/4": "gatotkaca",
+    "ally_bans/0": "helcurt",
+    "ally_bans/2": "fredrinn",
+    "ally_bans/3": "layla",
+    "enemy_bans/0": "helcurt",
+    "enemy_bans/1": "aamon",
+    "enemy_bans/2": "nana",
+    "enemy_bans/3": "paquito"
+   },
+   "sweep": {
+    "394": {
+     "kept": 11,
+     "of": 11,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 7,
+     "of": 11,
+     "lost": [
+      "ally_bans/0=helcurt",
+      "ally_bans/2=fredrinn",
+      "ally_bans/3=layla",
+      "enemy_bans/1=aamon"
+     ],
+     "new": []
+    }
+   }
+  },
+  "draft_video2_165s.jpg": {
+   "base": {
+    "ally_slots/0": "yin",
+    "enemy_slots/1": "miya",
+    "enemy_slots/3": "suyou",
+    "enemy_slots/4": "gatotkaca",
+    "ally_bans/0": "helcurt",
+    "ally_bans/2": "fredrinn",
+    "ally_bans/3": "layla",
+    "enemy_bans/0": "helcurt",
+    "enemy_bans/1": "aamon",
+    "enemy_bans/2": "nana",
+    "enemy_bans/3": "paquito"
+   },
+   "sweep": {
+    "394": {
+     "kept": 11,
+     "of": 11,
+     "lost": [],
+     "new": []
+    },
+    "320": {
+     "kept": 8,
+     "of": 11,
+     "lost": [
+      "ally_bans/0=helcurt",
+      "ally_bans/2=fredrinn",
+      "ally_bans/3=layla"
+     ],
+     "new": []
+    }
+   }
+  }
+ }
+}
