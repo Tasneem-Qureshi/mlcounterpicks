@@ -8,6 +8,7 @@ import com.dripagency.mlbbdraft.data.repo.HeroRepository
 import com.dripagency.mlbbdraft.data.seed.MatchupSeeder
 import com.dripagency.mlbbdraft.data.seed.MatchupsParser
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.io.File
@@ -98,21 +99,77 @@ class DataUpdater(
         return Result.Updated(remoteVersion, parsed.heroes.size, templateCount)
     }
 
+    private suspend fun <T> retry(times: Int = 3, initialDelayMs: Long = 1000L, block: suspend () -> T): T {
+        var currentDelay = initialDelayMs
+        repeat(times - 1) { attempt ->
+            try {
+                return block()
+            } catch (e: Exception) {
+                Log.w(TAG, "Network attempt ${attempt + 1} failed: ${e.message}; retrying in ${currentDelay}ms", e)
+                delay(currentDelay)
+                currentDelay *= 2
+            }
+        }
+        return block()
+    }
+
     private fun open(url: String): HttpURLConnection = (URL(url).openConnection() as HttpURLConnection).apply {
-        connectTimeout = 15_000; readTimeout = 30_000
+        connectTimeout = 30_000
+        readTimeout = 60_000
+        instanceFollowRedirects = true
         setRequestProperty("User-Agent", "MLCounter/${BuildConfig.VERSION_NAME}")
         setRequestProperty("Accept-Encoding", "identity")
+        setRequestProperty("Connection", "close")
     }
 
-    private fun fetchText(url: String): String = open(url).run {
-        try { if (responseCode != 200) error("HTTP $responseCode for manifest"); inputStream.bufferedReader().readText() } finally { disconnect() }
+    private suspend fun fetchText(url: String): String = retry(3) {
+        var targetUrl = url
+        var redirects = 0
+        while (redirects < 5) {
+            val conn = open(targetUrl)
+            try {
+                val code = conn.responseCode
+                if (code in 301..308) {
+                    val location = conn.getHeaderField("Location")
+                    if (!location.isNullOrBlank()) {
+                        targetUrl = URL(URL(targetUrl), location).toExternalForm()
+                        redirects++
+                        continue
+                    }
+                }
+                if (code != 200) error("HTTP $code for manifest")
+                return@retry conn.inputStream.bufferedReader().readText()
+            } finally {
+                conn.disconnect()
+            }
+        }
+        error("Too many redirects fetching manifest: $url")
     }
 
-    private fun download(url: String, dest: File) = open(url).run {
-        try {
-            if (responseCode != 200) error("HTTP $responseCode downloading ${dest.name}")
-            inputStream.use { input -> FileOutputStream(dest).use { out -> input.copyTo(out, 64 * 1024) } }
-        } finally { disconnect() }
+    private suspend fun download(url: String, dest: File) = retry(3) {
+        if (dest.exists()) dest.delete()
+        var targetUrl = url
+        var redirects = 0
+        while (redirects < 5) {
+            val conn = open(targetUrl)
+            try {
+                val code = conn.responseCode
+                if (code in 301..308) {
+                    val location = conn.getHeaderField("Location")
+                    if (!location.isNullOrBlank()) {
+                        targetUrl = URL(URL(targetUrl), location).toExternalForm()
+                        redirects++
+                        continue
+                    }
+                }
+                if (code != 200) error("HTTP $code downloading ${dest.name}")
+                conn.inputStream.use { input -> FileOutputStream(dest).use { out -> input.copyTo(out, 64 * 1024) } }
+                return@retry
+            } finally {
+                conn.disconnect()
+            }
+        }
+        error("Too many redirects downloading ${dest.name}: $url")
     }
 
     private fun verify(file: File, expectedSha: String) {
